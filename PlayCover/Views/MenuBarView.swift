@@ -26,9 +26,9 @@ struct PlayCoverHelpMenuView: Commands {
     @ObservedObject var updaterViewModel: UpdaterViewModel
 
     var body: some Commands {
-        CommandGroup(after: .appInfo) {
-            CheckForUpdatesView(updaterViewModel: updaterViewModel)
-        }
+//        CommandGroup(after: .appInfo) {
+//            CheckForUpdatesView(updaterViewModel: updaterViewModel)
+//        }
 
         CommandGroup(replacing: .help) {
             Button("menubar.documentation") {

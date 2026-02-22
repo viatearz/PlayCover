@@ -18,11 +18,11 @@ struct PlayCoverSettingsView: View {
 
     var body: some View {
         TabView {
-            UpdateSettings(updaterViewModel: updaterViewModel)
-                .tabItem {
-                    Label("preferences.tab.updates", systemImage: "square.and.arrow.down")
-                }
-                .tag(Tabs.updates)
+//            UpdateSettings(updaterViewModel: updaterViewModel)
+//                .tabItem {
+//                    Label("preferences.tab.updates", systemImage: "square.and.arrow.down")
+//                }
+//                .tag(Tabs.updates)
             IPASourceSettings()
                 .tabItem {
                     Label("preferences.tab.ipasource", systemImage: "list.bullet")
