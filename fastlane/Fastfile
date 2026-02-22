@@ -62,6 +62,23 @@ lane :nightly do
     )
 end
 
+lane :unsigned do
+  setup_ci if ENV['CI']
+  Dir.chdir("..") do
+    sh("carthage", "update", "--use-xcframeworks")
+  end
+  carthage(use_xcframeworks: true)
+  build_mac_app(
+    configuration: "Nightly",
+    scheme: "PlayCover",
+    output_directory: "output",
+    output_name: "PlayCover",
+    destination: "generic/platform=macOS",
+    skip_package_pkg: true,
+    xcargs: "FASTLANE=1 CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=''",
+    )
+end
+
 lane :notarize_app do
   notarize(
     package: "output/PlayCover.app",

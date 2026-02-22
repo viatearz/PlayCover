@@ -1,0 +1,45 @@
+name: Build unsigned release
+on:
+  workflow_dispatch:
+env:
+  CI: true
+jobs:
+  build:
+    runs-on: macos-26
+    env:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          brew install graphicsmagick imagemagick swiftlint
+          gem install fastlane
+          bundle install
+          pip install setuptools
+          npm install --global https://github.com/PlayCover/create-dmg
+
+      - name: Set build number
+        shell: bash
+        run: |
+          fastlane run increment_build_number build_number:${{ github.run_number }}
+
+      - name: Fastlane Unsigned
+        shell: bash
+        run: fastlane unsigned
+        env:
+          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120 # x86 is slooooooow
+
+      - name: Create DMG
+        shell: bash
+        run: |
+          create-dmg --no-code-sign ./output/PlayCover.app ./output
+          mv ./output/*.dmg ./output/PlayCover_${{ github.run_number }}_unsigned.dmg
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PlayCover_${{ github.run_number }}_unsigned.dmg
+          path: output/PlayCover_${{ github.run_number }}_unsigned.dmg
