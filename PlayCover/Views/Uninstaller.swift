@@ -123,6 +123,7 @@ class Uninstaller {
 
         if UninstallPreferences.shared.removeAppSettings {
             FileManager.default.delete(at: app.settings.settingsUrl)
+            FileManager.default.delete(at: app.settings.extraSettingsUrl)
             uninstallNum += 1
         }
 

@@ -93,6 +93,14 @@ struct AppSettingsData: Codable {
     }
 }
 
+struct ExtraAppSettingsData: Codable {
+    init() {}
+
+    init(from decoder: Decoder) throws {
+        
+    }
+}
+
 class AppSettings {
     static var appSettingsDir: URL {
         let settingsFolder =
@@ -111,6 +119,7 @@ class AppSettings {
 
     let info: AppInfo
     let settingsUrl: URL
+    let extraSettingsUrl: URL
     var openWithLLDB: Bool = false
     var openLLDBWithTerminal: Bool = true
     var settings: AppSettingsData {
@@ -118,14 +127,25 @@ class AppSettings {
             encode()
         }
     }
+    var extraSettings: ExtraAppSettingsData {
+       didSet {
+           encodeExtra()
+       }
+    }
 
     init(_ info: AppInfo) {
         self.info = info
         settingsUrl = AppSettings.appSettingsDir.appendingPathComponent(info.bundleIdentifier)
                                                 .appendingPathExtension("plist")
+        extraSettingsUrl = AppSettings.appSettingsDir.appendingPathComponent(info.bundleIdentifier + ".extra")
+                                                     .appendingPathExtension("plist")
         settings = AppSettingsData()
+        extraSettings = ExtraAppSettingsData()
         if !decode() {
             encode()
+        }
+        if !decodeExtra() {
+            encodeExtra()
         }
 
         settings.bundleIdentifier = info.bundleIdentifier
@@ -137,6 +157,7 @@ class AppSettings {
 
     public func reset() {
         settings = AppSettingsData()
+        extraSettings = ExtraAppSettingsData()
     }
 
     @discardableResult
@@ -159,6 +180,33 @@ class AppSettings {
         do {
             let data = try encoder.encode(settings)
             try data.write(to: settingsUrl)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+
+    @discardableResult
+    public func decodeExtra() -> Bool {
+        do {
+            let data = try Data(contentsOf: extraSettingsUrl)
+            extraSettings = try PropertyListDecoder().decode(ExtraAppSettingsData.self, from: data)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+
+    @discardableResult
+    public func encodeExtra() -> Bool {
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+
+        do {
+            let data = try encoder.encode(extraSettings)
+            try data.write(to: extraSettingsUrl)
             return true
         } catch {
             print(error)

@@ -104,6 +104,11 @@ struct AppSettingsView: View {
                     .tabItem {
                         Text("settings.tab.misc")
                     }
+                ExtrasView(settings: $viewModel.settings.extraSettings)
+                   .tabItem {
+                       Text("settings.tab.extras")
+                   }
+                   .disabled(!(hasPlayTools ?? true))
                 InfoView(info: viewModel.app.info, hasPlayTools: (hasPlayTools ?? true))
                     .tabItem {
                         Text("settings.tab.info")
@@ -781,6 +786,18 @@ struct MiscView: View {
             return true
         } else {
             return false
+        }
+    }
+}
+
+struct ExtrasView: View {
+    @Binding var settings: ExtraAppSettingsData
+
+    var body: some View {
+        ScrollView {
+            VStack {
+            }
+            .padding()
         }
     }
 }
