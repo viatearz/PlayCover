@@ -1,0 +1,7 @@
+{
+    "jinChanChanFixMicrophone": true,
+    "checkMicPermissionSync": true,
+    "webViewSmartTextInput": true,
+    "forceUIViewLandscape": true,
+    "forceUIViewLandscapeArgs": ["MSDKBaseWebViewController"]
+}

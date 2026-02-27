@@ -1,0 +1,6 @@
+{
+    "disableINTLUtilsSwizzling": true,
+    "unityEngineForceLandscape": true,
+    "unityEngineDisableOrientationCheck": true,
+    "webViewSmartTextInput": true
+}

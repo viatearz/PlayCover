@@ -1,0 +1,7 @@
+{
+    "forceQuitAppOnClose": true,
+    "enhanceBuiltinMouse": true,
+    "preventKeyboardBeepSound": true,
+    "forceUIViewLandscape": true,
+    "forceUIViewLandscapeArgs": ["HGKFVC"]
+}
