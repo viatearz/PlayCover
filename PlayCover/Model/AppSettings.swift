@@ -91,6 +91,9 @@ struct AppSettingsData: Codable {
         resizableAspectRatioHeight = try container.decodeIfPresent(Int.self, forKey: .resizableAspectRatioHeight) ?? 0
         blockSleepSpamming = try container.decodeIfPresent(Bool.self, forKey: .blockSleepSpamming) ?? false
     }
+
+    mutating func applyOverrides(_ overrides: [String: Any]) {
+    }
 }
 
 struct ExtraAppSettingsData: Codable {
@@ -98,6 +101,9 @@ struct ExtraAppSettingsData: Codable {
 
     init(from decoder: Decoder) throws {
         
+    }
+
+    mutating func applyOverrides(_ overrides: [String: Any]) {
     }
 }
 
@@ -141,10 +147,23 @@ class AppSettings {
                                                      .appendingPathExtension("plist")
         settings = AppSettingsData()
         extraSettings = ExtraAppSettingsData()
+        var overrides: [String: Any]?
         if !decode() {
+            if overrides == nil {
+                overrides = loadOverrides()
+            }
+            if let overrides = overrides {
+                applyOverridesToBaseSettings(overrides)
+            }
             encode()
         }
         if !decodeExtra() {
+            if overrides == nil {
+                overrides = loadOverrides()
+            }
+            if let overrides = overrides {
+                applyOverridesToExtraSettings(overrides)
+            }
             encodeExtra()
         }
 
@@ -158,6 +177,9 @@ class AppSettings {
     public func reset() {
         settings = AppSettingsData()
         extraSettings = ExtraAppSettingsData()
+        let overrides = loadOverrides()
+        applyOverridesToBaseSettings(overrides)
+        applyOverridesToExtraSettings(overrides)
     }
 
     @discardableResult
@@ -212,6 +234,40 @@ class AppSettings {
             print(error)
             return false
         }
+    }
+
+    func loadOverrides() -> [String: Any] {
+        var overrides: [String: Any] = [:]
+        guard let url = Bundle.main.url(
+            forResource: info.bundleIdentifier,
+            withExtension: "json",
+            subdirectory: "AppSettingsOverrides"
+        ) else {
+            return overrides
+        }
+
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            return overrides
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            if let dictionary = json as? [String: Any] {
+                overrides = dictionary
+            }
+        } catch {
+            print(error)
+        }
+        return overrides
+    }
+
+    private func applyOverridesToBaseSettings(_ overrides: [String: Any]) {
+        settings.applyOverrides(overrides)
+    }
+
+    private func applyOverridesToExtraSettings(_ overrides: [String: Any]) {
+        extraSettings.applyOverrides(overrides)
     }
 }
 
