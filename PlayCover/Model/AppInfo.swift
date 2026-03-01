@@ -260,6 +260,49 @@ public class AppInfo {
         }
     }
 
+    lazy var isUnityEngine: Bool = {
+        let unityFramework = self.url.deletingLastPathComponent()
+            .appendingPathComponent("Frameworks")
+            .appendingPathComponent("UnityFramework.framework")
+        if FileManager.default.fileExists(atPath: unityFramework.path) {
+            return true
+        }
+
+        let unityManaged = self.url.deletingLastPathComponent()
+            .appendingPathComponent("Data")
+            .appendingPathComponent("Managed")
+        if FileManager.default.fileExists(atPath: unityManaged.path) {
+            return true
+        }
+
+        return false
+    }()
+
+    lazy var isUnrealEngine: Bool = {
+        let cookeddata = self.url.deletingLastPathComponent()
+            .appendingPathComponent("cookeddata")
+        if FileManager.default.fileExists(atPath: cookeddata.path) {
+            return true
+        }
+        return false
+    }()
+
+    lazy var isNeoXEngine: Bool = {
+        let neoxXml = self.url.deletingLastPathComponent()
+            .appendingPathComponent("neox.xml")
+        if FileManager.default.fileExists(atPath: neoxXml.path) {
+            return true
+        }
+
+        let neox3Xml = self.url.deletingLastPathComponent()
+            .appendingPathComponent("neox3.xml")
+        if FileManager.default.fileExists(atPath: neox3Xml.path) {
+            return true
+        }
+
+        return false
+    }()
+
     func assert(minimumVersion: Double) {
         if let double = Double(minimumOSVersion) {
             if double > 11.0 {

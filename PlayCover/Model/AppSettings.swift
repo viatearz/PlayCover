@@ -3,6 +3,8 @@
 //  PlayCover
 //
 
+// swiftlint:disable file_length
+
 import AppKit
 import Foundation
 import UniformTypeIdentifiers
@@ -93,6 +95,16 @@ struct AppSettingsData: Codable {
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
+        guard !overrides.isEmpty else { return }
+        if let val = overrides["keymapping"] as? Bool { keymapping = val }
+        if let val = overrides["resolution"] as? Int { resolution = val }
+        if let val = overrides["bypass"] as? Bool { bypass = val }
+        if let val = overrides["inverseScreenValues"] as? Bool { inverseScreenValues = val }
+        if let val = overrides["windowFixMethod"] as? Int { windowFixMethod = val }
+        if let val = overrides["checkMicPermissionSync"] as? Bool { checkMicPermissionSync = val }
+        if let val = overrides["limitMotionUpdateFrequency"] as? Bool { limitMotionUpdateFrequency = val }
+        if let val = overrides["disableBuiltinMouse"] as? Bool { disableBuiltinMouse = val }
+        if let val = overrides["blockSleepSpamming"] as? Bool { blockSleepSpamming = val }
     }
 }
 
@@ -102,9 +114,43 @@ struct ExtraAppSettingsData: Codable {
     var customCursorHeight = 32
     var customCursorHotSpotX = 0
     var customCursorHotSpotY = 0
+    var forceQuitAppOnClose = false
+    var unrealEngineSetScaleFactor = false
+    var ignoreClicksWhenNotFocused = true
+    var enhanceBuiltinMouse = false
+    var preventKeyboardBeepSound = false
+    var fixPlayChainMatchLimit = true
+    var unityEngineFixKeyboardInput = false
+    var disableINTLUtilsSwizzling = false
+    var unityEngineForceLandscape = false
+    var unrealEngineSmartTextInput = false
+    var webViewSmartTextInput = false
+    var unityEngineIgnoreKeyboardDelegateCrash = false
+    var preloadAppTrackingFramework = false
+    var skipGameCenterLogin = false
+    var unityEngineDisableOrientationCheck = false
+    var unityEngineDisableAROverlayTouches = false
+    var forceWebViewUseMobileContentMode = false
+    var unrealEngineBypassEntitlementsCheck = false
+    var preventGoogleMeasurmentWriteFiles = false
+    var bypassUnknownDetectionA = false
+    var unrealEngineFixFilePath = false
+    var fixAvailableMemoryValue = false
+    var neoxEngineFixFilePath = false
+    var disableCriWareSonicSync = false
+    var enableAutoRotate = false
+    var jinChanChanFixMicrophone = false
+    var forceUIViewLandscape = false
+    var forceUIViewLandscapeArgs: [String] = []
+    var useBuiltinPointerLock = false
+    var clearLastTouchesWhenEnterTextInput = false
+    var disableAllAlertDialogs = false
+    var loveAndDeepspaceFixLoginTextInput = false
+    var unityEngineFixAutoRotate = false
 
     init() {}
 
+    // swiftlint:disable line_length
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enableCustomCursor = try container.decodeIfPresent(Bool.self, forKey: .enableCustomCursor) ?? false
@@ -112,10 +158,84 @@ struct ExtraAppSettingsData: Codable {
         customCursorHeight = try container.decodeIfPresent(Int.self, forKey: .customCursorHeight) ?? 32
         customCursorHotSpotX = try container.decodeIfPresent(Int.self, forKey: .customCursorHotSpotX) ?? 0
         customCursorHotSpotY = try container.decodeIfPresent(Int.self, forKey: .customCursorHotSpotY) ?? 0
+        forceQuitAppOnClose = try container.decodeIfPresent(Bool.self, forKey: .forceQuitAppOnClose) ?? false
+        unrealEngineSetScaleFactor = try container.decodeIfPresent(Bool.self, forKey: .unrealEngineSetScaleFactor) ?? false
+        ignoreClicksWhenNotFocused = try container.decodeIfPresent(Bool.self, forKey: .ignoreClicksWhenNotFocused) ?? true
+        enhanceBuiltinMouse = try container.decodeIfPresent(Bool.self, forKey: .enhanceBuiltinMouse) ?? false
+        preventKeyboardBeepSound = try container.decodeIfPresent(Bool.self, forKey: .preventKeyboardBeepSound) ?? false
+        fixPlayChainMatchLimit = try container.decodeIfPresent(Bool.self, forKey: .fixPlayChainMatchLimit) ?? true
+        unityEngineFixKeyboardInput = try container.decodeIfPresent(Bool.self, forKey: .unityEngineFixKeyboardInput) ?? false
+        disableINTLUtilsSwizzling = try container.decodeIfPresent(Bool.self, forKey: .disableINTLUtilsSwizzling) ?? false
+        unityEngineForceLandscape = try container.decodeIfPresent(Bool.self, forKey: .unityEngineForceLandscape) ?? false
+        unrealEngineSmartTextInput = try container.decodeIfPresent(Bool.self, forKey: .unrealEngineSmartTextInput) ?? false
+        webViewSmartTextInput = try container.decodeIfPresent(Bool.self, forKey: .webViewSmartTextInput) ?? false
+        unityEngineIgnoreKeyboardDelegateCrash = try container.decodeIfPresent(Bool.self, forKey: .unityEngineIgnoreKeyboardDelegateCrash) ?? false
+        preloadAppTrackingFramework = try container.decodeIfPresent(Bool.self, forKey: .preloadAppTrackingFramework) ?? false
+        skipGameCenterLogin = try container.decodeIfPresent(Bool.self, forKey: .skipGameCenterLogin) ?? false
+        unityEngineDisableOrientationCheck = try container.decodeIfPresent(Bool.self, forKey: .unityEngineDisableOrientationCheck) ?? false
+        unityEngineDisableAROverlayTouches = try container.decodeIfPresent(Bool.self, forKey: .unityEngineDisableAROverlayTouches) ?? false
+        forceWebViewUseMobileContentMode = try container.decodeIfPresent(Bool.self, forKey: .forceWebViewUseMobileContentMode) ?? false
+        unrealEngineBypassEntitlementsCheck = try container.decodeIfPresent(Bool.self, forKey: .unrealEngineBypassEntitlementsCheck) ?? false
+        preventGoogleMeasurmentWriteFiles = try container.decodeIfPresent(Bool.self, forKey: .preventGoogleMeasurmentWriteFiles) ?? false
+        bypassUnknownDetectionA = try container.decodeIfPresent(Bool.self, forKey: .bypassUnknownDetectionA) ?? false
+        unrealEngineFixFilePath = try container.decodeIfPresent(Bool.self, forKey: .unrealEngineFixFilePath) ?? false
+        fixAvailableMemoryValue = try container.decodeIfPresent(Bool.self, forKey: .fixAvailableMemoryValue) ?? false
+        neoxEngineFixFilePath = try container.decodeIfPresent(Bool.self, forKey: .neoxEngineFixFilePath) ?? false
+        disableCriWareSonicSync = try container.decodeIfPresent(Bool.self, forKey: .disableCriWareSonicSync) ?? false
+        enableAutoRotate = try container.decodeIfPresent(Bool.self, forKey: .enableAutoRotate) ?? false
+        jinChanChanFixMicrophone = try container.decodeIfPresent(Bool.self, forKey: .jinChanChanFixMicrophone) ?? false
+        forceUIViewLandscape = try container.decodeIfPresent(Bool.self, forKey: .forceUIViewLandscape) ?? false
+        forceUIViewLandscapeArgs = try container.decodeIfPresent([String].self, forKey: .forceUIViewLandscapeArgs) ?? []
+        useBuiltinPointerLock = try container.decodeIfPresent(Bool.self, forKey: .useBuiltinPointerLock) ?? false
+        clearLastTouchesWhenEnterTextInput = try container.decodeIfPresent(Bool.self, forKey: .clearLastTouchesWhenEnterTextInput) ?? false
+        disableAllAlertDialogs = try container.decodeIfPresent(Bool.self, forKey: .disableAllAlertDialogs) ?? false
+        loveAndDeepspaceFixLoginTextInput = try container.decodeIfPresent(Bool.self, forKey: .loveAndDeepspaceFixLoginTextInput) ?? false
+        unityEngineFixAutoRotate = try container.decodeIfPresent(Bool.self, forKey: .unityEngineFixAutoRotate) ?? false
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     mutating func applyOverrides(_ overrides: [String: Any]) {
+        guard !overrides.isEmpty else { return }
+        if let val = overrides["forceQuitAppOnClose"] as? Bool { forceQuitAppOnClose = val }
+        if let val = overrides["unrealEngineSetScaleFactor"] as? Bool { unrealEngineSetScaleFactor = val }
+        if let val = overrides["enableCustomCursor"] as? Bool { enableCustomCursor = val }
+        if let val = overrides["customCursorWidth"] as? Int { customCursorWidth = val }
+        if let val = overrides["customCursorHeight"] as? Int { customCursorHeight = val }
+        if let val = overrides["customCursorHotSpotX"] as? Int { customCursorHotSpotX = val }
+        if let val = overrides["customCursorHotSpotY"] as? Int { customCursorHotSpotY = val }
+        if let val = overrides["ignoreClicksWhenNotFocused"] as? Bool { ignoreClicksWhenNotFocused = val }
+        if let val = overrides["enhanceBuiltinMouse"] as? Bool { enhanceBuiltinMouse = val }
+        if let val = overrides["preventKeyboardBeepSound"] as? Bool { preventKeyboardBeepSound = val }
+        if let val = overrides["fixPlayChainMatchLimit"] as? Bool { fixPlayChainMatchLimit = val }
+        if let val = overrides["unityEngineFixKeyboardInput"] as? Bool { unityEngineFixKeyboardInput = val }
+        if let val = overrides["disableINTLUtilsSwizzling"] as? Bool { disableINTLUtilsSwizzling = val }
+        if let val = overrides["unityEngineForceLandscape"] as? Bool { unityEngineForceLandscape = val }
+        if let val = overrides["unrealEngineSmartTextInput"] as? Bool { unrealEngineSmartTextInput = val }
+        if let val = overrides["webViewSmartTextInput"] as? Bool { webViewSmartTextInput = val }
+        if let val = overrides["unityEngineIgnoreKeyboardDelegateCrash"] as? Bool { unityEngineIgnoreKeyboardDelegateCrash = val }
+        if let val = overrides["preloadAppTrackingFramework"] as? Bool { preloadAppTrackingFramework = val }
+        if let val = overrides["skipGameCenterLogin"] as? Bool { skipGameCenterLogin = val }
+        if let val = overrides["unityEngineDisableOrientationCheck"] as? Bool { unityEngineDisableOrientationCheck = val }
+        if let val = overrides["unityEngineDisableAROverlayTouches"] as? Bool { unityEngineDisableAROverlayTouches = val }
+        if let val = overrides["forceWebViewUseMobileContentMode"] as? Bool { forceWebViewUseMobileContentMode = val }
+        if let val = overrides["unrealEngineBypassEntitlementsCheck"] as? Bool { unrealEngineBypassEntitlementsCheck = val }
+        if let val = overrides["preventGoogleMeasurmentWriteFiles"] as? Bool { preventGoogleMeasurmentWriteFiles = val }
+        if let val = overrides["bypassUnknownDetectionA"] as? Bool { bypassUnknownDetectionA = val }
+        if let val = overrides["unrealEngineFixFilePath"] as? Bool { unrealEngineFixFilePath = val }
+        if let val = overrides["fixAvailableMemoryValue"] as? Bool { fixAvailableMemoryValue = val }
+        if let val = overrides["neoxEngineFixFilePath"] as? Bool { neoxEngineFixFilePath = val }
+        if let val = overrides["disableCriWareSonicSync"] as? Bool { disableCriWareSonicSync = val }
+        if let val = overrides["enableAutoRotate"] as? Bool { enableAutoRotate = val }
+        if let val = overrides["jinChanChanFixMicrophone"] as? Bool { jinChanChanFixMicrophone = val }
+        if let val = overrides["forceUIViewLandscape"] as? Bool { forceUIViewLandscape = val }
+        if let val = overrides["forceUIViewLandscapeArgs"] as? [String] { forceUIViewLandscapeArgs = val }
+        if let val = overrides["useBuiltinPointerLock"] as? Bool { useBuiltinPointerLock = val }
+        if let val = overrides["clearLastTouchesWhenEnterTextInput"] as? Bool { clearLastTouchesWhenEnterTextInput = val }
+        if let val = overrides["disableAllAlertDialogs"] as? Bool { disableAllAlertDialogs = val }
+        if let val = overrides["loveAndDeepspaceFixLoginTextInput"] as? Bool { loveAndDeepspaceFixLoginTextInput = val }
+        if let val = overrides["unityEngineFixAutoRotate"] as? Bool { unityEngineFixAutoRotate = val }
     }
+    // swiftlint:enable line_length
 }
 
 class AppSettings {
@@ -274,10 +394,23 @@ class AppSettings {
     }
 
     private func applyOverridesToBaseSettings(_ overrides: [String: Any]) {
+        if info.isUnityEngine {
+            settings.limitMotionUpdateFrequency = true
+        }
         settings.applyOverrides(overrides)
     }
 
     private func applyOverridesToExtraSettings(_ overrides: [String: Any]) {
+        if info.isUnityEngine {
+            extraSettings.unityEngineFixKeyboardInput = true
+        }
+        if info.isUnrealEngine {
+            extraSettings.unrealEngineFixFilePath = true
+            extraSettings.fixAvailableMemoryValue = true
+        }
+        if info.isNeoXEngine {
+            extraSettings.neoxEngineFixFilePath = true
+        }
         extraSettings.applyOverrides(overrides)
     }
 }

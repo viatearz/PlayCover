@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DataCache
+import UniformTypeIdentifiers
 
 enum BlockingTask {
     case none, playTools, introspection, iosFrameworks, applicationCategoryType
@@ -104,7 +105,8 @@ struct AppSettingsView: View {
                     .tabItem {
                         Text("settings.tab.misc")
                     }
-                ExtrasView(settings: $viewModel.settings.extraSettings)
+                ExtrasView(settings: $viewModel.settings.extraSettings,
+                           app: viewModel.app)
                    .tabItem {
                        Text("settings.tab.extras")
                    }
@@ -790,8 +792,23 @@ struct MiscView: View {
     }
 }
 
+// swiftlint:disable:next type_body_length
 struct ExtrasView: View {
     @Binding var settings: ExtraAppSettingsData
+    var app: PlayApp
+    @State var showBypassEntitlementsCheck = false
+    @State var bypassEntitlementsCheck = false
+    @State var preventGoogleMeasurmentWriteFiles = false
+    @State var showAppSpecificOptions = false
+    @State var showDisableINTLUtilsSwizzling = false
+    @State var showBypassUnknownDetectionA = false
+    @State var showJinChanChanFixMicrophone = false
+    @State var showForceUIViewLandscape = false
+    @State var showUseBuiltinPointerLock = false
+    @State var showClearLastTouchesWhenEnterTextInput = false
+    @State var showDisableAllAlertDialogs = false
+    @State var showLoveAndDeepspaceFixLoginTextInput = false
+    @State var showUnityEngineFixAutoRotate = false
 
     var body: some View {
         ScrollView {
@@ -804,8 +821,300 @@ struct ExtrasView: View {
                     Spacer().frame(height: 16)
                     CursorSettingView(bundleID: app.info.bundleIdentifier, setting: $settings)
                 }
+
+                Spacer().frame(height: 16)
+
+                HStack {
+                    Text("settings.text.extras.common").bold()
+                    Spacer()
+                }
+                if app.settings.settings.resolution == 6 {
+                    HStack {
+                        Toggle("settings.toggle.enableAutoRotate",
+                               isOn: $settings.enableAutoRotate)
+                        .help("settings.toggle.enableAutoRotate.help")
+                        Spacer()
+                    }
+                }
+                HStack {
+                    Toggle("settings.toggle.fixWeirdWindowFocusState",
+                           isOn: $settings.ignoreClicksWhenNotFocused)
+                        .help("settings.toggle.fixWeirdWindowFocusState.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.fixPlayChainMatchLimit",
+                           isOn: $settings.fixPlayChainMatchLimit)
+                        .help("settings.toggle.fixPlayChainMatchLimit.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.forceQuitAppOnClose",
+                           isOn: $settings.forceQuitAppOnClose)
+                        .help("settings.toggle.forceQuitAppOnClose.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.webViewSmartTextInput",
+                           isOn: $settings.webViewSmartTextInput)
+                        .help("settings.toggle.webViewSmartTextInput.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.preventKeyboardBeepSound",
+                           isOn: $settings.preventKeyboardBeepSound)
+                    Spacer()
+                }
+
+                Spacer().frame(height: 16)
+
+                if app.info.isUnityEngine {
+                    HStack {
+                        Text("settings.text.extras.unityEngine").bold()
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.unityEngineFixKeyboardInput",
+                               isOn: $settings.unityEngineFixKeyboardInput)
+                            .help("settings.toggle.unityEngineFixKeyboardInput.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.unityEngineForceLandscape",
+                               isOn: $settings.unityEngineForceLandscape)
+                            .help("settings.toggle.unityEngineForceLandscape.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.unityEngineDisableOrientationCheck",
+                               isOn: $settings.unityEngineDisableOrientationCheck)
+                        .help("settings.toggle.unityEngineDisableOrientationCheck.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.unityEngineIgnoreKeyboardDelegateCrash",
+                               isOn: $settings.unityEngineIgnoreKeyboardDelegateCrash)
+                            .help("settings.toggle.unityEngineIgnoreKeyboardDelegateCrash.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.unityEngineDisableAROverlayTouches",
+                               isOn: $settings.unityEngineDisableAROverlayTouches)
+                            .help("settings.toggle.unityEngineDisableAROverlayTouches.help")
+                        Spacer()
+                    }
+                    Spacer().frame(height: 16)
+                }
+
+                if app.info.isUnrealEngine {
+                    HStack {
+                        Text("settings.text.extras.unrealEngine").bold()
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.unrealEngineFixFilePath",
+                               isOn: $settings.unrealEngineFixFilePath)
+                            .help("settings.toggle.unrealEngineFixFilePath.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.fixAvailableMemoryValue",
+                               isOn: $settings.fixAvailableMemoryValue)
+                            .help("settings.toggle.fixAvailableMemoryValue.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.unrealEngineSetScaleFactor", isOn: $settings.unrealEngineSetScaleFactor)
+                            .help("settings.toggle.unrealEngineSetScaleFactor.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.unrealEngineSmartTextInput",
+                               isOn: $settings.unrealEngineSmartTextInput)
+                            .help("settings.toggle.unrealEngineSmartTextInput.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.enhanceBuiltinMouse",
+                               isOn: $settings.enhanceBuiltinMouse)
+                            .help("settings.toggle.enhanceBuiltinMouse.help")
+                        Spacer()
+                    }
+                    Spacer().frame(height: 16)
+                }
+
+                if app.info.isNeoXEngine {
+                    HStack {
+                        Text("settings.text.extras.neoxEngine").bold()
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.neoxEngineFixFilePath",
+                               isOn: $settings.neoxEngineFixFilePath)
+                            .help("settings.toggle.neoxEngineFixFilePath.help")
+                        Spacer()
+                    }
+                    Spacer().frame(height: 16)
+                }
+
+                HStack {
+                    Text("settings.text.extras.services").bold()
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.preloadAppTrackingFramework",
+                           isOn: $settings.preloadAppTrackingFramework)
+                        .help("settings.toggle.preloadAppTrackingFramework.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.skipGameCenterLogin",
+                           isOn: $settings.skipGameCenterLogin)
+                        .help("settings.toggle.skipGameCenterLogin.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.forceWebViewUseMobileContentMode",
+                           isOn: $settings.forceWebViewUseMobileContentMode)
+                        .help("settings.toggle.forceWebViewUseMobileContentMode.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.preventGoogleMeasurmentWriteFiles",
+                           isOn: $preventGoogleMeasurmentWriteFiles)
+                        .help("settings.toggle.preventGoogleMeasurmentWriteFiles.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.disableCriWareSonicSync",
+                           isOn: $settings.disableCriWareSonicSync)
+                        .help("settings.toggle.disableCriWareSonicSync.help")
+                    Spacer()
+                }
+
+                if showAppSpecificOptions {
+                    Spacer().frame(height: 16)
+                    HStack {
+                        Text("settings.text.extras.appSpecific").bold()
+                        Spacer()
+                    }
+                    if showBypassEntitlementsCheck {
+                        HStack {
+                            Toggle("settings.toggle.unrealEngineBypassEntitlementsCheck",
+                                   isOn: $bypassEntitlementsCheck)
+                                .help("settings.toggle.unrealEngineBypassEntitlementsCheck.help")
+                            Spacer()
+                        }
+                    }
+                    if showDisableINTLUtilsSwizzling {
+                        HStack {
+                            Toggle("settings.toggle.disableINTLUtilsSwizzling",
+                                   isOn: $settings.disableINTLUtilsSwizzling)
+                            .help("settings.toggle.disableINTLUtilsSwizzling.help")
+                            Spacer()
+                        }
+                    }
+                    if showBypassUnknownDetectionA {
+                        HStack {
+                            Toggle("settings.toggle.bypassUnknownDetection",
+                                   isOn: $settings.bypassUnknownDetectionA)
+                            Spacer()
+                        }
+                    }
+                    if showJinChanChanFixMicrophone {
+                        HStack {
+                            Toggle("settings.toggle.jinChanChanFixMicrophone",
+                                   isOn: $settings.jinChanChanFixMicrophone)
+                            Spacer()
+                        }
+                    }
+                    if showForceUIViewLandscape {
+                        HStack {
+                            Toggle("settings.toggle.forceUIViewLandscape",
+                                   isOn: $settings.forceUIViewLandscape)
+                            Spacer()
+                        }
+                    }
+                    if showUseBuiltinPointerLock {
+                        HStack {
+                            Toggle("settings.toggle.useBuiltinPointerLock",
+                                   isOn: $settings.useBuiltinPointerLock)
+                                .help("settings.toggle.useBuiltinPointerLock.help")
+                            Spacer()
+                        }
+                    }
+                    if showClearLastTouchesWhenEnterTextInput {
+                        HStack {
+                            Toggle("settings.toggle.clearLastTouchesWhenEnterTextInput",
+                                   isOn: $settings.clearLastTouchesWhenEnterTextInput)
+                                .help("settings.toggle.clearLastTouchesWhenEnterTextInput.help")
+                            Spacer()
+                        }
+                    }
+                    if showDisableAllAlertDialogs {
+                        HStack {
+                            Toggle("settings.toggle.disableAllAlertDialogs",
+                                   isOn: $settings.disableAllAlertDialogs)
+                            Spacer()
+                        }
+                    }
+                    if showLoveAndDeepspaceFixLoginTextInput {
+                        HStack {
+                            Toggle("settings.toggle.loveAndDeepspaceFixLoginTextInput",
+                                   isOn: $settings.loveAndDeepspaceFixLoginTextInput)
+                            Spacer()
+                        }
+                    }
+                    if showUnityEngineFixAutoRotate {
+                        HStack {
+                            Toggle("settings.toggle.unityEngineFixAutoRotate",
+                                   isOn: $settings.unityEngineFixAutoRotate)
+                            Spacer()
+                        }
+                    }
+                }
             }
             .padding()
+        }
+        .task(priority: .userInitiated) {
+            bypassEntitlementsCheck = settings.unrealEngineBypassEntitlementsCheck
+            preventGoogleMeasurmentWriteFiles = settings.preventGoogleMeasurmentWriteFiles
+
+            let overrides = app.settings.loadOverrides()
+            showBypassEntitlementsCheck = overrides["unrealEngineBypassEntitlementsCheck"] != nil
+            showDisableINTLUtilsSwizzling = overrides["disableINTLUtilsSwizzling"] != nil
+            showBypassUnknownDetectionA = overrides["bypassUnknownDetectionA"] != nil
+            showJinChanChanFixMicrophone = overrides["jinChanChanFixMicrophone"] != nil
+            showForceUIViewLandscape = overrides["forceUIViewLandscape"] != nil
+            showUseBuiltinPointerLock = overrides["useBuiltinPointerLock"] != nil
+            showClearLastTouchesWhenEnterTextInput = overrides["clearLastTouchesWhenEnterTextInput"] != nil
+            showDisableAllAlertDialogs = overrides["disableAllAlertDialogs"] != nil
+            showLoveAndDeepspaceFixLoginTextInput = overrides["loveAndDeepspaceFixLoginTextInput"] != nil
+            showUnityEngineFixAutoRotate = overrides["unityEngineFixAutoRotate"] != nil
+            showAppSpecificOptions = [
+                showBypassEntitlementsCheck,
+                showDisableINTLUtilsSwizzling,
+                showBypassUnknownDetectionA,
+                showJinChanChanFixMicrophone,
+                showForceUIViewLandscape,
+                showUseBuiltinPointerLock,
+                showClearLastTouchesWhenEnterTextInput,
+                showDisableAllAlertDialogs,
+                showLoveAndDeepspaceFixLoginTextInput,
+                showUnityEngineFixAutoRotate
+            ].contains(true)
+        }
+        .onChange(of: bypassEntitlementsCheck) { _ in
+            settings.unrealEngineBypassEntitlementsCheck = bypassEntitlementsCheck
+            if bypassEntitlementsCheck {
+                app.copyEntitlementsAsEmbeddedMobileprovision()
+            } else {
+                app.deleteEmbeddedMobileprovision()
+            }
+        }
+        .onChange(of: preventGoogleMeasurmentWriteFiles) { _ in
+            settings.preventGoogleMeasurmentWriteFiles = preventGoogleMeasurmentWriteFiles
+            app.setGoogleMeasurementDirectoryReadOnly(preventGoogleMeasurmentWriteFiles)
         }
     }
 }
