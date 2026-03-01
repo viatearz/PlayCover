@@ -796,9 +796,226 @@ struct ExtrasView: View {
     var body: some View {
         ScrollView {
             VStack {
+                HStack {
+                    Toggle("settings.toggle.enableCustomCursor", isOn: $settings.enableCustomCursor)
+                    Spacer()
+                }
+                if settings.enableCustomCursor {
+                    Spacer().frame(height: 16)
+                    CursorSettingView(bundleID: app.info.bundleIdentifier, setting: $settings)
+                }
             }
             .padding()
         }
+    }
+}
+
+struct CursorSettingView: View {
+    let bundleID: String
+    @Binding var setting: ExtraAppSettingsData
+    @State var cursorImage: NSImage?
+    @State var cursorWidth = 32
+    @State var cursorHeight = 32
+    @State var cursorHotSpotX = 0
+    @State var cursorHotSpotY = 0
+    @State var showClearCursorAlert = false
+
+    var body: some View {
+        HStack {
+            if let image = cursorImage {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
+                        .frame(width: 60, height: 60)
+                        .foregroundColor(Color(nsColor: .lightGray))
+                    Image(nsImage: image)
+                        .resizable()
+                        .frame(width: CGFloat(max(0, cursorWidth)), height: CGFloat(max(0, cursorHeight)))
+                        .scaledToFill()
+                        .overlay(
+                            Circle()
+                                .fill(Color.red)
+                                .frame(width: 6, height: 6)
+                                .position(x: CGFloat(cursorHotSpotX), y: CGFloat(-cursorHotSpotY)),
+                            alignment: .topLeading
+                        )
+                }
+                .frame(width: 60, height: 60)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    selectCursorImage()
+                }
+                .onDrop(of: [UTType.png], isTargeted: nil) { providers in
+                    handleDropCursorImage(providers: providers)
+                }
+
+                Image(systemName: "trash.circle.fill")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundColor(Color(nsColor: .lightGray))
+                    .onTapGesture {
+                        showClearCursorAlert = true
+                    }
+                Spacer(minLength: 24)
+                VStack {
+                    HStack {
+                        Text("settings.text.cursorSize")
+                            .frame(minWidth: 56, alignment: .trailing)
+                        Spacer()
+                        Text("W:")
+                        Stepper(value: $cursorWidth) {
+                            TextField(
+                                "Width",
+                                value: $cursorWidth,
+                                formatter: GraphicsView.number,
+                                onCommit: {
+                                    Task { @MainActor in
+                                        NSApp.keyWindow?.makeFirstResponder(nil)
+                                    }
+                                })
+                        }
+                        Text("H:")
+                        Stepper(value: $cursorHeight) {
+                            TextField(
+                                "Height",
+                                value: $cursorHeight,
+                                formatter: GraphicsView.number,
+                                onCommit: {
+                                    Task { @MainActor in
+                                        NSApp.keyWindow?.makeFirstResponder(nil)
+                                    }
+                                })
+                        }
+                    }
+                    HStack {
+                        Text("settings.text.cursorHotSpot")
+                            .frame(minWidth: 56, alignment: .trailing)
+                        Spacer()
+                        Text("X:")
+                        Stepper(value: $cursorHotSpotX) {
+                            TextField(
+                                "X",
+                                value: $cursorHotSpotX,
+                                formatter: GraphicsView.number,
+                                onCommit: {
+                                    Task { @MainActor in
+                                        NSApp.keyWindow?.makeFirstResponder(nil)
+                                    }
+                                })
+                        }
+                        Text("Y:")
+                        Stepper(value: $cursorHotSpotY) {
+                            TextField(
+                                "Y",
+                                value: $cursorHotSpotY,
+                                formatter: GraphicsView.number,
+                                onCommit: {
+                                    Task { @MainActor in
+                                        NSApp.keyWindow?.makeFirstResponder(nil)
+                                    }
+                                })
+                        }
+                    }
+                }
+                .disabled(cursorImage == nil)
+            } else {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
+                        .foregroundColor(Color(nsColor: .lightGray))
+                    HStack {
+                        Image(systemName: "plus")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(Color(nsColor: .lightGray))
+                        Spacer()
+                            .frame(width: 16)
+                        Text("settings.text.dropOrChooseCursorImage")
+                    }
+                }
+                .frame(minHeight: 60)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    selectCursorImage()
+                }
+                .onDrop(of: [UTType.png], isTargeted: nil) { providers in
+                    handleDropCursorImage(providers: providers)
+                }
+            }
+        }
+        .task(priority: .userInitiated) {
+            cursorImage = CursorImages.shared.load(bundleID: bundleID)
+            // Since Steppers with nested TextFields don’t work properly with @Binding values,
+            // we store these values in @State variables.
+            cursorWidth = setting.customCursorWidth
+            cursorHeight = setting.customCursorHeight
+            cursorHotSpotX = setting.customCursorHotSpotX
+            // Flip the Y-axis so that the hotspot moves in the same direction as the Stepper arrows
+            cursorHotSpotY = -setting.customCursorHotSpotY
+        }
+        .onChange(of: cursorWidth) { newValue in
+            setting.customCursorWidth = max(0, newValue)
+        }
+        .onChange(of: cursorHeight) { newValue in
+            setting.customCursorHeight = max(0, newValue)
+        }
+        .onChange(of: cursorHotSpotX) { newValue in
+            setting.customCursorHotSpotX = newValue
+        }
+        .onChange(of: cursorHotSpotY) { newValue in
+            setting.customCursorHotSpotY = -newValue
+        }
+        .alert("alert.cursor.clear", isPresented: $showClearCursorAlert) {
+            Button("button.Proceed", role: .destructive) {
+                clearCursorImage()
+            }
+            Button("button.Cancel", role: .cancel) { }
+        }
+    }
+
+    func handleDropCursorImage(providers: [NSItemProvider]) -> Bool {
+        providers.forEach { provider in
+            provider.loadItem(forTypeIdentifier: UTType.png.identifier, options: nil) { item, _ in
+                if let url = item as? URL {
+                    DispatchQueue.main.async {
+                        NSApp.activate(ignoringOtherApps: true)
+                        setNewCursorImage(to: url)
+                    }
+                }
+            }
+        }
+        return true
+    }
+
+    func selectCursorImage() {
+        NSOpenPanel.selectPNG { result in
+            if case .success(let url) = result {
+                setNewCursorImage(to: url)
+            }
+        }
+    }
+
+    func setNewCursorImage(to url: URL) {
+        if let image = NSImage(contentsOfFile: url.path) {
+            CursorImages.shared.save(srcImageUrl: url, for: bundleID)
+            cursorImage = image
+            let rawCursorWidth = Int(image.representations[0].pixelsWide)
+            let rawCursorHeight = Int(image.representations[0].pixelsHigh)
+            if rawCursorWidth > rawCursorHeight {
+                cursorWidth = 32
+                cursorHeight = cursorWidth * rawCursorHeight / rawCursorWidth
+            } else {
+                cursorHeight = 32
+                cursorWidth = cursorHeight * rawCursorWidth / rawCursorHeight
+            }
+            cursorHotSpotX = 0
+            cursorHotSpotY = 0
+        }
+    }
+
+    func clearCursorImage() {
+        CursorImages.shared.clear(bundleID: bundleID)
+        cursorImage = nil
     }
 }
 

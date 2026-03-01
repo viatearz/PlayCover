@@ -1,4 +1,10 @@
 "settings.tab.extras" = "额外设置";
+"settings.toggle.enableCustomCursor" = "鼠标光标";
+"settings.text.cursorSize" = "光标尺寸";
+"settings.text.cursorHotSpot" = "光标热点";
+"settings.text.dropOrChooseCursorImage" = "拖拽PNG文件到此处，或点击选择文件";
+"alert.cursor.clear" = "鼠标光标图片将被清除。您确定要继续吗？";
+"preferences.toggle.removeCursorImage" = "清除鼠标光标图片";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";

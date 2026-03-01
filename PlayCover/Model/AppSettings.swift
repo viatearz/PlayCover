@@ -97,10 +97,21 @@ struct AppSettingsData: Codable {
 }
 
 struct ExtraAppSettingsData: Codable {
+    var enableCustomCursor = false
+    var customCursorWidth = 32
+    var customCursorHeight = 32
+    var customCursorHotSpotX = 0
+    var customCursorHotSpotY = 0
+
     init() {}
 
     init(from decoder: Decoder) throws {
-        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        enableCustomCursor = try container.decodeIfPresent(Bool.self, forKey: .enableCustomCursor) ?? false
+        customCursorWidth = try container.decodeIfPresent(Int.self, forKey: .customCursorWidth) ?? 32
+        customCursorHeight = try container.decodeIfPresent(Int.self, forKey: .customCursorHeight) ?? 32
+        customCursorHotSpotX = try container.decodeIfPresent(Int.self, forKey: .customCursorHotSpotX) ?? 0
+        customCursorHotSpotY = try container.decodeIfPresent(Int.self, forKey: .customCursorHotSpotY) ?? 0
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {

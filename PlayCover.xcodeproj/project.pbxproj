@@ -49,6 +49,7 @@
 		8783CFFF26B8C52E00171041 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8783CFFE26B8C52E00171041 /* Assets.xcassets */; };
 		8783D00226B8C52E00171041 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8783D00126B8C52E00171041 /* Preview Assets.xcassets */; };
 		8783D00B26B8C9E600171041 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8783D00A26B8C9E600171041 /* URLExtensions.swift */; };
+		920DDAB02F4B4E7700D0E9A8 /* CursorImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920DDAAF2F4B4E7500D0E9A8 /* CursorImages.swift */; };
 		923421F7275F40300030CD7D /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923421F6275F40300030CD7D /* AppContainer.swift */; };
 		9249ED492F5046E300F9F0E5 /* AppSettingsOverrides in Resources */ = {isa = PBXBuildFile; fileRef = 9249ED482F5046E300F9F0E5 /* AppSettingsOverrides */; };
 		9272F19E273B74C800DFBEF1 /* AppsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9272F19C273B74C800DFBEF1 /* AppsVM.swift */; };
@@ -157,6 +158,7 @@
 		8783D00426B8C52E00171041 /* PlayCover.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PlayCover.entitlements; sourceTree = "<group>"; };
 		8783D00A26B8C9E600171041 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		8FBBE76B2826709500F4FE9F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		920DDAAF2F4B4E7500D0E9A8 /* CursorImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorImages.swift; sourceTree = "<group>"; };
 		923421F6275F40300030CD7D /* AppContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		9249ED482F5046E300F9F0E5 /* AppSettingsOverrides */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppSettingsOverrides; sourceTree = "<group>"; };
 		9272F19C273B74C800DFBEF1 /* AppsVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsVM.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				6E25096D297F4E95004D754C /* Extensions */,
+				920DDAAF2F4B4E7500D0E9A8 /* CursorImages.swift */,
 				B44B40362C1E315600CE2A3E /* GoogleDrive.swift */,
 				342787542E787EB9003A3C2F /* Keymapping.swift */,
 				B429B2632DC204F1001FF7D9 /* VersionCheck.swift */,
@@ -681,6 +684,7 @@
 				B6ABDA2A2971EEF700A46E80 /* ProgressVM.swift in Sources */,
 				AA71964B287A0EA800623C15 /* PlayRules.swift in Sources */,
 				6ECB1D0E29798DFA00CD92AA /* DataExtensions.swift in Sources */,
+				920DDAB02F4B4E7700D0E9A8 /* CursorImages.swift in Sources */,
 				6E66B0D928A135360099B907 /* ToastVM.swift in Sources */,
 				92EE06D0274EA433002C907B /* BaseApp.swift in Sources */,
 				B67BC7122C39354C00315011 /* UpdateScheme.swift in Sources */,

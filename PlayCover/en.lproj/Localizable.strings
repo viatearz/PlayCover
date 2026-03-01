@@ -1,4 +1,10 @@
 "settings.tab.extras" = "Extras";
+"settings.toggle.enableCustomCursor" = "Mouse Cursor";
+"settings.text.cursorSize" = "Size";
+"settings.text.cursorHotSpot" = "Hot Spot";
+"settings.text.dropOrChooseCursorImage" = "Drag a PNG file here or click to browse";
+"alert.cursor.clear" = "Cusror image will be deleted. Do you wish to continue?";
+"preferences.toggle.removeCursorImage" = "Remove Cursor Image";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
