@@ -5,6 +5,7 @@
 
 import Foundation
 
+// swiftlint:disable:next type_body_length
 class Macho {
     static func stripBinary(_ binary: inout Data) throws {
         var header = binary.extract(fat_header.self)
@@ -284,5 +285,79 @@ class Macho {
             return false
         }
         return result
+    }
+
+    enum PatchError: Error {
+        case fileNotFound
+        case patternNotFound
+        case invalidWriteRange
+        case cannotOpenFile
+    }
+
+    static func patch(url: URL, bytesToFind: Data, bytesToWrite: Data, writeOffset: Int = 0) -> Bool {
+        do {
+            let fileManager = FileManager.default
+            guard fileManager.fileExists(atPath: url.path) else {
+                throw PatchError.fileNotFound
+            }
+
+            guard let fileHandle = try? FileHandle(forUpdating: url) else {
+                throw PatchError.cannotOpenFile
+            }
+
+            defer {
+                try? fileHandle.close()
+            }
+
+            let fileData = try fileHandle.readToEnd() ?? Data()
+
+            guard let range = fileData.range(of: bytesToFind) else {
+                throw PatchError.patternNotFound
+            }
+
+            let patchLocation = range.lowerBound + writeOffset
+            guard patchLocation >= 0,
+                  patchLocation + bytesToWrite.count <= fileData.count else {
+                throw PatchError.invalidWriteRange
+            }
+
+            try fileHandle.seek(toOffset: UInt64(patchLocation))
+            try fileHandle.write(contentsOf: bytesToWrite)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+
+    static func patch(url: URL, offset: UInt64, data: Data) -> Bool {
+        do {
+            let fileManager = FileManager.default
+            guard fileManager.fileExists(atPath: url.path) else {
+                throw PatchError.fileNotFound
+            }
+
+            guard let fileHandle = try? FileHandle(forUpdating: url) else {
+                throw PatchError.cannotOpenFile
+            }
+
+            defer {
+                try? fileHandle.close()
+            }
+
+            let fileSize = try fileHandle.seekToEnd()
+
+            guard offset >= 0,
+                  offset + UInt64(data.count) <= fileSize else {
+                throw PatchError.invalidWriteRange
+            }
+
+            try fileHandle.seek(toOffset: UInt64(offset))
+            try fileHandle.write(contentsOf: data)
+            return true
+        } catch {
+            print(error)
+            return false
+        }
     }
 }

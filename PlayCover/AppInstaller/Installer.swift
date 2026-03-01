@@ -119,6 +119,7 @@ class Installer {
                     finalURL = try wrap(app)
                     let installedApp = PlayApp(appUrl: finalURL)
 
+                    installedApp.setup()
                     installedApp.sign()
                 }
 

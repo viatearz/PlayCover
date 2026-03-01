@@ -23,6 +23,11 @@ public class BaseApp {
             .appendingPathExtension("plist")
     }
 
+    public var embeddedMobileprovision: URL {
+        url.appendingPathComponent("embedded")
+            .appendingPathExtension("mobileprovision")
+    }
+
     init(appUrl: URL) {
         url = appUrl
         info = AppInfo(contentsOf: url.appendingPathComponent("Info")
