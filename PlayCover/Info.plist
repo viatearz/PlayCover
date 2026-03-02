@@ -56,7 +56,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
+	<string>$(MARKETING_VERSION)-custom</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

@@ -36,10 +36,10 @@ jobs:
         shell: bash
         run: |
           create-dmg --no-code-sign ./output/PlayCover.app ./output
-          mv ./output/*.dmg ./output/PlayCover_${{ github.run_number }}_unsigned.dmg
+          mv ./output/*.dmg ./output/PlayCover_custom_${{ github.run_number }}_unsigned.dmg
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PlayCover_${{ github.run_number }}_unsigned.dmg
-          path: output/PlayCover_${{ github.run_number }}_unsigned.dmg
+          name: PlayCover_custom_${{ github.run_number }}_unsigned.dmg
+          path: output/PlayCover_custom_${{ github.run_number }}_unsigned.dmg
