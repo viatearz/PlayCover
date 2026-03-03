@@ -807,7 +807,7 @@ struct ExtrasView: View {
     @State var showUseBuiltinPointerLock = false
     @State var showClearLastTouchesWhenEnterTextInput = false
     @State var showDisableAllAlertDialogs = false
-    @State var showLoveAndDeepspaceFixLoginTextInput = false
+    @State var showDontInterceptClicksInUIViews = false
     @State var showUnityEngineFixAutoRotate = false
 
     var body: some View {
@@ -1058,10 +1058,10 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
-                    if showLoveAndDeepspaceFixLoginTextInput {
+                    if showDontInterceptClicksInUIViews {
                         HStack {
-                            Toggle("settings.toggle.loveAndDeepspaceFixLoginTextInput",
-                                   isOn: $settings.loveAndDeepspaceFixLoginTextInput)
+                            Toggle("settings.toggle.dontInterceptClicksInUIViews",
+                                   isOn: $settings.dontInterceptClicksInUIViews)
                             Spacer()
                         }
                     }
@@ -1089,7 +1089,7 @@ struct ExtrasView: View {
             showUseBuiltinPointerLock = overrides["useBuiltinPointerLock"] != nil
             showClearLastTouchesWhenEnterTextInput = overrides["clearLastTouchesWhenEnterTextInput"] != nil
             showDisableAllAlertDialogs = overrides["disableAllAlertDialogs"] != nil
-            showLoveAndDeepspaceFixLoginTextInput = overrides["loveAndDeepspaceFixLoginTextInput"] != nil
+            showDontInterceptClicksInUIViews = overrides["dontInterceptClicksInUIViews"] != nil
             showUnityEngineFixAutoRotate = overrides["unityEngineFixAutoRotate"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
@@ -1100,7 +1100,7 @@ struct ExtrasView: View {
                 showUseBuiltinPointerLock,
                 showClearLastTouchesWhenEnterTextInput,
                 showDisableAllAlertDialogs,
-                showLoveAndDeepspaceFixLoginTextInput,
+                showDontInterceptClicksInUIViews,
                 showUnityEngineFixAutoRotate
             ].contains(true)
         }

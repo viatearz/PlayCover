@@ -145,7 +145,8 @@ struct ExtraAppSettingsData: Codable {
     var useBuiltinPointerLock = false
     var clearLastTouchesWhenEnterTextInput = false
     var disableAllAlertDialogs = false
-    var loveAndDeepspaceFixLoginTextInput = false
+    var dontInterceptClicksInUIViews = false
+    var dontInterceptClicksInUIViewsArgs: [String] = []
     var unityEngineFixAutoRotate = false
 
     init() {}
@@ -189,7 +190,8 @@ struct ExtraAppSettingsData: Codable {
         useBuiltinPointerLock = try container.decodeIfPresent(Bool.self, forKey: .useBuiltinPointerLock) ?? false
         clearLastTouchesWhenEnterTextInput = try container.decodeIfPresent(Bool.self, forKey: .clearLastTouchesWhenEnterTextInput) ?? false
         disableAllAlertDialogs = try container.decodeIfPresent(Bool.self, forKey: .disableAllAlertDialogs) ?? false
-        loveAndDeepspaceFixLoginTextInput = try container.decodeIfPresent(Bool.self, forKey: .loveAndDeepspaceFixLoginTextInput) ?? false
+        dontInterceptClicksInUIViews = try container.decodeIfPresent(Bool.self, forKey: .dontInterceptClicksInUIViews) ?? false
+        dontInterceptClicksInUIViewsArgs = try container.decodeIfPresent([String].self, forKey: .dontInterceptClicksInUIViewsArgs) ?? []
         unityEngineFixAutoRotate = try container.decodeIfPresent(Bool.self, forKey: .unityEngineFixAutoRotate) ?? false
     }
 
@@ -232,7 +234,8 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["useBuiltinPointerLock"] as? Bool { useBuiltinPointerLock = val }
         if let val = overrides["clearLastTouchesWhenEnterTextInput"] as? Bool { clearLastTouchesWhenEnterTextInput = val }
         if let val = overrides["disableAllAlertDialogs"] as? Bool { disableAllAlertDialogs = val }
-        if let val = overrides["loveAndDeepspaceFixLoginTextInput"] as? Bool { loveAndDeepspaceFixLoginTextInput = val }
+        if let val = overrides["dontInterceptClicksInUIViews"] as? Bool { dontInterceptClicksInUIViews = val }
+        if let val = overrides["dontInterceptClicksInUIViewsArgs"] as? [String] { dontInterceptClicksInUIViewsArgs = val }
         if let val = overrides["unityEngineFixAutoRotate"] as? Bool { unityEngineFixAutoRotate = val }
     }
     // swiftlint:enable line_length

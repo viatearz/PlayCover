@@ -66,7 +66,7 @@
 "settings.toggle.clearLastTouchesWhenEnterTextInput" = "Clear Last Touches When Enter Text Input";
 "settings.toggle.clearLastTouchesWhenEnterTextInput.help" = "Fix an issue where text input fails to start properly";
 "settings.toggle.disableAllAlertDialogs" = "Disable All Alert Dialogs";
-"settings.toggle.loveAndDeepspaceFixLoginTextInput" = "Fix Login View Text Input";
+"settings.toggle.dontInterceptClicksInUIViews" = "Prevent Keymapping from Intercepting Clicks in Certain Views";
 "settings.toggle.unityEngineFixAutoRotate" = "Fix Auto Rotation issue";
 
 "playapp.add" = "Add app";

@@ -66,7 +66,7 @@
 "settings.toggle.clearLastTouchesWhenEnterTextInput" = "开始文本输入时清除上一次的触摸记录";
 "settings.toggle.clearLastTouchesWhenEnterTextInput.help" = "可解决无法正常开始文本输入的问题";
 "settings.toggle.disableAllAlertDialogs" = "屏蔽所有提示弹窗";
-"settings.toggle.loveAndDeepspaceFixLoginTextInput" = "修复登录界面的打字问题";
+"settings.toggle.dontInterceptClicksInUIViews" = "部分UI界面禁止按键映射拦截鼠标点击";
 "settings.toggle.unityEngineFixAutoRotate" = "修复自动旋转屏幕方向时出现的问题";
 
 /* (No Comment) */

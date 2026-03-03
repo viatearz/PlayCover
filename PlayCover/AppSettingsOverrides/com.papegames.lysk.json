@@ -1,6 +1,11 @@
 {
     "resolution": 6,
     "enableAutoRotate": true,
-    "loveAndDeepspaceFixLoginTextInput": true,
+    "dontInterceptClicksInUIViews": true,
+    "dontInterceptClicksInUIViewsArgs": [
+        "PSDKLogin.PSLoginPhoneSigninViewController",
+        "PSDKLogin.PSLoginSigninViewController",
+        "PSDKLogin.PSLoginGetBackPasswordInputAccountViewController"
+    ],
     "unityEngineFixAutoRotate": true
 }
