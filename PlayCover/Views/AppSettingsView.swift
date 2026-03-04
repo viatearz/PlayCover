@@ -809,6 +809,7 @@ struct ExtrasView: View {
     @State var showDisableAllAlertDialogs = false
     @State var showDontInterceptClicksInUIViews = false
     @State var showUnityEngineFixAutoRotate = false
+    @State var showUseNewHitTestMethodAlways = false
 
     var body: some View {
         ScrollView {
@@ -840,6 +841,11 @@ struct ExtrasView: View {
                     Toggle("settings.toggle.fixWeirdWindowFocusState",
                            isOn: $settings.ignoreClicksWhenNotFocused)
                         .help("settings.toggle.fixWeirdWindowFocusState.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.fixFirstLaunchClickCrash",
+                           isOn: $settings.useNewHitTestMethodWhenNilWindow)
                     Spacer()
                 }
                 HStack {
@@ -1072,6 +1078,14 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showUseNewHitTestMethodAlways {
+                        HStack {
+                            Toggle("settings.toggle.useNewHitTestMethodAlways",
+                                   isOn: $settings.useNewHitTestMethodAlways)
+                                .help("settings.toggle.useNewHitTestMethodAlways.help")
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1091,6 +1105,7 @@ struct ExtrasView: View {
             showDisableAllAlertDialogs = overrides["disableAllAlertDialogs"] != nil
             showDontInterceptClicksInUIViews = overrides["dontInterceptClicksInUIViews"] != nil
             showUnityEngineFixAutoRotate = overrides["unityEngineFixAutoRotate"] != nil
+            showUseNewHitTestMethodAlways = overrides["useNewHitTestMethodAlways"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1101,7 +1116,8 @@ struct ExtrasView: View {
                 showClearLastTouchesWhenEnterTextInput,
                 showDisableAllAlertDialogs,
                 showDontInterceptClicksInUIViews,
-                showUnityEngineFixAutoRotate
+                showUnityEngineFixAutoRotate,
+                showUseNewHitTestMethodAlways
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in

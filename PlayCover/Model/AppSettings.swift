@@ -148,6 +148,8 @@ struct ExtraAppSettingsData: Codable {
     var dontInterceptClicksInUIViews = false
     var dontInterceptClicksInUIViewsArgs: [String] = []
     var unityEngineFixAutoRotate = false
+    var useNewHitTestMethodWhenNilWindow = true
+    var useNewHitTestMethodAlways = false
 
     init() {}
 
@@ -193,6 +195,8 @@ struct ExtraAppSettingsData: Codable {
         dontInterceptClicksInUIViews = try container.decodeIfPresent(Bool.self, forKey: .dontInterceptClicksInUIViews) ?? false
         dontInterceptClicksInUIViewsArgs = try container.decodeIfPresent([String].self, forKey: .dontInterceptClicksInUIViewsArgs) ?? []
         unityEngineFixAutoRotate = try container.decodeIfPresent(Bool.self, forKey: .unityEngineFixAutoRotate) ?? false
+        useNewHitTestMethodWhenNilWindow = try container.decodeIfPresent(Bool.self, forKey: .useNewHitTestMethodWhenNilWindow) ?? true
+        useNewHitTestMethodAlways = try container.decodeIfPresent(Bool.self, forKey: .useNewHitTestMethodAlways) ?? false
     }
 
     // swiftlint:disable:next cyclomatic_complexity
@@ -237,6 +241,8 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["dontInterceptClicksInUIViews"] as? Bool { dontInterceptClicksInUIViews = val }
         if let val = overrides["dontInterceptClicksInUIViewsArgs"] as? [String] { dontInterceptClicksInUIViewsArgs = val }
         if let val = overrides["unityEngineFixAutoRotate"] as? Bool { unityEngineFixAutoRotate = val }
+        if let val = overrides["useNewHitTestMethodWhenNilWindow"] as? Bool { useNewHitTestMethodWhenNilWindow = val }
+        if let val = overrides["useNewHitTestMethodAlways"] as? Bool { useNewHitTestMethodAlways = val }
     }
     // swiftlint:enable line_length
 }

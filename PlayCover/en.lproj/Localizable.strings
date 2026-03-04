@@ -68,6 +68,9 @@
 "settings.toggle.disableAllAlertDialogs" = "Disable All Alert Dialogs";
 "settings.toggle.dontInterceptClicksInUIViews" = "Prevent Keymapping from Intercepting Clicks in Certain Views";
 "settings.toggle.unityEngineFixAutoRotate" = "Fix Auto Rotation issue";
+"settings.toggle.useNewHitTestMethodAlways" = "Always Use New Hit-Test Method";
+"settings.toggle.useNewHitTestMethodAlways.help" = "Fix issues where some UI Views do not respond to clicks";
+"settings.toggle.fixFirstLaunchClickCrash" = "Fix First Launch Click Crash";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
