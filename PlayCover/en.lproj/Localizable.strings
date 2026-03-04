@@ -71,6 +71,7 @@
 "settings.toggle.useNewHitTestMethodAlways" = "Always Use New Hit-Test Method";
 "settings.toggle.useNewHitTestMethodAlways.help" = "Fix issues where some UI Views do not respond to clicks";
 "settings.toggle.fixFirstLaunchClickCrash" = "Fix First Launch Click Crash";
+"settings.toggle.racingMasterFixFilePath" = "Fix File Path issue";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

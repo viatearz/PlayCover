@@ -1,3 +1,7 @@
 {
+    "unrealEngineFixFilePath": false,
+    "racingMasterFixFilePath": true,
+    "disableBuiltinMouse": true,
+    "forceQuitAppOnClose": true,
     "skipGameCenterLogin": true
 }

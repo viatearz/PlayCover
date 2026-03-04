@@ -150,6 +150,7 @@ struct ExtraAppSettingsData: Codable {
     var unityEngineFixAutoRotate = false
     var useNewHitTestMethodWhenNilWindow = true
     var useNewHitTestMethodAlways = false
+    var racingMasterFixFilePath = false // swiftlint:disable:this inclusive_language
 
     init() {}
 
@@ -197,6 +198,7 @@ struct ExtraAppSettingsData: Codable {
         unityEngineFixAutoRotate = try container.decodeIfPresent(Bool.self, forKey: .unityEngineFixAutoRotate) ?? false
         useNewHitTestMethodWhenNilWindow = try container.decodeIfPresent(Bool.self, forKey: .useNewHitTestMethodWhenNilWindow) ?? true
         useNewHitTestMethodAlways = try container.decodeIfPresent(Bool.self, forKey: .useNewHitTestMethodAlways) ?? false
+        racingMasterFixFilePath = try container.decodeIfPresent(Bool.self, forKey: .racingMasterFixFilePath) ?? false
     }
 
     // swiftlint:disable:next cyclomatic_complexity
@@ -243,6 +245,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["unityEngineFixAutoRotate"] as? Bool { unityEngineFixAutoRotate = val }
         if let val = overrides["useNewHitTestMethodWhenNilWindow"] as? Bool { useNewHitTestMethodWhenNilWindow = val }
         if let val = overrides["useNewHitTestMethodAlways"] as? Bool { useNewHitTestMethodAlways = val }
+        if let val = overrides["racingMasterFixFilePath"] as? Bool { racingMasterFixFilePath = val }
     }
     // swiftlint:enable line_length
 }

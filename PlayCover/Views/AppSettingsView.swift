@@ -810,6 +810,7 @@ struct ExtrasView: View {
     @State var showDontInterceptClicksInUIViews = false
     @State var showUnityEngineFixAutoRotate = false
     @State var showUseNewHitTestMethodAlways = false
+    @State var showRacingMasterFixFilePath = false // swiftlint:disable:this inclusive_language
 
     var body: some View {
         ScrollView {
@@ -1086,6 +1087,13 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showRacingMasterFixFilePath {
+                        HStack {
+                            Toggle("settings.toggle.racingMasterFixFilePath",
+                                   isOn: $settings.racingMasterFixFilePath)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1106,6 +1114,7 @@ struct ExtrasView: View {
             showDontInterceptClicksInUIViews = overrides["dontInterceptClicksInUIViews"] != nil
             showUnityEngineFixAutoRotate = overrides["unityEngineFixAutoRotate"] != nil
             showUseNewHitTestMethodAlways = overrides["useNewHitTestMethodAlways"] != nil
+            showRacingMasterFixFilePath = overrides["racingMasterFixFilePath"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1117,7 +1126,8 @@ struct ExtrasView: View {
                 showDisableAllAlertDialogs,
                 showDontInterceptClicksInUIViews,
                 showUnityEngineFixAutoRotate,
-                showUseNewHitTestMethodAlways
+                showUseNewHitTestMethodAlways,
+                showRacingMasterFixFilePath
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in

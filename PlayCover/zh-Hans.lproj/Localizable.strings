@@ -71,6 +71,7 @@
 "settings.toggle.useNewHitTestMethodAlways" = "总是使用新的命中测试方法";
 "settings.toggle.useNewHitTestMethodAlways.help" = "可解决一些UI界面点击没反应的问题";
 "settings.toggle.fixFirstLaunchClickCrash" = "修复首次启动界面点击闪退的问题";
+"settings.toggle.racingMasterFixFilePath" = "修复文件路径问题";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";
