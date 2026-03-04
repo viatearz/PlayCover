@@ -1,5 +1,5 @@
 ### A modified version of PlayCover, including experimental bugfixes and features.
-<span style="color: gray">It is recommended to use the official build in most cases, as the modified version may be unstable.</span>
+> It is recommended to use the official build in most cases, as the modified version may be unstable.
 
 ### How to Use
 
