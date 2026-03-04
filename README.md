@@ -1,3 +1,27 @@
+### A modified version of PlayCover, including experimental bugfixes and features.
+<span style="color: gray">It is recommended to use the official build in most cases, as the modified version may be unstable.</span>
+
+### How to Use
+
+1. Download the latest release from [GitHub Actions](https://github.com/viatearz/PlayCover/actions/workflows/unsigned_release.yml).
+2. Install the app.
+3. Self-sign and trust the app by running:
+    ``` bash
+    codesign -fs- /Applications/PlayCover.app/Contents/Frameworks/PlayTools.framework/PlugIns/AKInterface.bundle
+    codesign -fs- /Applications/PlayCover.app/Contents/Frameworks/PlayTools.framework
+    xattr -dr com.apple.quarantine /Applications/PlayCover.app
+    ```
+
+### Note
+
+For iOS apps that were already installed using the official build, you may need to perform the following steps:
+1.	Right-click the app icon, select `Settings`, and click `Reset Settings` at the bottom. This will restore the recommended configuration.
+2.	Reinstall the app, as some tweaks are only applied during installation.
+
+<br/>
+
+---
+
 <div id="top"></div>
 
 ‎<h1 align="center">[![Contributors][contributors-shield]][contributors-url]
