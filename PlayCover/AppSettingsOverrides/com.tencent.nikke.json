@@ -1,0 +1,7 @@
+{
+    "unityEngineForceLandscape": true,
+    "unityEngineDisableOrientationCheck": true,
+    "webViewSmartTextInput": true,
+    "forceUIViewLandscape": true,
+    "forceUIViewLandscapeArgs": ["MSDKPIXWKWebViewController"]
+}

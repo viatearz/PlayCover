@@ -1,0 +1,5 @@
+{
+    "checkMicPermissionSync": true,
+    "forceUIViewLandscape": true,
+    "forceUIViewLandscapeArgs": ["TCWebViewController"]
+}
