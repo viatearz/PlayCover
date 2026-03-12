@@ -100,7 +100,6 @@ class PlayTools {
                               component: "Playtools", pathExtension: "strings")
         }
 
-        // Copy localization files from Resources folder
         let bundledPlayToolsResources = bundledPlayToolsFramework
             .appendingPathComponent("Versions")
             .appendingPathComponent("A")
