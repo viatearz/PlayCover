@@ -867,11 +867,6 @@ struct ExtrasView: View {
                         .help("settings.toggle.webViewSmartTextInput.help")
                     Spacer()
                 }
-                HStack {
-                    Toggle("settings.toggle.preventKeyboardBeepSound",
-                           isOn: $settings.preventKeyboardBeepSound)
-                    Spacer()
-                }
 
                 Spacer().frame(height: 16)
 
@@ -945,6 +940,11 @@ struct ExtrasView: View {
                         Toggle("settings.toggle.enhanceBuiltinMouse",
                                isOn: $settings.enhanceBuiltinMouse)
                             .help("settings.toggle.enhanceBuiltinMouse.help")
+                        Spacer()
+                    }
+                    HStack {
+                        Toggle("settings.toggle.preventKeyboardBeepSound",
+                               isOn: $settings.preventKeyboardBeepSound)
                         Spacer()
                     }
                     Spacer().frame(height: 16)
