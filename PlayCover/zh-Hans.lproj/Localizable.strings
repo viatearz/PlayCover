@@ -46,8 +46,8 @@
 "settings.toggle.forceWebViewUseMobileContentMode.help" = "WebView默认情况下会请求桌面版网页，启用此选项后会请求移动版网页";
 "settings.toggle.unrealEngineBypassEntitlementsCheck" = "绕过虚幻引擎Entitlements检查";
 "settings.toggle.unrealEngineBypassEntitlementsCheck.help" = "虚幻引擎会检查Entitlement以保证程序正常运行，启用此选项后可绕过这项检查，已知可修复某些虚幻引擎游戏启动时闪退的问题";
-"settings.toggle.preventGoogleMeasurmentWriteFiles" = "阻止Google Measurment写入文件";
-"settings.toggle.preventGoogleMeasurmentWriteFiles.help" = "清除Google Measurment文件，并将文件夹设置为只读状态，已知可修复某些应用登录时闪退的问题";
+"settings.toggle.preventGoogleMeasurementWriteFiles" = "阻止Google Measurement写入文件";
+"settings.toggle.preventGoogleMeasurementWriteFiles.help" = "清除Google Measurement文件，并将文件夹设置为只读状态，已知可修复某些应用登录时闪退的问题";
 "settings.toggle.bypassUnknownDetection" = "绕过未知检测";
 "settings.toggle.unrealEngineFixFilePath" = "修复虚幻引擎文件路径问题（需重装App）";
 "settings.toggle.unrealEngineFixFilePath.help" = "修正虚幻引擎对于绝对路径的处理逻辑，已知可修复某些虚幻引擎游戏加载资源时报错、闪退、黑屏的问题";

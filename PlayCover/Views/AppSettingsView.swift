@@ -798,7 +798,7 @@ struct ExtrasView: View {
     var app: PlayApp
     @State var showBypassEntitlementsCheck = false
     @State var bypassEntitlementsCheck = false
-    @State var preventGoogleMeasurmentWriteFiles = false
+    @State var preventGoogleMeasurementWriteFiles = false
     @State var showAppSpecificOptions = false
     @State var showDisableINTLUtilsSwizzling = false
     @State var showBypassUnknownDetectionA = false
@@ -987,9 +987,9 @@ struct ExtrasView: View {
                     Spacer()
                 }
                 HStack {
-                    Toggle("settings.toggle.preventGoogleMeasurmentWriteFiles",
-                           isOn: $preventGoogleMeasurmentWriteFiles)
-                        .help("settings.toggle.preventGoogleMeasurmentWriteFiles.help")
+                    Toggle("settings.toggle.preventGoogleMeasurementWriteFiles",
+                           isOn: $preventGoogleMeasurementWriteFiles)
+                        .help("settings.toggle.preventGoogleMeasurementWriteFiles.help")
                     Spacer()
                 }
                 HStack {
@@ -1100,7 +1100,7 @@ struct ExtrasView: View {
         }
         .task(priority: .userInitiated) {
             bypassEntitlementsCheck = settings.unrealEngineBypassEntitlementsCheck
-            preventGoogleMeasurmentWriteFiles = settings.preventGoogleMeasurmentWriteFiles
+            preventGoogleMeasurementWriteFiles = settings.preventGoogleMeasurmentWriteFiles
 
             let overrides = app.settings.loadOverrides()
             showBypassEntitlementsCheck = overrides["unrealEngineBypassEntitlementsCheck"] != nil
@@ -1138,9 +1138,9 @@ struct ExtrasView: View {
                 app.deleteEmbeddedMobileprovision()
             }
         }
-        .onChange(of: preventGoogleMeasurmentWriteFiles) { _ in
-            settings.preventGoogleMeasurmentWriteFiles = preventGoogleMeasurmentWriteFiles
-            app.setGoogleMeasurementDirectoryReadOnly(preventGoogleMeasurmentWriteFiles)
+        .onChange(of: preventGoogleMeasurementWriteFiles) { _ in
+            settings.preventGoogleMeasurmentWriteFiles = preventGoogleMeasurementWriteFiles
+            app.setGoogleMeasurementDirectoryReadOnly(preventGoogleMeasurementWriteFiles)
         }
     }
 }
