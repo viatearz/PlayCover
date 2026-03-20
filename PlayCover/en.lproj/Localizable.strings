@@ -72,6 +72,7 @@
 "settings.toggle.useNewHitTestMethodAlways.help" = "Fix issues where some UI Views do not respond to clicks";
 "settings.toggle.fixFirstLaunchClickCrash" = "Fix First Launch Click Crash";
 "settings.toggle.racingMasterFixFilePath" = "Fix File Path issue";
+"settings.toggle.fortniteFixNonMainThreadCrash" = "Fix Non-Main Thread Update Crash";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

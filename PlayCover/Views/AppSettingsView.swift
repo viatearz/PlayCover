@@ -811,6 +811,7 @@ struct ExtrasView: View {
     @State var showUnityEngineFixAutoRotate = false
     @State var showUseNewHitTestMethodAlways = false
     @State var showRacingMasterFixFilePath = false // swiftlint:disable:this inclusive_language
+    @State var showFortniteFixNonMainThreadCrash = false
 
     var body: some View {
         ScrollView {
@@ -1094,6 +1095,13 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showFortniteFixNonMainThreadCrash {
+                        HStack {
+                            Toggle("settings.toggle.fortniteFixNonMainThreadCrash",
+                                   isOn: $settings.fortniteFixNonMainThreadCrash)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1115,6 +1123,7 @@ struct ExtrasView: View {
             showUnityEngineFixAutoRotate = overrides["unityEngineFixAutoRotate"] != nil
             showUseNewHitTestMethodAlways = overrides["useNewHitTestMethodAlways"] != nil
             showRacingMasterFixFilePath = overrides["racingMasterFixFilePath"] != nil
+            showFortniteFixNonMainThreadCrash = overrides["fortniteFixNonMainThreadCrash"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1127,7 +1136,8 @@ struct ExtrasView: View {
                 showDontInterceptClicksInUIViews,
                 showUnityEngineFixAutoRotate,
                 showUseNewHitTestMethodAlways,
-                showRacingMasterFixFilePath
+                showRacingMasterFixFilePath,
+                showFortniteFixNonMainThreadCrash
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in
