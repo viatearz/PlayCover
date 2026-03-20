@@ -1,3 +1,6 @@
 {
-    "unrealEngineBypassEntitlementsCheck": true
+    "unrealEngineBypassEntitlementsCheck": true,
+    "enhanceBuiltinMouse": true,
+    "fortniteFixNonMainThreadCrash": true,
+    "fortniteDisableOptionKey": true
 }
