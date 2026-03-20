@@ -152,6 +152,7 @@ struct ExtraAppSettingsData: Codable {
     var useNewHitTestMethodAlways = false
     var racingMasterFixFilePath = false // swiftlint:disable:this inclusive_language
     var fortniteFixNonMainThreadCrash = false
+    var fortniteDisableOptionKey = false
 
     init() {}
 
@@ -201,6 +202,7 @@ struct ExtraAppSettingsData: Codable {
         useNewHitTestMethodAlways = try container.decodeIfPresent(Bool.self, forKey: .useNewHitTestMethodAlways) ?? false
         racingMasterFixFilePath = try container.decodeIfPresent(Bool.self, forKey: .racingMasterFixFilePath) ?? false
         fortniteFixNonMainThreadCrash = try container.decodeIfPresent(Bool.self, forKey: .fortniteFixNonMainThreadCrash) ?? false
+        fortniteDisableOptionKey = try container.decodeIfPresent(Bool.self, forKey: .fortniteDisableOptionKey) ?? false
     }
 
     // swiftlint:disable:next cyclomatic_complexity
@@ -249,6 +251,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["useNewHitTestMethodAlways"] as? Bool { useNewHitTestMethodAlways = val }
         if let val = overrides["racingMasterFixFilePath"] as? Bool { racingMasterFixFilePath = val }
         if let val = overrides["fortniteFixNonMainThreadCrash"] as? Bool { fortniteFixNonMainThreadCrash = val }
+        if let val = overrides["fortniteDisableOptionKey"] as? Bool { fortniteDisableOptionKey = val }
     }
     // swiftlint:enable line_length
 }

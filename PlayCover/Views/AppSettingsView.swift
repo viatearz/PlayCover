@@ -812,6 +812,7 @@ struct ExtrasView: View {
     @State var showUseNewHitTestMethodAlways = false
     @State var showRacingMasterFixFilePath = false // swiftlint:disable:this inclusive_language
     @State var showFortniteFixNonMainThreadCrash = false
+    @State var showFortniteDisableOptionKey = false
 
     var body: some View {
         ScrollView {
@@ -1102,6 +1103,13 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showFortniteDisableOptionKey {
+                        HStack {
+                            Toggle("settings.toggle.fortniteDisableOptionKey",
+                                   isOn: $settings.fortniteDisableOptionKey)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1124,6 +1132,7 @@ struct ExtrasView: View {
             showUseNewHitTestMethodAlways = overrides["useNewHitTestMethodAlways"] != nil
             showRacingMasterFixFilePath = overrides["racingMasterFixFilePath"] != nil
             showFortniteFixNonMainThreadCrash = overrides["fortniteFixNonMainThreadCrash"] != nil
+            showFortniteDisableOptionKey = overrides["fortniteDisableOptionKey"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1137,7 +1146,8 @@ struct ExtrasView: View {
                 showUnityEngineFixAutoRotate,
                 showUseNewHitTestMethodAlways,
                 showRacingMasterFixFilePath,
-                showFortniteFixNonMainThreadCrash
+                showFortniteFixNonMainThreadCrash,
+                showFortniteDisableOptionKey
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in

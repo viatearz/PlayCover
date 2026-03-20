@@ -73,6 +73,7 @@
 "settings.toggle.fixFirstLaunchClickCrash" = "Fix First Launch Click Crash";
 "settings.toggle.racingMasterFixFilePath" = "Fix File Path issue";
 "settings.toggle.fortniteFixNonMainThreadCrash" = "Fix Non-Main Thread Update Crash";
+"settings.toggle.fortniteDisableOptionKey" = "Disable Built-in Option Key Handling";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
