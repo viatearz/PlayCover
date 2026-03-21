@@ -1,5 +1,5 @@
 "settings.tab.extras" = "Extras";
-"settings.text.extras.common" = "Common";
+"settings.text.extras.general" = "General";
 "settings.text.extras.unityEngine" = "Unity Engine";
 "settings.text.extras.unrealEngine" = "Unreal Engine";
 "settings.text.extras.neoxEngine" = "NeoX Engine";

@@ -829,7 +829,7 @@ struct ExtrasView: View {
                 Spacer().frame(height: 16)
 
                 HStack {
-                    Text("settings.text.extras.common").bold()
+                    Text("settings.text.extras.general").bold()
                     Spacer()
                 }
                 if app.settings.settings.resolution == 6 {

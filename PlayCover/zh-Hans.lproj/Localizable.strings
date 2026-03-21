@@ -1,5 +1,5 @@
 "settings.tab.extras" = "额外设置";
-"settings.text.extras.common" = "通用";
+"settings.text.extras.general" = "通用";
 "settings.text.extras.unityEngine" = "Unity引擎";
 "settings.text.extras.unrealEngine" = "虚幻引擎";
 "settings.text.extras.neoxEngine" = "NeoX引擎";
