@@ -10,8 +10,10 @@ extension String {
     init(data: Data, offset: Int, commandSize: Int, loadCommandString: lc_str) {
         let loadCommandStringOffset = Int(loadCommandString.offset)
         let stringOffset = offset + loadCommandStringOffset
-        let length = commandSize - loadCommandStringOffset
-        self = String(data: data[stringOffset..<(stringOffset + length)],
+        let maxLength = commandSize - loadCommandStringOffset
+        let maxEnd = stringOffset + maxLength
+        let stringEnd = data[stringOffset..<maxEnd].firstIndex(of: 0x00) ?? maxEnd
+        self = String(data: data[stringOffset..<stringEnd],
                       encoding: .utf8)!.trimmingCharacters(in: .controlCharacters)
     }
 }
