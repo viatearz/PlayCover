@@ -813,6 +813,7 @@ struct ExtrasView: View {
     @State var showRacingMasterFixFilePath = false // swiftlint:disable:this inclusive_language
     @State var showFortniteFixNonMainThreadCrash = false
     @State var showFortniteDisableOptionKey = false
+    @State var showNanaoriFixBuiltinMouseIssue = false
 
     var body: some View {
         ScrollView {
@@ -1110,6 +1111,13 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showNanaoriFixBuiltinMouseIssue {
+                        HStack {
+                            Toggle("settings.toggle.nanaoriFixBuiltinMouseIssue",
+                                   isOn: $settings.nanaoriFixBuiltinMouseIssue)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1133,6 +1141,7 @@ struct ExtrasView: View {
             showRacingMasterFixFilePath = overrides["racingMasterFixFilePath"] != nil
             showFortniteFixNonMainThreadCrash = overrides["fortniteFixNonMainThreadCrash"] != nil
             showFortniteDisableOptionKey = overrides["fortniteDisableOptionKey"] != nil
+            showNanaoriFixBuiltinMouseIssue = overrides["nanaoriFixBuiltinMouseIssue"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1147,7 +1156,8 @@ struct ExtrasView: View {
                 showUseNewHitTestMethodAlways,
                 showRacingMasterFixFilePath,
                 showFortniteFixNonMainThreadCrash,
-                showFortniteDisableOptionKey
+                showFortniteDisableOptionKey,
+                showNanaoriFixBuiltinMouseIssue
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in

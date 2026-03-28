@@ -352,6 +352,9 @@ extension PlayApp {
         if settings.extraSettings.jinChanChanFixMicrophone {
             applyJinChanChanMicrophonePatch()
         }
+        if settings.extraSettings.nanaoriFixBuiltinMouseIssue {
+            applyNanaoriBuiltinMousePatch()
+        }
     }
 
     func sign() {
@@ -574,5 +577,16 @@ extension PlayApp {
             writeOffset: 8
         )
         print("Applying JinChanChan microphone patch... success: \(success)")
+    }
+
+    func applyNanaoriBuiltinMousePatch() {
+        // Prevent the game from switching input mode to UIOnly
+        let success = Macho.patch(
+            url: executable,
+            bytesToFind: Data([0xA8, 0x08, 0x85, 0x52, 0x29, 0x00, 0x80, 0x52, 0x69, 0x6A, 0x28, 0x38]),
+            bytesToWrite: Data([0x14, 0x00, 0x80, 0xD2]),
+            writeOffset: -0x100
+        )
+        print("Applying Nanaori built-in mouse patch... success: \(success)")
     }
 }

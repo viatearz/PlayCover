@@ -153,6 +153,7 @@ struct ExtraAppSettingsData: Codable {
     var racingMasterFixFilePath = false // swiftlint:disable:this inclusive_language
     var fortniteFixNonMainThreadCrash = false
     var fortniteDisableOptionKey = false
+    var nanaoriFixBuiltinMouseIssue = false
 
     init() {}
 
@@ -203,6 +204,7 @@ struct ExtraAppSettingsData: Codable {
         racingMasterFixFilePath = try container.decodeIfPresent(Bool.self, forKey: .racingMasterFixFilePath) ?? false
         fortniteFixNonMainThreadCrash = try container.decodeIfPresent(Bool.self, forKey: .fortniteFixNonMainThreadCrash) ?? false
         fortniteDisableOptionKey = try container.decodeIfPresent(Bool.self, forKey: .fortniteDisableOptionKey) ?? false
+        nanaoriFixBuiltinMouseIssue = try container.decodeIfPresent(Bool.self, forKey: .nanaoriFixBuiltinMouseIssue) ?? false
     }
 
     // swiftlint:disable:next cyclomatic_complexity
@@ -252,6 +254,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["racingMasterFixFilePath"] as? Bool { racingMasterFixFilePath = val }
         if let val = overrides["fortniteFixNonMainThreadCrash"] as? Bool { fortniteFixNonMainThreadCrash = val }
         if let val = overrides["fortniteDisableOptionKey"] as? Bool { fortniteDisableOptionKey = val }
+        if let val = overrides["nanaoriFixBuiltinMouseIssue"] as? Bool { nanaoriFixBuiltinMouseIssue = val }
     }
     // swiftlint:enable line_length
 }

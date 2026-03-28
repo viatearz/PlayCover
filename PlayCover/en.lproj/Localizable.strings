@@ -74,6 +74,7 @@
 "settings.toggle.racingMasterFixFilePath" = "Fix File Path issue";
 "settings.toggle.fortniteFixNonMainThreadCrash" = "Fix Non-Main Thread Update Crash";
 "settings.toggle.fortniteDisableOptionKey" = "Disable Built-in Option Key Handling";
+"settings.toggle.nanaoriFixBuiltinMouseIssue" = "Fix Built-in Mouse Not Working (Reinstall Required)";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
