@@ -1,4 +1,6 @@
 {
     "disableBuiltinMouse": true,
-    "preventKeyboardBeepSound": true
+    "enhanceBuiltinMouse": true,
+    "preventKeyboardBeepSound": true,
+    "nanaoriFixBuiltinMouseIssue": true
 }

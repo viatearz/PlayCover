@@ -1,0 +1,6 @@
+{
+    "disableBuiltinMouse": true,
+    "checkMicPermissionSync": true,
+    "blockSleepSpamming": true,
+    "preventKeyboardBeepSound": true
+}
