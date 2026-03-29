@@ -7,8 +7,6 @@
 2. Install the app.
 3. Self-sign and trust the app by running:
     ``` bash
-    codesign -fs- /Applications/PlayCover.app/Contents/Frameworks/PlayTools.framework/PlugIns/AKInterface.bundle
-    codesign -fs- /Applications/PlayCover.app/Contents/Frameworks/PlayTools.framework
     xattr -dr com.apple.quarantine /Applications/PlayCover.app
     ```
 
