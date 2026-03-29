@@ -31,15 +31,22 @@ jobs:
         run: fastlane unsigned
         env:
           FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120 # x86 is slooooooow
+      
+      - name: Ad-hoc sign
+        shell: bash
+        run: |
+          codesign -fs- ./output/PlayCover.app/Contents/Frameworks/PlayTools.framework/PlugIns/AKInterface.bundle
+          codesign -fs- ./output/PlayCover.app/Contents/Frameworks/PlayTools.framework
+          codesign -fs- ./output/PlayCover.app
 
       - name: Create DMG
         shell: bash
         run: |
           create-dmg --no-code-sign ./output/PlayCover.app ./output
-          mv ./output/*.dmg ./output/PlayCover_custom_${{ github.run_number }}_unsigned.dmg
+          mv ./output/*.dmg ./output/PlayCover_custom_${{ github.run_number }}.dmg
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PlayCover_custom_${{ github.run_number }}_unsigned.dmg
-          path: output/PlayCover_custom_${{ github.run_number }}_unsigned.dmg
+          name: PlayCover_custom_${{ github.run_number }}.dmg
+          path: output/PlayCover_custom_${{ github.run_number }}.dmg
