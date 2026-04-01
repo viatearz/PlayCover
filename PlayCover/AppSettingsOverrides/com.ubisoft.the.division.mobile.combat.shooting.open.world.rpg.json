@@ -1,0 +1,8 @@
+{
+    "keymapping": false,
+    "useBuiltinPointerLock": true,
+    "blockSleepSpamming": true,
+    "checkMicPermissionSync": true,
+    "fixPlayChainAccessGroup": true,
+    "supportMultipleMice": true
+}
