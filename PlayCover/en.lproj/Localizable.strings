@@ -75,6 +75,8 @@
 "settings.toggle.fortniteFixNonMainThreadCrash" = "Fix Non-Main Thread Update Crash";
 "settings.toggle.fortniteDisableOptionKey" = "Disable Built-in Option Key Handling";
 "settings.toggle.nanaoriFixBuiltinMouseIssue" = "Fix Built-in Mouse Not Working (Reinstall Required)";
+"settings.toggle.fixPlayChainAccessGroup" = "Fix PlayChain AccessGroup issue";
+"settings.toggle.supportMultipleMice" = "Force App to Receive Input from Multiple Mice";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

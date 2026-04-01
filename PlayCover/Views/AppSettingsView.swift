@@ -814,6 +814,7 @@ struct ExtrasView: View {
     @State var showFortniteFixNonMainThreadCrash = false
     @State var showFortniteDisableOptionKey = false
     @State var showNanaoriFixBuiltinMouseIssue = false
+    @State var showSupportMultipleMice = false
 
     var body: some View {
         ScrollView {
@@ -856,6 +857,11 @@ struct ExtrasView: View {
                     Toggle("settings.toggle.fixPlayChainMatchLimit",
                            isOn: $settings.fixPlayChainMatchLimit)
                         .help("settings.toggle.fixPlayChainMatchLimit.help")
+                    Spacer()
+                }
+                HStack {
+                    Toggle("settings.toggle.fixPlayChainAccessGroup",
+                           isOn: $settings.fixPlayChainAccessGroup)
                     Spacer()
                 }
                 HStack {
@@ -1118,6 +1124,13 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showSupportMultipleMice {
+                        HStack {
+                            Toggle("settings.toggle.supportMultipleMice",
+                                   isOn: $settings.supportMultipleMice)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1142,6 +1155,7 @@ struct ExtrasView: View {
             showFortniteFixNonMainThreadCrash = overrides["fortniteFixNonMainThreadCrash"] != nil
             showFortniteDisableOptionKey = overrides["fortniteDisableOptionKey"] != nil
             showNanaoriFixBuiltinMouseIssue = overrides["nanaoriFixBuiltinMouseIssue"] != nil
+            showSupportMultipleMice = overrides["supportMultipleMice"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1157,7 +1171,8 @@ struct ExtrasView: View {
                 showRacingMasterFixFilePath,
                 showFortniteFixNonMainThreadCrash,
                 showFortniteDisableOptionKey,
-                showNanaoriFixBuiltinMouseIssue
+                showNanaoriFixBuiltinMouseIssue,
+                showSupportMultipleMice
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in

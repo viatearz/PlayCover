@@ -75,6 +75,8 @@
 "settings.toggle.fortniteFixNonMainThreadCrash" = "修复在非主线程更新界面导致闪退的问题";
 "settings.toggle.fortniteDisableOptionKey" = "禁用游戏内置的Option键处理";
 "settings.toggle.nanaoriFixBuiltinMouseIssue" = "修复内置的鼠标操作失效的问题（需重装App）";
+"settings.toggle.fixPlayChainAccessGroup" = "修复PlayChain未正确处理AccessGroup的问题";
+"settings.toggle.supportMultipleMice" = "强制应用接收多个鼠标的输入";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";
