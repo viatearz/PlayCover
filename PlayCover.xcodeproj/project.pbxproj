@@ -993,10 +993,10 @@
 		};
 		68E48B98295708C800C39879 /* XCRemoteSwiftPackageReference "inject" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/viatearz/inject";
+			repositoryURL = "https://github.com/paradiseduo/inject";
 			requirement = {
-				kind = revision;
-				revision = b796a9292470d7f8460c184648472a91d77ece5d;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		68E48B9D29570A0400C39879 /* XCRemoteSwiftPackageReference "DataCache" */ = {
