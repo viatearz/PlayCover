@@ -149,6 +149,7 @@ struct AppSettingsView: View {
             hasAlias = viewModel.app.hasAlias()
         }
         .padding()
+        .frame(width: 600, height: 400)
     }
 }
 
@@ -718,10 +719,19 @@ struct MiscView: View {
                         Spacer()
                         HStack {
                             Text("settings.text.debugger")
-                            VStack {
-                                Toggle("settings.toggle.lldb", isOn: $settings.openWithLLDB)
-                                Toggle("settings.toggle.lldbWithTerminal", isOn: $settings.openLLDBWithTerminal)
-                                    .disabled(!settings.openWithLLDB)
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Toggle("", isOn: $settings.openWithLLDB)
+                                        .labelsHidden()
+                                    Text("settings.toggle.lldb")
+                                }
+
+                                HStack {
+                                    Toggle("", isOn: $settings.openLLDBWithTerminal)
+                                        .labelsHidden()
+                                        .disabled(!settings.openWithLLDB)
+                                    Text("settings.toggle.lldbWithTerminal")
+                                }
                             }
                         }
                     }
@@ -1464,7 +1474,7 @@ struct InfoView: View {
             HStack {
                 Text("settings.info.playTools")
                 Spacer()
-                Text(String(hasPlayTools))
+                Text(hasPlayTools ? "button.Yes" : "button.No")
             }
             HStack {
                 Text("settings.info.url")
