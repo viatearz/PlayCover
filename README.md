@@ -5,7 +5,7 @@
 
 1. Download the latest release from [GitHub Actions](https://github.com/viatearz/PlayCover/actions/workflows/unsigned_release.yml).
 2. Install the app.
-3. Self-sign and trust the app by running:
+3. Trust the app by running:
     ``` bash
     xattr -dr com.apple.quarantine /Applications/PlayCover.app
     ```
