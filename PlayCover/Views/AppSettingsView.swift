@@ -815,6 +815,8 @@ struct ExtrasView: View {
     @State var showFortniteDisableOptionKey = false
     @State var showNanaoriFixBuiltinMouseIssue = false
     @State var showSupportMultipleMice = false
+    @State var showBypassOnDemandResources = false
+    @State var showDisableBuiltinKeyboard = false
 
     var body: some View {
         ScrollView {
@@ -1131,6 +1133,21 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showBypassOnDemandResources {
+                        HStack {
+                            Toggle("settings.toggle.bypassOnDemandResources",
+                                   isOn: $settings.bypassOnDemandResources)
+                                .help("settings.toggle.bypassOnDemandResources.help")
+                            Spacer()
+                        }
+                    }
+                    if showDisableBuiltinKeyboard {
+                        HStack {
+                            Toggle("settings.toggle.disableBuiltinKeyboard",
+                                   isOn: $settings.disableBuiltinKeyboard)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1156,6 +1173,8 @@ struct ExtrasView: View {
             showFortniteDisableOptionKey = overrides["fortniteDisableOptionKey"] != nil
             showNanaoriFixBuiltinMouseIssue = overrides["nanaoriFixBuiltinMouseIssue"] != nil
             showSupportMultipleMice = overrides["supportMultipleMice"] != nil
+            showBypassOnDemandResources = overrides["bypassOnDemandResources"] != nil
+            showDisableBuiltinKeyboard = overrides["disableBuiltinKeyboard"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1172,7 +1191,9 @@ struct ExtrasView: View {
                 showFortniteFixNonMainThreadCrash,
                 showFortniteDisableOptionKey,
                 showNanaoriFixBuiltinMouseIssue,
-                showSupportMultipleMice
+                showSupportMultipleMice,
+                showBypassOnDemandResources,
+                showDisableBuiltinKeyboard
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in

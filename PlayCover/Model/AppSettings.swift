@@ -156,6 +156,8 @@ struct ExtraAppSettingsData: Codable {
     var nanaoriFixBuiltinMouseIssue = false
     var fixPlayChainAccessGroup = false
     var supportMultipleMice = false
+    var bypassOnDemandResources = false
+    var disableBuiltinKeyboard = false
 
     init() {}
 
@@ -209,6 +211,8 @@ struct ExtraAppSettingsData: Codable {
         nanaoriFixBuiltinMouseIssue = try container.decodeIfPresent(Bool.self, forKey: .nanaoriFixBuiltinMouseIssue) ?? false
         fixPlayChainAccessGroup = try container.decodeIfPresent(Bool.self, forKey: .fixPlayChainAccessGroup) ?? false
         supportMultipleMice = try container.decodeIfPresent(Bool.self, forKey: .supportMultipleMice) ?? false
+        bypassOnDemandResources = try container.decodeIfPresent(Bool.self, forKey: .bypassOnDemandResources) ?? false
+        disableBuiltinKeyboard = try container.decodeIfPresent(Bool.self, forKey: .disableBuiltinKeyboard) ?? false
     }
 
     // swiftlint:disable:next cyclomatic_complexity
@@ -261,6 +265,8 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["nanaoriFixBuiltinMouseIssue"] as? Bool { nanaoriFixBuiltinMouseIssue = val }
         if let val = overrides["fixPlayChainAccessGroup"] as? Bool { fixPlayChainAccessGroup = val }
         if let val = overrides["supportMultipleMice"] as? Bool { supportMultipleMice = val }
+        if let val = overrides["bypassOnDemandResources"] as? Bool { bypassOnDemandResources = val }
+        if let val = overrides["disableBuiltinKeyboard"] as? Bool { disableBuiltinKeyboard = val }
     }
     // swiftlint:enable line_length
 }

@@ -77,6 +77,9 @@
 "settings.toggle.nanaoriFixBuiltinMouseIssue" = "修复内置的鼠标操作失效的问题（需重装App）";
 "settings.toggle.fixPlayChainAccessGroup" = "修复PlayChain未正确处理AccessGroup的问题";
 "settings.toggle.supportMultipleMice" = "强制应用接收多个鼠标的输入";
+"settings.toggle.bypassOnDemandResources" = "跳过On-Demand Resources下载";
+"settings.toggle.bypassOnDemandResources.help" = "如果所有必需的数据包已经被放置在应用包体内，将会自动会跳过On-Demand Resources下载流程";
+"settings.toggle.disableBuiltinKeyboard" = "禁用应用内置的键盘支持";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";

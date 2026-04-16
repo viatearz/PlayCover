@@ -77,6 +77,9 @@
 "settings.toggle.nanaoriFixBuiltinMouseIssue" = "Fix Built-in Mouse Not Working (Reinstall Required)";
 "settings.toggle.fixPlayChainAccessGroup" = "Fix PlayChain AccessGroup issue";
 "settings.toggle.supportMultipleMice" = "Force App to Receive Input from Multiple Mice";
+"settings.toggle.bypassOnDemandResources" = "Skip On-Demand Resources Download";
+"settings.toggle.bypassOnDemandResources.help" = "If all required Asset Packs are already located in the app bundle, the On-Demand Resources download process will be automatically skipped";
+"settings.toggle.disableBuiltinKeyboard" = "Disable Built-in Keyboard Support";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
