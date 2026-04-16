@@ -180,7 +180,8 @@ class Installer {
                 return
             }
 
-            if !url.pathExtension.isEmpty && url.pathExtension != "dylib" {
+            if !url.pathExtension.isEmpty && url.pathExtension != "dylib" &&
+                url.lastPathComponent != baseApp.info.executableName {
                 return
             }
 
