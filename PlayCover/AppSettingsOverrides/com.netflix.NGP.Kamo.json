@@ -1,0 +1,4 @@
+{
+    "fixAvailableMemoryValue": true,
+    "bypassOnDemandResources": true
+}
