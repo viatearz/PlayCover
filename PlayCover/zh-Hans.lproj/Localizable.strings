@@ -512,3 +512,9 @@
 "settings.picker.aspectRatio.custom" = "自定义";
 "settings.toggle.blockSleepSpamming" = "阻止频繁调用 usleep 函数";
 "settings.toggle.blockSleepSpamming.help" = "阻止应用频繁触发 usleep() 系统调用，这可能导致资源耗尽";
+"settings.settings.displayRotation" = "设备方向";
+"settings.settings.displayRotation.default" = "默认";
+"settings.settings.displayRotation.portrait" = "竖屏";
+"settings.settings.displayRotation.landscapeRight" = "横屏（右）";
+"settings.settings.displayRotation.portraitUpsideDown" = "竖屏（倒置）";
+"settings.settings.displayRotation.flipFix" = "翻转修复";
