@@ -16,6 +16,7 @@ struct AppSettingsData: Codable {
     var sensitivity: Float = 50
 
     var disableTimeout = false
+    var displayRotation = 0
     var iosDeviceModel = "iPad13,8"
     var windowWidth = 1920
     var windowHeight = 1080
@@ -62,6 +63,7 @@ struct AppSettingsData: Codable {
         keymapping = try container.decodeIfPresent(Bool.self, forKey: .keymapping) ?? true
         sensitivity = try container.decodeIfPresent(Float.self, forKey: .sensitivity) ?? 50
         disableTimeout = try container.decodeIfPresent(Bool.self, forKey: .disableTimeout) ?? false
+        displayRotation = try container.decodeIfPresent(Int.self, forKey: .displayRotation) ?? 0
         iosDeviceModel = try container.decodeIfPresent(String.self, forKey: .iosDeviceModel) ?? "iPad13,8"
         windowWidth = try container.decodeIfPresent(Int.self, forKey: .windowWidth) ?? 1920
         windowHeight = try container.decodeIfPresent(Int.self, forKey: .windowHeight) ?? 1080
