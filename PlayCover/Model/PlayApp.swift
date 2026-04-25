@@ -355,6 +355,9 @@ extension PlayApp {
         if settings.extraSettings.nanaoriFixBuiltinMouseIssue {
             applyNanaoriBuiltinMousePatch()
         }
+        if settings.extraSettings.nikkeTTSMiniGameShowKeySettings {
+            applyNikkeTTSMiniGamePatch()
+        }
     }
 
     func sign() {
@@ -588,5 +591,27 @@ extension PlayApp {
             writeOffset: -0x100
         )
         print("Applying Nanaori built-in mouse patch... success: \(success)")
+    }
+
+    func applyNikkeTTSMiniGamePatch() {
+        let unityFramework = url.appendingPathComponent("Frameworks")
+            .appendingPathComponent("UnityFramework.framework")
+            .appendingPathComponent("UnityFramework")
+
+        // Force the TTS mini game to show control settings tab
+        let success = Macho.patch(
+            url: unityFramework,
+            bytesToFind: Data([0x80, 0x0B, 0x00, 0xB4, 0x01, 0x00, 0x80, 0x12, 0x02, 0x00, 0x80, 0xD2]),
+            bytesToWrite: Data([0x21, 0x00, 0x80, 0x52]),
+            writeOffset: -0xB8
+        )
+        if success {
+            do {
+                try Shell.signMacho(unityFramework)
+            } catch {
+                print(error)
+            }
+        }
+        print("Applying NIKKE TTS mini game patch... success: \(success)")
     }
 }
