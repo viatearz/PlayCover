@@ -110,6 +110,7 @@ struct AppSettingsData: Codable {
     }
 }
 
+// swiftlint:disable function_body_length line_length cyclomatic_complexity
 struct ExtraAppSettingsData: Codable {
     var enableCustomCursor = false
     var customCursorWidth = 32
@@ -160,10 +161,12 @@ struct ExtraAppSettingsData: Codable {
     var supportMultipleMice = false
     var bypassOnDemandResources = false
     var disableBuiltinKeyboard = false
+    var disableBuiltinGamepad = false
+    var nikkeTTSMiniGameShowKeySettings = false
+    var nikkeTTSMiniGameRemapRightShift = false
 
     init() {}
 
-    // swiftlint:disable line_length
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         enableCustomCursor = try container.decodeIfPresent(Bool.self, forKey: .enableCustomCursor) ?? false
@@ -215,9 +218,11 @@ struct ExtraAppSettingsData: Codable {
         supportMultipleMice = try container.decodeIfPresent(Bool.self, forKey: .supportMultipleMice) ?? false
         bypassOnDemandResources = try container.decodeIfPresent(Bool.self, forKey: .bypassOnDemandResources) ?? false
         disableBuiltinKeyboard = try container.decodeIfPresent(Bool.self, forKey: .disableBuiltinKeyboard) ?? false
+        disableBuiltinGamepad = try container.decodeIfPresent(Bool.self, forKey: .disableBuiltinGamepad) ?? false
+        nikkeTTSMiniGameShowKeySettings = try container.decodeIfPresent(Bool.self, forKey: .nikkeTTSMiniGameShowKeySettings) ?? false
+        nikkeTTSMiniGameRemapRightShift = try container.decodeIfPresent(Bool.self, forKey: .nikkeTTSMiniGameRemapRightShift) ?? false
     }
 
-    // swiftlint:disable:next cyclomatic_complexity
     mutating func applyOverrides(_ overrides: [String: Any]) {
         guard !overrides.isEmpty else { return }
         if let val = overrides["forceQuitAppOnClose"] as? Bool { forceQuitAppOnClose = val }
@@ -269,9 +274,12 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["supportMultipleMice"] as? Bool { supportMultipleMice = val }
         if let val = overrides["bypassOnDemandResources"] as? Bool { bypassOnDemandResources = val }
         if let val = overrides["disableBuiltinKeyboard"] as? Bool { disableBuiltinKeyboard = val }
+        if let val = overrides["disableBuiltinGamepad"] as? Bool { disableBuiltinGamepad = val }
+        if let val = overrides["nikkeTTSMiniGameShowKeySettings"] as? Bool { nikkeTTSMiniGameShowKeySettings = val }
+        if let val = overrides["nikkeTTSMiniGameRemapRightShift"] as? Bool { nikkeTTSMiniGameRemapRightShift = val }
     }
-    // swiftlint:enable line_length
 }
+// swiftlint:enable function_body_length line_length cyclomatic_complexity
 
 class AppSettings {
     static var appSettingsDir: URL {

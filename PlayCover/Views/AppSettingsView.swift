@@ -841,6 +841,9 @@ struct ExtrasView: View {
     @State var showSupportMultipleMice = false
     @State var showBypassOnDemandResources = false
     @State var showDisableBuiltinKeyboard = false
+    @State var showDisableBuiltinGamepad = false
+    @State var showNikkeTTSMiniGameShowKeySettings = false
+    @State var showNikkeTTSMiniGameRemapRightShift = false
 
     var body: some View {
         ScrollView {
@@ -1172,6 +1175,27 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showDisableBuiltinGamepad {
+                        HStack {
+                            Toggle("settings.toggle.disableBuiltinGamepad",
+                                   isOn: $settings.disableBuiltinGamepad)
+                            Spacer()
+                        }
+                    }
+                    if showNikkeTTSMiniGameShowKeySettings {
+                        HStack {
+                            Toggle("settings.toggle.nikkeTTSMiniGameShowKeySettings",
+                                   isOn: $settings.nikkeTTSMiniGameShowKeySettings)
+                            Spacer()
+                        }
+                    }
+                    if showNikkeTTSMiniGameRemapRightShift {
+                        HStack {
+                            Toggle("settings.toggle.nikkeTTSMiniGameRemapRightShift",
+                                   isOn: $settings.nikkeTTSMiniGameRemapRightShift)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1199,6 +1223,9 @@ struct ExtrasView: View {
             showSupportMultipleMice = overrides["supportMultipleMice"] != nil
             showBypassOnDemandResources = overrides["bypassOnDemandResources"] != nil
             showDisableBuiltinKeyboard = overrides["disableBuiltinKeyboard"] != nil
+            showDisableBuiltinGamepad = overrides["disableBuiltinGamepad"] != nil
+            showNikkeTTSMiniGameShowKeySettings = overrides["nikkeTTSMiniGameShowKeySettings"] != nil
+            showNikkeTTSMiniGameRemapRightShift = overrides["nikkeTTSMiniGameRemapRightShift"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1217,7 +1244,10 @@ struct ExtrasView: View {
                 showNanaoriFixBuiltinMouseIssue,
                 showSupportMultipleMice,
                 showBypassOnDemandResources,
-                showDisableBuiltinKeyboard
+                showDisableBuiltinKeyboard,
+                showDisableBuiltinGamepad,
+                showNikkeTTSMiniGameShowKeySettings,
+                showNikkeTTSMiniGameRemapRightShift
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in
