@@ -2,5 +2,8 @@
     "disableINTLUtilsSwizzling": true,
     "unityEngineForceLandscape": true,
     "unityEngineDisableOrientationCheck": true,
-    "webViewSmartTextInput": true
+    "webViewSmartTextInput": true,
+    "disableBuiltinGamepad": true,
+    "nikkeTTSMiniGameShowKeySettings": true,
+    "nikkeTTSMiniGameRemapRightShift": true
 }
