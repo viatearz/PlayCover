@@ -83,6 +83,7 @@
 "settings.toggle.disableBuiltinGamepad" = "Disable Built-in Gamepad Support";
 "settings.toggle.nikkeTTSMiniGameShowKeySettings" = "Rhythm Mini Game: Show Controls Settings (Reinstall Required)";
 "settings.toggle.nikkeTTSMiniGameRemapRightShift" = "Rhythm Mini Game: Remap Right-Shift to Equal Sign";
+"settings.toggle.wowslegendsFixFilePath" = "Fix File Path issue";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

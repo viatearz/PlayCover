@@ -83,6 +83,7 @@
 "settings.toggle.disableBuiltinGamepad" = "禁用应用内置的手柄支持";
 "settings.toggle.nikkeTTSMiniGameShowKeySettings" = "音游小游戏：显示键位设置界面（需重装App）";
 "settings.toggle.nikkeTTSMiniGameRemapRightShift" = "音游小游戏：右Shift键映射至等号键";
+"settings.toggle.wowslegendsFixFilePath" = "修复文件路径问题";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";

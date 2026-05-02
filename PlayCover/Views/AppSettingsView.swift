@@ -844,6 +844,7 @@ struct ExtrasView: View {
     @State var showDisableBuiltinGamepad = false
     @State var showNikkeTTSMiniGameShowKeySettings = false
     @State var showNikkeTTSMiniGameRemapRightShift = false
+    @State var showWowslegendsFixFilePath = false
 
     var body: some View {
         ScrollView {
@@ -1196,6 +1197,13 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
+                    if showWowslegendsFixFilePath {
+                        HStack {
+                            Toggle("settings.toggle.wowslegendsFixFilePath",
+                                   isOn: $settings.wowslegendsFixFilePath)
+                            Spacer()
+                        }
+                    }
                 }
             }
             .padding()
@@ -1226,6 +1234,7 @@ struct ExtrasView: View {
             showDisableBuiltinGamepad = overrides["disableBuiltinGamepad"] != nil
             showNikkeTTSMiniGameShowKeySettings = overrides["nikkeTTSMiniGameShowKeySettings"] != nil
             showNikkeTTSMiniGameRemapRightShift = overrides["nikkeTTSMiniGameRemapRightShift"] != nil
+            showWowslegendsFixFilePath = overrides["wowslegendsFixFilePath"] != nil
             showAppSpecificOptions = [
                 showBypassEntitlementsCheck,
                 showDisableINTLUtilsSwizzling,
@@ -1247,7 +1256,8 @@ struct ExtrasView: View {
                 showDisableBuiltinKeyboard,
                 showDisableBuiltinGamepad,
                 showNikkeTTSMiniGameShowKeySettings,
-                showNikkeTTSMiniGameRemapRightShift
+                showNikkeTTSMiniGameRemapRightShift,
+                showWowslegendsFixFilePath
             ].contains(true)
         }
         .onChange(of: bypassEntitlementsCheck) { _ in
