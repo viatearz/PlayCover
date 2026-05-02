@@ -358,6 +358,9 @@ extension PlayApp {
         if settings.extraSettings.nikkeTTSMiniGameShowKeySettings {
             applyNikkeTTSMiniGamePatch()
         }
+        if settings.extraSettings.wowslegendsFixFilePath {
+            applyWowsLegendsFilePathPatch()
+        }
     }
 
     func sign() {
@@ -613,5 +616,15 @@ extension PlayApp {
             }
         }
         print("Applying NIKKE TTS mini game patch... success: \(success)")
+    }
+
+    func applyWowsLegendsFilePathPatch() {
+        // Replace 'Legends.app/' with 'legends.app/'
+        let success = Macho.patch(
+            url: executable,
+            bytesToFind: Data([0x4C, 0x65, 0x67, 0x65, 0x6E, 0x64, 0x73, 0x2E, 0x61, 0x70, 0x70, 0x2F, 0x00]),
+            bytesToWrite: Data([0x6C])
+        )
+        print("Applying WOWS Legends file path patch... success: \(success)")
     }
 }
