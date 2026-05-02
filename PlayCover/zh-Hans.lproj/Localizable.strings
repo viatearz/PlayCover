@@ -15,14 +15,14 @@
 "settings.toggle.forceQuitAppOnClose.help" = "可解决应用残留在后台运行的问题";
 "settings.toggle.unrealEngineSetScaleFactor" = "修改虚幻引擎的分辨率缩放";
 "settings.toggle.unrealEngineSetScaleFactor.help" = "虚幻引擎通常会为不同机型预先配置不同的分辨率缩放比例。启用该选项后，将会强制虚幻引擎使用PlayCover图像设置中配置的分辨率缩放比例";
-"settings.toggle.fixWeirdWindowFocusState" = "修复异常的窗口激活状态";
+"settings.toggle.fixWeirdWindowFocusState" = "修复窗口为灰色未激活状态的问题";
 "settings.toggle.fixWeirdWindowFocusState.help" = "可解决从其他应用切换回当前应用后，窗口标题栏依然维持灰色未激活状态的问题";
 "settings.toggle.enhanceBuiltinMouse" = "修复虚幻引擎内置的鼠标操作支持";
 "settings.toggle.enhanceBuiltinMouse.help" = "一些虚幻引擎游戏自带支持鼠标操作，但没有正确处理鼠标指针的显示与隐藏。启用该选项后，将会修复鼠标指针的隐藏操作，从而正常使用内置的鼠标操作";
 "settings.toggle.preventKeyboardBeepSound" = "消除键盘按键产生的嘟嘟声";
 "settings.toggle.fixPlayChainMatchLimit" = "修复PlayChain未正确处理MatchLimit的问题";
 "settings.toggle.fixPlayChainMatchLimit.help" = "可解决某些应用的谷歌帐号登录状态无法保留的问题";
-"settings.toggle.unityEngineFixKeyboardInput" = "修复Unity内置的键盘操作支持";
+"settings.toggle.unityEngineFixKeyboardInput" = "修复Unity内置的键盘支持";
 "settings.toggle.unityEngineFixKeyboardInput.help" = "一些Unity游戏通过旧版的Input.GetKeyDown()接口来捕获键盘输入，已知此方法在iOS平台上存在键位卡顿、延迟等问题。启用该选项后，将会修复这些键盘操作问题";
 "settings.toggle.disableINTLUtilsSwizzling" = "禁用INTLUtils Swizzling";
 "settings.toggle.disableINTLUtilsSwizzling.help" = "可解决启动后无响应的问题";
@@ -84,6 +84,8 @@
 "settings.toggle.nikkeTTSMiniGameShowKeySettings" = "音游小游戏：显示键位设置界面（需重装App）";
 "settings.toggle.nikkeTTSMiniGameRemapRightShift" = "音游小游戏：右Shift键映射至等号键";
 "settings.toggle.wowslegendsFixFilePath" = "修复文件路径问题";
+"settings.button.extras.showAllOptions" = "显示所有选项";
+"settings.button.extras.hideSomeOptions" = "隐藏部分选项";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";

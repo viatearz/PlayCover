@@ -821,31 +821,15 @@ struct MiscView: View {
 struct ExtrasView: View {
     @Binding var settings: ExtraAppSettingsData
     var app: PlayApp
-    @State var showBypassEntitlementsCheck = false
+    @State var overriddenKeys: Set<String> = []
+    @State var showAllOptions = false
+    @State var hasAppSpecificOptions = false
     @State var bypassEntitlementsCheck = false
     @State var preventGoogleMeasurementWriteFiles = false
-    @State var showAppSpecificOptions = false
-    @State var showDisableINTLUtilsSwizzling = false
-    @State var showBypassUnknownDetectionA = false
-    @State var showJinChanChanFixMicrophone = false
-    @State var showForceUIViewLandscape = false
-    @State var showUseBuiltinPointerLock = false
-    @State var showClearLastTouchesWhenEnterTextInput = false
-    @State var showDisableAllAlertDialogs = false
-    @State var showDontInterceptClicksInUIViews = false
-    @State var showUnityEngineFixAutoRotate = false
-    @State var showUseNewHitTestMethodAlways = false
-    @State var showRacingMasterFixFilePath = false // swiftlint:disable:this inclusive_language
-    @State var showFortniteFixNonMainThreadCrash = false
-    @State var showFortniteDisableOptionKey = false
-    @State var showNanaoriFixBuiltinMouseIssue = false
-    @State var showSupportMultipleMice = false
-    @State var showBypassOnDemandResources = false
-    @State var showDisableBuiltinKeyboard = false
-    @State var showDisableBuiltinGamepad = false
-    @State var showNikkeTTSMiniGameShowKeySettings = false
-    @State var showNikkeTTSMiniGameRemapRightShift = false
-    @State var showWowslegendsFixFilePath = false
+
+    func shouldShow(_ key: String, _ enabled: Bool) -> Bool {
+        showAllOptions || enabled || overriddenKeys.contains(key)
+    }
 
     var body: some View {
         ScrollView {
@@ -859,18 +843,24 @@ struct ExtrasView: View {
                     CursorSettingView(bundleID: app.info.bundleIdentifier, setting: $settings)
                 }
 
-                Spacer().frame(height: 16)
+                if settings.enableCustomCursor || showAllOptions {
+                    Spacer().frame(height: 16)
+                }
 
-                HStack {
-                    Text("settings.text.extras.general").bold()
-                    Spacer()
+                if showAllOptions {
+                    HStack {
+                        Text("settings.text.extras.general").bold()
+                        Spacer()
+                    }
                 }
                 if app.settings.settings.resolution == 6 {
-                    HStack {
-                        Toggle("settings.toggle.enableAutoRotate",
-                               isOn: $settings.enableAutoRotate)
-                        .help("settings.toggle.enableAutoRotate.help")
-                        Spacer()
+                    if shouldShow("enableAutoRotate", settings.enableAutoRotate) {
+                        HStack {
+                            Toggle("settings.toggle.enableAutoRotate",
+                                   isOn: $settings.enableAutoRotate)
+                            .help("settings.toggle.enableAutoRotate.help")
+                            Spacer()
+                        }
                     }
                 }
                 HStack {
@@ -890,30 +880,98 @@ struct ExtrasView: View {
                         .help("settings.toggle.fixPlayChainMatchLimit.help")
                     Spacer()
                 }
-                HStack {
-                    Toggle("settings.toggle.fixPlayChainAccessGroup",
-                           isOn: $settings.fixPlayChainAccessGroup)
-                    Spacer()
+                if shouldShow("fixPlayChainAccessGroup", settings.fixPlayChainAccessGroup) {
+                    HStack {
+                        Toggle("settings.toggle.fixPlayChainAccessGroup",
+                               isOn: $settings.fixPlayChainAccessGroup)
+                        Spacer()
+                    }
                 }
-                HStack {
-                    Toggle("settings.toggle.forceQuitAppOnClose",
-                           isOn: $settings.forceQuitAppOnClose)
-                        .help("settings.toggle.forceQuitAppOnClose.help")
-                    Spacer()
+                if shouldShow("fixAvailableMemoryValue", settings.fixAvailableMemoryValue) {
+                    HStack {
+                        Toggle("settings.toggle.fixAvailableMemoryValue",
+                               isOn: $settings.fixAvailableMemoryValue)
+                        .help("settings.toggle.fixAvailableMemoryValue.help")
+                        Spacer()
+                    }
                 }
-                HStack {
-                    Toggle("settings.toggle.webViewSmartTextInput",
-                           isOn: $settings.webViewSmartTextInput)
+                if shouldShow("webViewSmartTextInput", settings.webViewSmartTextInput) {
+                    HStack {
+                        Toggle("settings.toggle.webViewSmartTextInput",
+                               isOn: $settings.webViewSmartTextInput)
                         .help("settings.toggle.webViewSmartTextInput.help")
-                    Spacer()
+                        Spacer()
+                    }
                 }
-
-                Spacer().frame(height: 16)
+                if shouldShow("clearLastTouchesWhenEnterTextInput",
+                              settings.clearLastTouchesWhenEnterTextInput) {
+                    HStack {
+                        Toggle("settings.toggle.clearLastTouchesWhenEnterTextInput",
+                               isOn: $settings.clearLastTouchesWhenEnterTextInput)
+                            .help("settings.toggle.clearLastTouchesWhenEnterTextInput.help")
+                        Spacer()
+                    }
+                }
+                if shouldShow("useNewHitTestMethodAlways", settings.useNewHitTestMethodAlways) {
+                    HStack {
+                        Toggle("settings.toggle.useNewHitTestMethodAlways",
+                               isOn: $settings.useNewHitTestMethodAlways)
+                            .help("settings.toggle.useNewHitTestMethodAlways.help")
+                        Spacer()
+                    }
+                }
+                if shouldShow("useBuiltinPointerLock", settings.useBuiltinPointerLock) {
+                    HStack {
+                        Toggle("settings.toggle.useBuiltinPointerLock",
+                               isOn: $settings.useBuiltinPointerLock)
+                            .help("settings.toggle.useBuiltinPointerLock.help")
+                        Spacer()
+                    }
+                }
+                if shouldShow("supportMultipleMice", settings.supportMultipleMice) {
+                    HStack {
+                        Toggle("settings.toggle.supportMultipleMice",
+                               isOn: $settings.supportMultipleMice)
+                        Spacer()
+                    }
+                }
+                if shouldShow("disableBuiltinKeyboard", settings.disableBuiltinKeyboard) {
+                    HStack {
+                        Toggle("settings.toggle.disableBuiltinKeyboard",
+                               isOn: $settings.disableBuiltinKeyboard)
+                        Spacer()
+                    }
+                }
+                if shouldShow("disableBuiltinGamepad", settings.disableBuiltinGamepad) {
+                    HStack {
+                        Toggle("settings.toggle.disableBuiltinGamepad",
+                               isOn: $settings.disableBuiltinGamepad)
+                        Spacer()
+                    }
+                }
+                if shouldShow("disableAllAlertDialogs", settings.disableAllAlertDialogs) {
+                    HStack {
+                        Toggle("settings.toggle.disableAllAlertDialogs",
+                               isOn: $settings.disableAllAlertDialogs)
+                        Spacer()
+                    }
+                }
+                if shouldShow("forceQuitAppOnClose", settings.forceQuitAppOnClose) {
+                    HStack {
+                        Toggle("settings.toggle.forceQuitAppOnClose",
+                               isOn: $settings.forceQuitAppOnClose)
+                        .help("settings.toggle.forceQuitAppOnClose.help")
+                        Spacer()
+                    }
+                }
 
                 if app.info.isUnityEngine {
-                    HStack {
-                        Text("settings.text.extras.unityEngine").bold()
-                        Spacer()
+                    if showAllOptions {
+                        Spacer().frame(height: 16)
+                        HStack {
+                            Text("settings.text.extras.unityEngine").bold()
+                            Spacer()
+                        }
                     }
                     HStack {
                         Toggle("settings.toggle.unityEngineFixKeyboardInput",
@@ -921,37 +979,57 @@ struct ExtrasView: View {
                             .help("settings.toggle.unityEngineFixKeyboardInput.help")
                         Spacer()
                     }
-                    HStack {
-                        Toggle("settings.toggle.unityEngineForceLandscape",
-                               isOn: $settings.unityEngineForceLandscape)
+                    if shouldShow("unityEngineForceLandscape", settings.unityEngineForceLandscape) {
+                        HStack {
+                            Toggle("settings.toggle.unityEngineForceLandscape",
+                                   isOn: $settings.unityEngineForceLandscape)
                             .help("settings.toggle.unityEngineForceLandscape.help")
-                        Spacer()
+                            Spacer()
+                        }
                     }
-                    HStack {
-                        Toggle("settings.toggle.unityEngineDisableOrientationCheck",
-                               isOn: $settings.unityEngineDisableOrientationCheck)
-                        .help("settings.toggle.unityEngineDisableOrientationCheck.help")
-                        Spacer()
+                    if shouldShow("unityEngineDisableOrientationCheck",
+                                  settings.unityEngineDisableOrientationCheck) {
+                        HStack {
+                            Toggle("settings.toggle.unityEngineDisableOrientationCheck",
+                                   isOn: $settings.unityEngineDisableOrientationCheck)
+                            .help("settings.toggle.unityEngineDisableOrientationCheck.help")
+                            Spacer()
+                        }
                     }
-                    HStack {
-                        Toggle("settings.toggle.unityEngineIgnoreKeyboardDelegateCrash",
-                               isOn: $settings.unityEngineIgnoreKeyboardDelegateCrash)
+                    if shouldShow("unityEngineIgnoreKeyboardDelegateCrash",
+                                  settings.unityEngineIgnoreKeyboardDelegateCrash) {
+                        HStack {
+                            Toggle("settings.toggle.unityEngineIgnoreKeyboardDelegateCrash",
+                                   isOn: $settings.unityEngineIgnoreKeyboardDelegateCrash)
                             .help("settings.toggle.unityEngineIgnoreKeyboardDelegateCrash.help")
-                        Spacer()
+                            Spacer()
+                        }
                     }
-                    HStack {
-                        Toggle("settings.toggle.unityEngineDisableAROverlayTouches",
-                               isOn: $settings.unityEngineDisableAROverlayTouches)
+                    if shouldShow("unityEngineDisableAROverlayTouches",
+                                  settings.unityEngineDisableAROverlayTouches) {
+                        HStack {
+                            Toggle("settings.toggle.unityEngineDisableAROverlayTouches",
+                                   isOn: $settings.unityEngineDisableAROverlayTouches)
                             .help("settings.toggle.unityEngineDisableAROverlayTouches.help")
-                        Spacer()
+                            Spacer()
+                        }
                     }
-                    Spacer().frame(height: 16)
+                    if shouldShow("unityEngineFixAutoRotate", settings.unityEngineFixAutoRotate) {
+                        HStack {
+                            Toggle("settings.toggle.unityEngineFixAutoRotate",
+                                   isOn: $settings.unityEngineFixAutoRotate)
+                            Spacer()
+                        }
+                    }
                 }
 
                 if app.info.isUnrealEngine {
-                    HStack {
-                        Text("settings.text.extras.unrealEngine").bold()
-                        Spacer()
+                    if showAllOptions {
+                        Spacer().frame(height: 16)
+                        HStack {
+                            Text("settings.text.extras.unrealEngine").bold()
+                            Spacer()
+                        }
                     }
                     HStack {
                         Toggle("settings.toggle.unrealEngineFixFilePath",
@@ -960,92 +1038,27 @@ struct ExtrasView: View {
                         Spacer()
                     }
                     HStack {
-                        Toggle("settings.toggle.fixAvailableMemoryValue",
-                               isOn: $settings.fixAvailableMemoryValue)
-                            .help("settings.toggle.fixAvailableMemoryValue.help")
-                        Spacer()
-                    }
-                    HStack {
                         Toggle("settings.toggle.unrealEngineSetScaleFactor", isOn: $settings.unrealEngineSetScaleFactor)
                             .help("settings.toggle.unrealEngineSetScaleFactor.help")
                         Spacer()
                     }
-                    HStack {
-                        Toggle("settings.toggle.unrealEngineSmartTextInput",
-                               isOn: $settings.unrealEngineSmartTextInput)
-                            .help("settings.toggle.unrealEngineSmartTextInput.help")
-                        Spacer()
-                    }
-                    HStack {
-                        Toggle("settings.toggle.enhanceBuiltinMouse",
-                               isOn: $settings.enhanceBuiltinMouse)
+                    if shouldShow("enhanceBuiltinMouse", settings.enhanceBuiltinMouse) {
+                        HStack {
+                            Toggle("settings.toggle.enhanceBuiltinMouse",
+                                   isOn: $settings.enhanceBuiltinMouse)
                             .help("settings.toggle.enhanceBuiltinMouse.help")
-                        Spacer()
+                            Spacer()
+                        }
                     }
-                    HStack {
-                        Toggle("settings.toggle.preventKeyboardBeepSound",
-                               isOn: $settings.preventKeyboardBeepSound)
-                        Spacer()
+                    if shouldShow("unrealEngineSmartTextInput", settings.unrealEngineSmartTextInput) {
+                        HStack {
+                            Toggle("settings.toggle.unrealEngineSmartTextInput",
+                                   isOn: $settings.unrealEngineSmartTextInput)
+                            .help("settings.toggle.unrealEngineSmartTextInput.help")
+                            Spacer()
+                        }
                     }
-                    Spacer().frame(height: 16)
-                }
-
-                if app.info.isNeoXEngine {
-                    HStack {
-                        Text("settings.text.extras.neoxEngine").bold()
-                        Spacer()
-                    }
-                    HStack {
-                        Toggle("settings.toggle.neoxEngineFixFilePath",
-                               isOn: $settings.neoxEngineFixFilePath)
-                            .help("settings.toggle.neoxEngineFixFilePath.help")
-                        Spacer()
-                    }
-                    Spacer().frame(height: 16)
-                }
-
-                HStack {
-                    Text("settings.text.extras.services").bold()
-                    Spacer()
-                }
-                HStack {
-                    Toggle("settings.toggle.preloadAppTrackingFramework",
-                           isOn: $settings.preloadAppTrackingFramework)
-                        .help("settings.toggle.preloadAppTrackingFramework.help")
-                    Spacer()
-                }
-                HStack {
-                    Toggle("settings.toggle.skipGameCenterLogin",
-                           isOn: $settings.skipGameCenterLogin)
-                        .help("settings.toggle.skipGameCenterLogin.help")
-                    Spacer()
-                }
-                HStack {
-                    Toggle("settings.toggle.forceWebViewUseMobileContentMode",
-                           isOn: $settings.forceWebViewUseMobileContentMode)
-                        .help("settings.toggle.forceWebViewUseMobileContentMode.help")
-                    Spacer()
-                }
-                HStack {
-                    Toggle("settings.toggle.preventGoogleMeasurementWriteFiles",
-                           isOn: $preventGoogleMeasurementWriteFiles)
-                        .help("settings.toggle.preventGoogleMeasurementWriteFiles.help")
-                    Spacer()
-                }
-                HStack {
-                    Toggle("settings.toggle.disableCriWareSonicSync",
-                           isOn: $settings.disableCriWareSonicSync)
-                        .help("settings.toggle.disableCriWareSonicSync.help")
-                    Spacer()
-                }
-
-                if showAppSpecificOptions {
-                    Spacer().frame(height: 16)
-                    HStack {
-                        Text("settings.text.extras.appSpecific").bold()
-                        Spacer()
-                    }
-                    if showBypassEntitlementsCheck {
+                    if shouldShow("unrealEngineBypassEntitlementsCheck", bypassEntitlementsCheck) {
                         HStack {
                             Toggle("settings.toggle.unrealEngineBypassEntitlementsCheck",
                                    isOn: $bypassEntitlementsCheck)
@@ -1053,158 +1066,187 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
-                    if showDisableINTLUtilsSwizzling {
+                    if shouldShow("preventKeyboardBeepSound", settings.preventKeyboardBeepSound) {
                         HStack {
-                            Toggle("settings.toggle.disableINTLUtilsSwizzling",
-                                   isOn: $settings.disableINTLUtilsSwizzling)
-                            .help("settings.toggle.disableINTLUtilsSwizzling.help")
+                            Toggle("settings.toggle.preventKeyboardBeepSound",
+                                   isOn: $settings.preventKeyboardBeepSound)
                             Spacer()
                         }
                     }
-                    if showBypassUnknownDetectionA {
+                }
+
+                if app.info.isNeoXEngine {
+                    if showAllOptions {
+                        Spacer().frame(height: 16)
                         HStack {
-                            Toggle("settings.toggle.bypassUnknownDetection",
-                                   isOn: $settings.bypassUnknownDetectionA)
+                            Text("settings.text.extras.neoxEngine").bold()
                             Spacer()
                         }
                     }
-                    if showJinChanChanFixMicrophone {
-                        HStack {
-                            Toggle("settings.toggle.jinChanChanFixMicrophone",
-                                   isOn: $settings.jinChanChanFixMicrophone)
-                            Spacer()
-                        }
+                    HStack {
+                        Toggle("settings.toggle.neoxEngineFixFilePath",
+                               isOn: $settings.neoxEngineFixFilePath)
+                            .help("settings.toggle.neoxEngineFixFilePath.help")
+                        Spacer()
                     }
-                    if showForceUIViewLandscape {
-                        HStack {
-                            Toggle("settings.toggle.forceUIViewLandscape",
-                                   isOn: $settings.forceUIViewLandscape)
-                            Spacer()
-                        }
+                }
+
+                if showAllOptions {
+                    Spacer().frame(height: 16)
+                    HStack {
+                        Text("settings.text.extras.services").bold()
+                        Spacer()
                     }
-                    if showUseBuiltinPointerLock {
-                        HStack {
-                            Toggle("settings.toggle.useBuiltinPointerLock",
-                                   isOn: $settings.useBuiltinPointerLock)
-                                .help("settings.toggle.useBuiltinPointerLock.help")
-                            Spacer()
-                        }
+                }
+                if shouldShow("preloadAppTrackingFramework", settings.preloadAppTrackingFramework) {
+                    HStack {
+                        Toggle("settings.toggle.preloadAppTrackingFramework",
+                               isOn: $settings.preloadAppTrackingFramework)
+                        .help("settings.toggle.preloadAppTrackingFramework.help")
+                        Spacer()
                     }
-                    if showClearLastTouchesWhenEnterTextInput {
-                        HStack {
-                            Toggle("settings.toggle.clearLastTouchesWhenEnterTextInput",
-                                   isOn: $settings.clearLastTouchesWhenEnterTextInput)
-                                .help("settings.toggle.clearLastTouchesWhenEnterTextInput.help")
-                            Spacer()
-                        }
+                }
+                if shouldShow("skipGameCenterLogin", settings.skipGameCenterLogin) {
+                    HStack {
+                        Toggle("settings.toggle.skipGameCenterLogin",
+                               isOn: $settings.skipGameCenterLogin)
+                        .help("settings.toggle.skipGameCenterLogin.help")
+                        Spacer()
                     }
-                    if showDisableAllAlertDialogs {
-                        HStack {
-                            Toggle("settings.toggle.disableAllAlertDialogs",
-                                   isOn: $settings.disableAllAlertDialogs)
-                            Spacer()
-                        }
+                }
+                if shouldShow("forceWebViewUseMobileContentMode", settings.forceWebViewUseMobileContentMode) {
+                    HStack {
+                        Toggle("settings.toggle.forceWebViewUseMobileContentMode",
+                               isOn: $settings.forceWebViewUseMobileContentMode)
+                        .help("settings.toggle.forceWebViewUseMobileContentMode.help")
+                        Spacer()
                     }
-                    if showDontInterceptClicksInUIViews {
-                        HStack {
-                            Toggle("settings.toggle.dontInterceptClicksInUIViews",
-                                   isOn: $settings.dontInterceptClicksInUIViews)
-                            Spacer()
-                        }
+                }
+                if shouldShow("preventGoogleMeasurementWriteFiles", preventGoogleMeasurementWriteFiles) {
+                    HStack {
+                        Toggle("settings.toggle.preventGoogleMeasurementWriteFiles",
+                               isOn: $preventGoogleMeasurementWriteFiles)
+                        .help("settings.toggle.preventGoogleMeasurementWriteFiles.help")
+                        Spacer()
                     }
-                    if showUnityEngineFixAutoRotate {
-                        HStack {
-                            Toggle("settings.toggle.unityEngineFixAutoRotate",
-                                   isOn: $settings.unityEngineFixAutoRotate)
-                            Spacer()
-                        }
+                }
+                if shouldShow("disableCriWareSonicSync", settings.disableCriWareSonicSync) {
+                    HStack {
+                        Toggle("settings.toggle.disableCriWareSonicSync",
+                               isOn: $settings.disableCriWareSonicSync)
+                        .help("settings.toggle.disableCriWareSonicSync.help")
+                        Spacer()
                     }
-                    if showUseNewHitTestMethodAlways {
-                        HStack {
-                            Toggle("settings.toggle.useNewHitTestMethodAlways",
-                                   isOn: $settings.useNewHitTestMethodAlways)
-                                .help("settings.toggle.useNewHitTestMethodAlways.help")
-                            Spacer()
-                        }
+                }
+                if shouldShow("bypassOnDemandResources", settings.bypassOnDemandResources) {
+                    HStack {
+                        Toggle("settings.toggle.bypassOnDemandResources",
+                               isOn: $settings.bypassOnDemandResources)
+                            .help("settings.toggle.bypassOnDemandResources.help")
+                        Spacer()
                     }
-                    if showRacingMasterFixFilePath {
-                        HStack {
-                            Toggle("settings.toggle.racingMasterFixFilePath",
-                                   isOn: $settings.racingMasterFixFilePath)
-                            Spacer()
-                        }
+                }
+                if shouldShow("bypassUnknownDetectionA", settings.bypassUnknownDetectionA) {
+                    HStack {
+                        Toggle("settings.toggle.bypassUnknownDetection",
+                               isOn: $settings.bypassUnknownDetectionA)
+                        Spacer()
                     }
-                    if showFortniteFixNonMainThreadCrash {
-                        HStack {
-                            Toggle("settings.toggle.fortniteFixNonMainThreadCrash",
-                                   isOn: $settings.fortniteFixNonMainThreadCrash)
-                            Spacer()
-                        }
+                }
+
+                if showAllOptions && hasAppSpecificOptions {
+                    Spacer().frame(height: 16)
+                    HStack {
+                        Text("settings.text.extras.appSpecific").bold()
+                        Spacer()
                     }
-                    if showFortniteDisableOptionKey {
-                        HStack {
-                            Toggle("settings.toggle.fortniteDisableOptionKey",
-                                   isOn: $settings.fortniteDisableOptionKey)
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("forceUIViewLandscape") {
+                    HStack {
+                        Toggle("settings.toggle.forceUIViewLandscape",
+                               isOn: $settings.forceUIViewLandscape)
+                        Spacer()
                     }
-                    if showNanaoriFixBuiltinMouseIssue {
-                        HStack {
-                            Toggle("settings.toggle.nanaoriFixBuiltinMouseIssue",
-                                   isOn: $settings.nanaoriFixBuiltinMouseIssue)
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("dontInterceptClicksInUIViews") {
+                    HStack {
+                        Toggle("settings.toggle.dontInterceptClicksInUIViews",
+                               isOn: $settings.dontInterceptClicksInUIViews)
+                        Spacer()
                     }
-                    if showSupportMultipleMice {
-                        HStack {
-                            Toggle("settings.toggle.supportMultipleMice",
-                                   isOn: $settings.supportMultipleMice)
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("disableINTLUtilsSwizzling") {
+                    HStack {
+                        Toggle("settings.toggle.disableINTLUtilsSwizzling",
+                               isOn: $settings.disableINTLUtilsSwizzling)
+                        .help("settings.toggle.disableINTLUtilsSwizzling.help")
+                        Spacer()
                     }
-                    if showBypassOnDemandResources {
-                        HStack {
-                            Toggle("settings.toggle.bypassOnDemandResources",
-                                   isOn: $settings.bypassOnDemandResources)
-                                .help("settings.toggle.bypassOnDemandResources.help")
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("jinChanChanFixMicrophone") {
+                    HStack {
+                        Toggle("settings.toggle.jinChanChanFixMicrophone",
+                               isOn: $settings.jinChanChanFixMicrophone)
+                        Spacer()
                     }
-                    if showDisableBuiltinKeyboard {
-                        HStack {
-                            Toggle("settings.toggle.disableBuiltinKeyboard",
-                                   isOn: $settings.disableBuiltinKeyboard)
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("racingMasterFixFilePath") {
+                    HStack {
+                        Toggle("settings.toggle.racingMasterFixFilePath",
+                               isOn: $settings.racingMasterFixFilePath)
+                        Spacer()
                     }
-                    if showDisableBuiltinGamepad {
-                        HStack {
-                            Toggle("settings.toggle.disableBuiltinGamepad",
-                                   isOn: $settings.disableBuiltinGamepad)
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("fortniteFixNonMainThreadCrash") {
+                    HStack {
+                        Toggle("settings.toggle.fortniteFixNonMainThreadCrash",
+                               isOn: $settings.fortniteFixNonMainThreadCrash)
+                        Spacer()
                     }
-                    if showNikkeTTSMiniGameShowKeySettings {
-                        HStack {
-                            Toggle("settings.toggle.nikkeTTSMiniGameShowKeySettings",
-                                   isOn: $settings.nikkeTTSMiniGameShowKeySettings)
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("fortniteDisableOptionKey") {
+                    HStack {
+                        Toggle("settings.toggle.fortniteDisableOptionKey",
+                               isOn: $settings.fortniteDisableOptionKey)
+                        Spacer()
                     }
-                    if showNikkeTTSMiniGameRemapRightShift {
-                        HStack {
-                            Toggle("settings.toggle.nikkeTTSMiniGameRemapRightShift",
-                                   isOn: $settings.nikkeTTSMiniGameRemapRightShift)
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("nanaoriFixBuiltinMouseIssue") {
+                    HStack {
+                        Toggle("settings.toggle.nanaoriFixBuiltinMouseIssue",
+                               isOn: $settings.nanaoriFixBuiltinMouseIssue)
+                        Spacer()
                     }
-                    if showWowslegendsFixFilePath {
-                        HStack {
-                            Toggle("settings.toggle.wowslegendsFixFilePath",
-                                   isOn: $settings.wowslegendsFixFilePath)
-                            Spacer()
-                        }
+                }
+                if overriddenKeys.contains("nikkeTTSMiniGameShowKeySettings") {
+                    HStack {
+                        Toggle("settings.toggle.nikkeTTSMiniGameShowKeySettings",
+                               isOn: $settings.nikkeTTSMiniGameShowKeySettings)
+                        Spacer()
                     }
+                }
+                if overriddenKeys.contains("nikkeTTSMiniGameRemapRightShift") {
+                    HStack {
+                        Toggle("settings.toggle.nikkeTTSMiniGameRemapRightShift",
+                               isOn: $settings.nikkeTTSMiniGameRemapRightShift)
+                        Spacer()
+                    }
+                }
+                if overriddenKeys.contains("wowslegendsFixFilePath") {
+                    HStack {
+                        Toggle("settings.toggle.wowslegendsFixFilePath",
+                               isOn: $settings.wowslegendsFixFilePath)
+                        Spacer()
+                    }
+                }
+
+                Spacer().frame(height: 16)
+                HStack {
+                    Button(!showAllOptions ? "settings.button.extras.showAllOptions" :
+                            "settings.button.extras.hideSomeOptions") {
+                        showAllOptions = !showAllOptions
+                    }
+                    Spacer()
                 }
             }
             .padding()
@@ -1214,52 +1256,22 @@ struct ExtrasView: View {
             preventGoogleMeasurementWriteFiles = settings.preventGoogleMeasurmentWriteFiles
 
             let overrides = app.settings.loadOverrides()
-            showBypassEntitlementsCheck = overrides["unrealEngineBypassEntitlementsCheck"] != nil
-            showDisableINTLUtilsSwizzling = overrides["disableINTLUtilsSwizzling"] != nil
-            showBypassUnknownDetectionA = overrides["bypassUnknownDetectionA"] != nil
-            showJinChanChanFixMicrophone = overrides["jinChanChanFixMicrophone"] != nil
-            showForceUIViewLandscape = overrides["forceUIViewLandscape"] != nil
-            showUseBuiltinPointerLock = overrides["useBuiltinPointerLock"] != nil
-            showClearLastTouchesWhenEnterTextInput = overrides["clearLastTouchesWhenEnterTextInput"] != nil
-            showDisableAllAlertDialogs = overrides["disableAllAlertDialogs"] != nil
-            showDontInterceptClicksInUIViews = overrides["dontInterceptClicksInUIViews"] != nil
-            showUnityEngineFixAutoRotate = overrides["unityEngineFixAutoRotate"] != nil
-            showUseNewHitTestMethodAlways = overrides["useNewHitTestMethodAlways"] != nil
-            showRacingMasterFixFilePath = overrides["racingMasterFixFilePath"] != nil
-            showFortniteFixNonMainThreadCrash = overrides["fortniteFixNonMainThreadCrash"] != nil
-            showFortniteDisableOptionKey = overrides["fortniteDisableOptionKey"] != nil
-            showNanaoriFixBuiltinMouseIssue = overrides["nanaoriFixBuiltinMouseIssue"] != nil
-            showSupportMultipleMice = overrides["supportMultipleMice"] != nil
-            showBypassOnDemandResources = overrides["bypassOnDemandResources"] != nil
-            showDisableBuiltinKeyboard = overrides["disableBuiltinKeyboard"] != nil
-            showDisableBuiltinGamepad = overrides["disableBuiltinGamepad"] != nil
-            showNikkeTTSMiniGameShowKeySettings = overrides["nikkeTTSMiniGameShowKeySettings"] != nil
-            showNikkeTTSMiniGameRemapRightShift = overrides["nikkeTTSMiniGameRemapRightShift"] != nil
-            showWowslegendsFixFilePath = overrides["wowslegendsFixFilePath"] != nil
-            showAppSpecificOptions = [
-                showBypassEntitlementsCheck,
-                showDisableINTLUtilsSwizzling,
-                showBypassUnknownDetectionA,
-                showJinChanChanFixMicrophone,
-                showForceUIViewLandscape,
-                showUseBuiltinPointerLock,
-                showClearLastTouchesWhenEnterTextInput,
-                showDisableAllAlertDialogs,
-                showDontInterceptClicksInUIViews,
-                showUnityEngineFixAutoRotate,
-                showUseNewHitTestMethodAlways,
-                showRacingMasterFixFilePath,
-                showFortniteFixNonMainThreadCrash,
-                showFortniteDisableOptionKey,
-                showNanaoriFixBuiltinMouseIssue,
-                showSupportMultipleMice,
-                showBypassOnDemandResources,
-                showDisableBuiltinKeyboard,
-                showDisableBuiltinGamepad,
-                showNikkeTTSMiniGameShowKeySettings,
-                showNikkeTTSMiniGameRemapRightShift,
-                showWowslegendsFixFilePath
-            ].contains(true)
+            self.overriddenKeys = Set(overrides.keys)
+
+            let appSpecificKeys = [
+                "forceUIViewLandscape",
+                "dontInterceptClicksInUIViews",
+                "disableINTLUtilsSwizzling",
+                "jinChanChanFixMicrophone",
+                "racingMasterFixFilePath",
+                "fortniteFixNonMainThreadCrash",
+                "fortniteDisableOptionKey",
+                "nanaoriFixBuiltinMouseIssue",
+                "nikkeTTSMiniGameShowKeySettings",
+                "nikkeTTSMiniGameRemapRightShift",
+                "wowslegendsFixFilePath"
+            ]
+            self.hasAppSpecificOptions = appSpecificKeys.contains { self.overriddenKeys.contains($0) }
         }
         .onChange(of: bypassEntitlementsCheck) { _ in
             settings.unrealEngineBypassEntitlementsCheck = bypassEntitlementsCheck

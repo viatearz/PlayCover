@@ -84,6 +84,8 @@
 "settings.toggle.nikkeTTSMiniGameShowKeySettings" = "Rhythm Mini Game: Show Controls Settings (Reinstall Required)";
 "settings.toggle.nikkeTTSMiniGameRemapRightShift" = "Rhythm Mini Game: Remap Right-Shift to Equal Sign";
 "settings.toggle.wowslegendsFixFilePath" = "Fix File Path issue";
+"settings.button.extras.showAllOptions" = "Show All Options";
+"settings.button.extras.hideSomeOptions" = "Hide Some Options";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
