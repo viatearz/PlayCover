@@ -826,6 +826,8 @@ struct ExtrasView: View {
     @State var hasAppSpecificOptions = false
     @State var bypassEntitlementsCheck = false
     @State var preventGoogleMeasurementWriteFiles = false
+    @State var preferredLanguageEN = false
+    @State var preferredLanguageJP = false
 
     func shouldShow(_ key: String, _ enabled: Bool) -> Bool {
         showAllOptions || enabled || overriddenKeys.contains(key)
@@ -946,6 +948,42 @@ struct ExtrasView: View {
                     HStack {
                         Toggle("settings.toggle.disableBuiltinGamepad",
                                isOn: $settings.disableBuiltinGamepad)
+                        Spacer()
+                    }
+                }
+                if showAllOptions || preferredLanguageEN {
+                    HStack {
+                        Toggle("settings.toggle.preferredLanguageEN", isOn: Binding(
+                            get: { preferredLanguageEN },
+                            set: {
+                                if $0 {
+                                    preferredLanguageEN = true
+                                    preferredLanguageJP = false
+                                    settings.preferredLanguage = "en"
+                                } else {
+                                    preferredLanguageEN = false
+                                    settings.preferredLanguage = ""
+                                }
+                            }
+                        ))
+                        Spacer()
+                    }
+                }
+                if showAllOptions || preferredLanguageJP {
+                    HStack {
+                        Toggle("settings.toggle.preferredLanguageJP", isOn: Binding(
+                            get: { preferredLanguageJP },
+                            set: {
+                                if $0 {
+                                    preferredLanguageJP = true
+                                    preferredLanguageEN = false
+                                    settings.preferredLanguage = "ja"
+                                } else {
+                                    preferredLanguageJP = false
+                                    settings.preferredLanguage = ""
+                                }
+                            }
+                        ))
                         Spacer()
                     }
                 }
@@ -1254,6 +1292,10 @@ struct ExtrasView: View {
         .task(priority: .userInitiated) {
             bypassEntitlementsCheck = settings.unrealEngineBypassEntitlementsCheck
             preventGoogleMeasurementWriteFiles = settings.preventGoogleMeasurmentWriteFiles
+
+            let preferredLanguage = settings.preferredLanguage
+            preferredLanguageEN = preferredLanguage == "en"
+            preferredLanguageJP = preferredLanguage == "ja"
 
             let overrides = app.settings.loadOverrides()
             self.overriddenKeys = Set(overrides.keys)

@@ -165,6 +165,7 @@ struct ExtraAppSettingsData: Codable {
     var nikkeTTSMiniGameShowKeySettings = false
     var nikkeTTSMiniGameRemapRightShift = false
     var wowslegendsFixFilePath = false
+    var preferredLanguage = ""
 
     init() {}
 
@@ -223,6 +224,7 @@ struct ExtraAppSettingsData: Codable {
         nikkeTTSMiniGameShowKeySettings = try container.decodeIfPresent(Bool.self, forKey: .nikkeTTSMiniGameShowKeySettings) ?? false
         nikkeTTSMiniGameRemapRightShift = try container.decodeIfPresent(Bool.self, forKey: .nikkeTTSMiniGameRemapRightShift) ?? false
         wowslegendsFixFilePath = try container.decodeIfPresent(Bool.self, forKey: .wowslegendsFixFilePath) ?? false
+        preferredLanguage = try container.decodeIfPresent(String.self, forKey: .preferredLanguage) ?? ""
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -280,6 +282,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["nikkeTTSMiniGameShowKeySettings"] as? Bool { nikkeTTSMiniGameShowKeySettings = val }
         if let val = overrides["nikkeTTSMiniGameRemapRightShift"] as? Bool { nikkeTTSMiniGameRemapRightShift = val }
         if let val = overrides["wowslegendsFixFilePath"] as? Bool { wowslegendsFixFilePath = val }
+        if let val = overrides["preferredLanguage"] as? String { preferredLanguage = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity

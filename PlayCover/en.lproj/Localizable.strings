@@ -86,6 +86,8 @@
 "settings.toggle.wowslegendsFixFilePath" = "Fix File Path issue";
 "settings.button.extras.showAllOptions" = "Show All Options";
 "settings.button.extras.hideSomeOptions" = "Hide Some Options";
+"settings.toggle.preferredLanguageEN" = "Set Preferred Language to English";
+"settings.toggle.preferredLanguageJP" = "Set Preferred Language to Japanese";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

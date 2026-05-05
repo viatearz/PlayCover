@@ -86,6 +86,8 @@
 "settings.toggle.wowslegendsFixFilePath" = "修复文件路径问题";
 "settings.button.extras.showAllOptions" = "显示所有选项";
 "settings.button.extras.hideSomeOptions" = "隐藏部分选项";
+"settings.toggle.preferredLanguageEN" = "修改偏好语言为英语";
+"settings.toggle.preferredLanguageJP" = "修改偏好语言为日语";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";
