@@ -91,6 +91,11 @@ class Shell: ObservableObject {
                       "MetalForceHudEnabled", "-bool", String(enabled))
     }
 
+    static func setPreferredLanguage(_ bundleID: String, lang: String) throws {
+        try run("/usr/bin/defaults", "write", bundleID,
+                      "AppleLanguages", "(\(lang))")
+    }
+
     static func lldb(_ url: URL, withTerminalWindow: Bool = false) throws {
         Task(priority: .utility) {
             if withTerminalWindow {

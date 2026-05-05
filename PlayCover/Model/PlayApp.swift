@@ -104,6 +104,8 @@ class PlayApp: BaseApp {
                 // Clear any debug-related env vars that could affect the launched app
                 self.clearDebugAffectingEnvironment()
 
+                self.setPreferredLanguageIfNeeded()
+
                 if settings.openWithLLDB {
                     try Shell.lldb(executable, withTerminalWindow: settings.openLLDBWithTerminal)
                 } else {
@@ -401,6 +403,19 @@ extension PlayApp {
             }
         } catch {
             print(error)
+            Log.shared.error(error)
+        }
+    }
+
+    func setPreferredLanguageIfNeeded() {
+        let lang = settings.extraSettings.preferredLanguage
+        guard !lang.isEmpty else {
+            return
+        }
+
+        do {
+            try Shell.setPreferredLanguage(info.bundleIdentifier, lang: lang)
+        } catch {
             Log.shared.error(error)
         }
     }
