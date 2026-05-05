@@ -1,4 +1,5 @@
 {
     "unityEngineDisableOrientationCheck": true,
-    "useNewHitTestMethodAlways": true
+    "useNewHitTestMethodAlways": true,
+    "preferredLanguage": "en"
 }
