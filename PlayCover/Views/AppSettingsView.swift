@@ -963,6 +963,7 @@ struct ExtrasView: View {
                                 } else {
                                     preferredLanguageEN = false
                                     settings.preferredLanguage = ""
+                                    resetPreferredLanguage()
                                 }
                             }
                         ))
@@ -981,6 +982,7 @@ struct ExtrasView: View {
                                 } else {
                                     preferredLanguageJP = false
                                     settings.preferredLanguage = ""
+                                    resetPreferredLanguage()
                                 }
                             }
                         ))
@@ -1336,6 +1338,14 @@ struct ExtrasView: View {
         .onChange(of: preventGoogleMeasurementWriteFiles) { _ in
             settings.preventGoogleMeasurmentWriteFiles = preventGoogleMeasurementWriteFiles
             app.setGoogleMeasurementDirectoryReadOnly(preventGoogleMeasurementWriteFiles)
+        }
+    }
+
+    private func resetPreferredLanguage() {
+        do {
+            try Shell.resetPreferredLanguage(app.info.bundleIdentifier)
+        } catch {
+            Log.shared.error(error)
         }
     }
 }

@@ -96,6 +96,10 @@ class Shell: ObservableObject {
                       "AppleLanguages", "(\(lang))")
     }
 
+    static func resetPreferredLanguage(_ bundleID: String) throws {
+        try run("/usr/bin/defaults", "delete", bundleID, "AppleLanguages")
+    }
+
     static func lldb(_ url: URL, withTerminalWindow: Bool = false) throws {
         Task(priority: .utility) {
             if withTerminalWindow {
