@@ -90,6 +90,7 @@
 "settings.toggle.preferredLanguageJP" = "修改偏好语言为日语";
 "settings.toggle.skipUsercentricsConsentBanner" = "跳过Usercentrics隐私许可界面";
 "settings.toggle.skipUsercentricsConsentBanner.help" = "Usercentrics隐私许可界面在macOS上可能会导致闪退，启用这个选项来尝试跳过";
+"settings.toggle.duelLinksFixLoginIssue" = "修复登录问题（请使用Chrome浏览器）";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";

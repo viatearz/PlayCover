@@ -1289,6 +1289,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if overriddenKeys.contains("duelLinksFixLoginIssue") {
+                    HStack {
+                        Toggle("settings.toggle.duelLinksFixLoginIssue",
+                               isOn: $settings.duelLinksFixLoginIssue)
+                        Spacer()
+                    }
+                }
 
                 Spacer().frame(height: 16)
                 HStack {
@@ -1323,7 +1330,8 @@ struct ExtrasView: View {
                 "nanaoriFixBuiltinMouseIssue",
                 "nikkeTTSMiniGameShowKeySettings",
                 "nikkeTTSMiniGameRemapRightShift",
-                "wowslegendsFixFilePath"
+                "wowslegendsFixFilePath",
+                "duelLinksFixLoginIssue"
             ]
             self.hasAppSpecificOptions = appSpecificKeys.contains { self.overriddenKeys.contains($0) }
         }

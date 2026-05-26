@@ -90,6 +90,7 @@
 "settings.toggle.preferredLanguageJP" = "Set Preferred Language to Japanese";
 "settings.toggle.skipUsercentricsConsentBanner" = "Skip Usercentrics Consent Banner";
 "settings.toggle.skipUsercentricsConsentBanner.help" = "The Usercentrics consent banner may cause crashes on macOS. Enable this option to try skipping it.";
+"settings.toggle.duelLinksFixLoginIssue" = "Fix Login Issue (Requires Chrome Browser)";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
