@@ -1196,6 +1196,14 @@ struct ExtrasView: View {
                         }
                     }
                 }
+                if shouldShow("bypassMCMetaPlistCheck", settings.bypassMCMetaPlistCheck) {
+                    HStack {
+                        Toggle("settings.toggle.bypassMCMetaPlistCheck",
+                               isOn: $settings.bypassMCMetaPlistCheck)
+                            .help("settings.toggle.bypassMCMetaPlistCheck.help")
+                        Spacer()
+                    }
+                }
                 if shouldShow("bypassUnknownDetectionA", settings.bypassUnknownDetectionA) {
                     HStack {
                         Toggle("settings.toggle.bypassUnknownDetection",

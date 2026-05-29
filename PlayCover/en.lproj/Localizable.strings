@@ -91,6 +91,8 @@
 "settings.toggle.skipUsercentricsConsentBanner" = "Skip Usercentrics Consent Banner";
 "settings.toggle.skipUsercentricsConsentBanner.help" = "The Usercentrics consent banner may cause crashes on macOS. Enable this option to try skipping it.";
 "settings.toggle.duelLinksFixLoginIssue" = "Fix Login Issue (Requires Chrome Browser)";
+"settings.toggle.bypassMCMetaPlistCheck" = "Bypass MCMeta.plist Check";
+"settings.toggle.bypassMCMetaPlistCheck.help" = "Some apps may crash when checking for MCMeta.plist, which does not exist on macOS. Enable this option to try bypassing the check";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

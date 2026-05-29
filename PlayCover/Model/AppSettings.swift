@@ -168,6 +168,7 @@ struct ExtraAppSettingsData: Codable {
     var preferredLanguage = ""
     var skipUsercentricsConsentBanner = false
     var duelLinksFixLoginIssue = false
+    var bypassMCMetaPlistCheck = false
 
     init() {}
 
@@ -229,6 +230,7 @@ struct ExtraAppSettingsData: Codable {
         preferredLanguage = try container.decodeIfPresent(String.self, forKey: .preferredLanguage) ?? ""
         skipUsercentricsConsentBanner = try container.decodeIfPresent(Bool.self, forKey: .skipUsercentricsConsentBanner) ?? false
         duelLinksFixLoginIssue = try container.decodeIfPresent(Bool.self, forKey: .duelLinksFixLoginIssue) ?? false
+        bypassMCMetaPlistCheck = try container.decodeIfPresent(Bool.self, forKey: .bypassMCMetaPlistCheck) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -289,6 +291,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["preferredLanguage"] as? String { preferredLanguage = val }
         if let val = overrides["skipUsercentricsConsentBanner"] as? Bool { skipUsercentricsConsentBanner = val }
         if let val = overrides["duelLinksFixLoginIssue"] as? Bool { duelLinksFixLoginIssue = val }
+        if let val = overrides["bypassMCMetaPlistCheck"] as? Bool { bypassMCMetaPlistCheck = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity
