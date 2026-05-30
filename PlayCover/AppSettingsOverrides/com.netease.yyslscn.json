@@ -1,3 +1,4 @@
 {
-    "inverseScreenValues": true
+    "inverseScreenValues": true,
+    "fixAvailableMemoryValue": true
 }
