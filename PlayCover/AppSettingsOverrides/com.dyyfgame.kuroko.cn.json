@@ -1,4 +1,4 @@
 {
-    "unityEngineIgnoreKeyboardDelegateCrash": true,
+    "ignoreUnityKeyboardInitializationError": true,
     "bypassMCMetaPlistCheck": true
 }

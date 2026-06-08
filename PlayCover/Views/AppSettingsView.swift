@@ -1045,15 +1045,6 @@ struct ExtrasView: View {
                             Spacer()
                         }
                     }
-                    if shouldShow("unityEngineIgnoreKeyboardDelegateCrash",
-                                  settings.unityEngineIgnoreKeyboardDelegateCrash) {
-                        HStack {
-                            Toggle("settings.toggle.unityEngineIgnoreKeyboardDelegateCrash",
-                                   isOn: $settings.unityEngineIgnoreKeyboardDelegateCrash)
-                            .help("settings.toggle.unityEngineIgnoreKeyboardDelegateCrash.help")
-                            Spacer()
-                        }
-                    }
                     if shouldShow("unityEngineDisableAROverlayTouches",
                                   settings.unityEngineDisableAROverlayTouches) {
                         HStack {

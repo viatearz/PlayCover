@@ -32,8 +32,6 @@
 "settings.toggle.unrealEngineSmartTextInput.help" = "虚幻引擎使用集成键盘时，不需要经由一个弹窗界面来输入文本，而是直接在游戏画面中输入文本。启用该选项后，可解决集成键盘与按键映射的冲突问题（还需要打开智能按键映射选项）";
 "settings.toggle.webViewSmartTextInput" = "修复网页界面的打字问题";
 "settings.toggle.webViewSmartTextInput.help" = "可解决网页界面文本输入框与按键映射的冲突问题（还需要打开智能按键映射选项）";
-"settings.toggle.unityEngineIgnoreKeyboardDelegateCrash" = "忽略Unity KeyboardDelegate闪退";
-"settings.toggle.unityEngineIgnoreKeyboardDelegateCrash.help" = "一些Unity游戏启动时会出现KeyboardDelegate断言失败闪退的情况，这个断言失败并不一定会影响游戏运行，可以忽略";
 "settings.toggle.preloadAppTrackingFramework" = "预加载AppTrackingTransparency.framework";
 "settings.toggle.preloadAppTrackingFramework.help" = "可解决一些应用在查询App跟踪状态时无限卡住的问题";
 "settings.toggle.skipGameCenterLogin" = "跳过Game Center登录步骤";
@@ -531,3 +529,5 @@
 "settings.settings.displayRotation.landscapeRight" = "横屏（右）";
 "settings.settings.displayRotation.portraitUpsideDown" = "竖屏（倒置）";
 "settings.settings.displayRotation.flipFix" = "翻转修复";
+"settings.toggle.ignoreUnityKeyboardInitializationError" = "忽略Unity键盘初始化错误";
+"settings.toggle.ignoreUnityKeyboardInitializationError.help" = "防止因\"[KeyboardDelegate Initialize] called after creating keyboard\"断言失败导致的闪退";

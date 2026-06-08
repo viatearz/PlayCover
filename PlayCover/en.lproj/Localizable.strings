@@ -32,8 +32,6 @@
 "settings.toggle.unrealEngineSmartTextInput.help" = "When using Unreal Engine’s integrated keyboard, text is entered directly in the game view without a popup dialog. When this option is enabled, it will resolve conflicts between the integrated keyboard and keymapping (the Smart Keymap option must also be enabled)";
 "settings.toggle.webViewSmartTextInput" = "Fix WebView Text Input";
 "settings.toggle.webViewSmartTextInput.help" = "Resolves conflicts between WebView text input fields and keymapping (the Smart Keymap option must also be enabled)";
-"settings.toggle.unityEngineIgnoreKeyboardDelegateCrash" = "Ignore Unity KeyboardDelegate Crash";
-"settings.toggle.unityEngineIgnoreKeyboardDelegateCrash.help" = "Some Unity games may crash on launch due to a KeyboardDelegate assertion failure. This assertion does not necessarily affect gameplay and can be safely ignored";
 "settings.toggle.preloadAppTrackingFramework" = "Preload AppTrackingTransparency.framework";
 "settings.toggle.preloadAppTrackingFramework.help" = "Fix an issue where some apps get stuck on querying the App Tracking status";
 "settings.toggle.skipGameCenterLogin" = "Skip Game Center Login";

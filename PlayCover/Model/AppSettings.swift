@@ -99,6 +99,7 @@ struct AppSettingsData: Codable {
             Bool.self, forKey: .ignoreUnityKeyboardInitializationError) ?? false
     }
 
+    // swiftlint:disable cyclomatic_complexity
     mutating func applyOverrides(_ overrides: [String: Any]) {
         guard !overrides.isEmpty else { return }
         if let val = overrides["keymapping"] as? Bool { keymapping = val }
@@ -110,7 +111,11 @@ struct AppSettingsData: Codable {
         if let val = overrides["limitMotionUpdateFrequency"] as? Bool { limitMotionUpdateFrequency = val }
         if let val = overrides["disableBuiltinMouse"] as? Bool { disableBuiltinMouse = val }
         if let val = overrides["blockSleepSpamming"] as? Bool { blockSleepSpamming = val }
+        if let val = overrides["ignoreUnityKeyboardInitializationError"] as? Bool {
+            ignoreUnityKeyboardInitializationError = val
+        }
     }
+    // swiftlint:enable cyclomatic_complexity
 }
 
 // swiftlint:disable function_body_length line_length cyclomatic_complexity
@@ -254,7 +259,6 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["unityEngineForceLandscape"] as? Bool { unityEngineForceLandscape = val }
         if let val = overrides["unrealEngineSmartTextInput"] as? Bool { unrealEngineSmartTextInput = val }
         if let val = overrides["webViewSmartTextInput"] as? Bool { webViewSmartTextInput = val }
-        if let val = overrides["unityEngineIgnoreKeyboardDelegateCrash"] as? Bool { unityEngineIgnoreKeyboardDelegateCrash = val }
         if let val = overrides["preloadAppTrackingFramework"] as? Bool { preloadAppTrackingFramework = val }
         if let val = overrides["skipGameCenterLogin"] as? Bool { skipGameCenterLogin = val }
         if let val = overrides["unityEngineDisableOrientationCheck"] as? Bool { unityEngineDisableOrientationCheck = val }
@@ -360,6 +364,15 @@ class AppSettings {
         }
 
         settings.bundleIdentifier = info.bundleIdentifier
+
+        migrateExtraSettingsToBaseSettings()
+    }
+
+    private func migrateExtraSettingsToBaseSettings() {
+        if extraSettings.unityEngineIgnoreKeyboardDelegateCrash {
+            settings.ignoreUnityKeyboardInitializationError = true
+            extraSettings.unityEngineIgnoreKeyboardDelegateCrash = false
+        }
     }
 
     public func sync() {
