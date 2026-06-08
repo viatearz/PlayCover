@@ -53,6 +53,7 @@ struct AppSettingsData: Codable {
     var resizableAspectRatioWidth = 0
     var resizableAspectRatioHeight = 0
     var blockSleepSpamming = false
+    var ignoreUnityKeyboardInitializationError = false
 
     init() {}
 
@@ -94,6 +95,8 @@ struct AppSettingsData: Codable {
         resizableAspectRatioWidth = try container.decodeIfPresent(Int.self, forKey: .resizableAspectRatioWidth) ?? 0
         resizableAspectRatioHeight = try container.decodeIfPresent(Int.self, forKey: .resizableAspectRatioHeight) ?? 0
         blockSleepSpamming = try container.decodeIfPresent(Bool.self, forKey: .blockSleepSpamming) ?? false
+        ignoreUnityKeyboardInitializationError = try container.decodeIfPresent(
+            Bool.self, forKey: .ignoreUnityKeyboardInitializationError) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {

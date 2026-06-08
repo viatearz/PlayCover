@@ -7,6 +7,7 @@ import SwiftUI
 import DataCache
 
 struct PlayAppView: View {
+
     @Binding var selectedBackgroundColor: Color
     @Binding var selectedTextColor: Color
     @Binding var selected: PlayApp?
