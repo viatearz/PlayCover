@@ -1,4 +1,6 @@
 {
+    "ignoreUnityKeyboardInitializationError": true,
+    "disableBuiltinKeyboard": true,
     "checkMicPermissionSync": true,
     "forceUIViewLandscape": true,
     "forceUIViewLandscapeArgs": ["TCWebViewController"]
