@@ -91,6 +91,8 @@
 "settings.toggle.duelLinksFixLoginIssue" = "Fix Login Issue (Requires Chrome Browser)";
 "settings.toggle.bypassMCMetaPlistCheck" = "Bypass MCMeta.plist Check";
 "settings.toggle.bypassMCMetaPlistCheck.help" = "Some apps may crash when checking for MCMeta.plist, which does not exist on macOS. Enable this option to try bypassing the check";
+"settings.toggle.playChainConvertDataToString" = "PlayChain Automatically Convert NSData to String";
+"settings.toggle.playChainConvertDataToString.help" = "Fix crashes caused by data type mismatches";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

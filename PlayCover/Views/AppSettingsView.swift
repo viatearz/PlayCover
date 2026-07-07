@@ -898,6 +898,14 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("playChainConvertDataToString", settings.playChainConvertDataToString) {
+                    HStack {
+                        Toggle("settings.toggle.playChainConvertDataToString",
+                               isOn: $settings.playChainConvertDataToString)
+                        .help("settings.toggle.playChainConvertDataToString.help")
+                        Spacer()
+                    }
+                }
                 if shouldShow("fixAvailableMemoryValue", settings.fixAvailableMemoryValue) {
                     HStack {
                         Toggle("settings.toggle.fixAvailableMemoryValue",
