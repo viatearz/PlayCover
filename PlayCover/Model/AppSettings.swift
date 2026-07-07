@@ -178,6 +178,8 @@ struct ExtraAppSettingsData: Codable {
     var duelLinksFixLoginIssue = false
     var bypassMCMetaPlistCheck = false
     var playChainConvertDataToString = false
+    var bypassDetectionB = false
+    var bypassDetectionC = false
 
     init() {}
 
@@ -241,6 +243,8 @@ struct ExtraAppSettingsData: Codable {
         duelLinksFixLoginIssue = try container.decodeIfPresent(Bool.self, forKey: .duelLinksFixLoginIssue) ?? false
         bypassMCMetaPlistCheck = try container.decodeIfPresent(Bool.self, forKey: .bypassMCMetaPlistCheck) ?? false
         playChainConvertDataToString = try container.decodeIfPresent(Bool.self, forKey: .playChainConvertDataToString) ?? false
+        bypassDetectionB = try container.decodeIfPresent(Bool.self, forKey: .bypassDetectionB) ?? false
+        bypassDetectionC = try container.decodeIfPresent(Bool.self, forKey: .bypassDetectionC) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -302,6 +306,8 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["duelLinksFixLoginIssue"] as? Bool { duelLinksFixLoginIssue = val }
         if let val = overrides["bypassMCMetaPlistCheck"] as? Bool { bypassMCMetaPlistCheck = val }
         if let val = overrides["playChainConvertDataToString"] as? Bool { playChainConvertDataToString = val }
+        if let val = overrides["bypassDetectionB"] as? Bool { bypassDetectionB = val }
+        if let val = overrides["bypassDetectionC"] as? Bool { bypassDetectionC = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity

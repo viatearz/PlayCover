@@ -46,7 +46,6 @@
 "settings.toggle.unrealEngineBypassEntitlementsCheck.help" = "虚幻引擎会检查Entitlement以保证程序正常运行，启用此选项后可绕过这项检查，已知可修复某些虚幻引擎游戏启动时闪退的问题";
 "settings.toggle.preventGoogleMeasurementWriteFiles" = "阻止Google Measurement写入文件";
 "settings.toggle.preventGoogleMeasurementWriteFiles.help" = "清除Google Measurement文件，并将文件夹设置为只读状态，已知可修复某些应用登录时闪退的问题";
-"settings.toggle.bypassUnknownDetection" = "绕过未知检测";
 "settings.toggle.unrealEngineFixFilePath" = "修复虚幻引擎文件路径问题（需重装App）";
 "settings.toggle.unrealEngineFixFilePath.help" = "修正虚幻引擎对于绝对路径的处理逻辑，已知可修复某些虚幻引擎游戏加载资源时报错、闪退、黑屏的问题";
 "settings.toggle.fixAvailableMemoryValue" = "修正可用运行内存的查询结果（需重装App）";
@@ -93,6 +92,9 @@
 "settings.toggle.bypassMCMetaPlistCheck.help" = "一些应用在检查MCMeta.plist时发生闪退，但在macOS中并不存在MCMeta.plist文件，启用这个选项来尝试跳过";
 "settings.toggle.playChainConvertDataToString" = "PlayChain自动转换NSData至字符串";
 "settings.toggle.playChainConvertDataToString.help" = "可解决数据类型不匹配导致的闪退";
+"settings.toggle.bypassDetectionA" = "绕过检测A";
+"settings.toggle.bypassDetectionB" = "绕过检测B";
+"settings.toggle.bypassDetectionC" = "绕过检测C";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";

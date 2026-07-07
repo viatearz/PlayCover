@@ -46,7 +46,6 @@
 "settings.toggle.unrealEngineBypassEntitlementsCheck.help" = "Unreal Engine checks entitlements to ensure the app runs properly. When this option is enabled, it bypasses that check. Known to fix issues with some Unreal Engine games crash on startup";
 "settings.toggle.preventGoogleMeasurementWriteFiles" = "Prevent Google Measurement from Writing Files";
 "settings.toggle.preventGoogleMeasurementWriteFiles.help" = "Clear Google Measurement files and set the directory to read-only. Known to fix login crashes in some apps.";
-"settings.toggle.bypassUnknownDetection" = "Bypass Unknown Detection";
 "settings.toggle.unrealEngineFixFilePath" = "Fix Unreal Engine File Path (Reinstall Required)";
 "settings.toggle.unrealEngineFixFilePath.help" = "Fix Unreal Engine’s handling of absolute file paths. Known to resolve resource loading errors, crashes, and black screen issues in some Unreal Engine games";
 "settings.toggle.fixAvailableMemoryValue" = "Fix Available Memory Result (Reinstall Required)";
@@ -93,6 +92,9 @@
 "settings.toggle.bypassMCMetaPlistCheck.help" = "Some apps may crash when checking for MCMeta.plist, which does not exist on macOS. Enable this option to try bypassing the check";
 "settings.toggle.playChainConvertDataToString" = "PlayChain Automatically Convert NSData to String";
 "settings.toggle.playChainConvertDataToString.help" = "Fix crashes caused by data type mismatches";
+"settings.toggle.bypassDetectionA" = "Bypass Detection A";
+"settings.toggle.bypassDetectionB" = "Bypass Detection B";
+"settings.toggle.bypassDetectionC" = "Bypass Detection C";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

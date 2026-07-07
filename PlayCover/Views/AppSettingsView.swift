@@ -1214,8 +1214,22 @@ struct ExtrasView: View {
                 }
                 if shouldShow("bypassUnknownDetectionA", settings.bypassUnknownDetectionA) {
                     HStack {
-                        Toggle("settings.toggle.bypassUnknownDetection",
+                        Toggle("settings.toggle.bypassDetectionA",
                                isOn: $settings.bypassUnknownDetectionA)
+                        Spacer()
+                    }
+                }
+                if shouldShow("bypassDetectionB", settings.bypassDetectionB) {
+                    HStack {
+                        Toggle("settings.toggle.bypassDetectionB",
+                               isOn: $settings.bypassDetectionB)
+                        Spacer()
+                    }
+                }
+                if shouldShow("bypassDetectionC", settings.bypassDetectionC) {
+                    HStack {
+                        Toggle("settings.toggle.bypassDetectionC",
+                               isOn: $settings.bypassDetectionC)
                         Spacer()
                     }
                 }
