@@ -1,0 +1,9 @@
+{
+    "resolution": 0,
+    "inverseScreenValues": true,
+    "windowFixMethod": 1,
+    "blockSleepSpamming": true,
+    "checkMicPermissionSync": true,
+    "ignoreUnityKeyboardInitializationError": true,
+    "bypassMCMetaPlistCheck": true
+}
