@@ -181,6 +181,7 @@ struct ExtraAppSettingsData: Codable {
     var bypassDetectionB = false
     var bypassDetectionC = false
     var minecraftFixKeyboardMouse = false
+    var fixPlayChainGenKeyPair = false
 
     init() {}
 
@@ -247,6 +248,7 @@ struct ExtraAppSettingsData: Codable {
         bypassDetectionB = try container.decodeIfPresent(Bool.self, forKey: .bypassDetectionB) ?? false
         bypassDetectionC = try container.decodeIfPresent(Bool.self, forKey: .bypassDetectionC) ?? false
         minecraftFixKeyboardMouse = try container.decodeIfPresent(Bool.self, forKey: .minecraftFixKeyboardMouse) ?? false
+        fixPlayChainGenKeyPair = try container.decodeIfPresent(Bool.self, forKey: .fixPlayChainGenKeyPair) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -311,6 +313,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["bypassDetectionB"] as? Bool { bypassDetectionB = val }
         if let val = overrides["bypassDetectionC"] as? Bool { bypassDetectionC = val }
         if let val = overrides["minecraftFixKeyboardMouse"] as? Bool { minecraftFixKeyboardMouse = val }
+        if let val = overrides["fixPlayChainGenKeyPair"] as? Bool { fixPlayChainGenKeyPair = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity

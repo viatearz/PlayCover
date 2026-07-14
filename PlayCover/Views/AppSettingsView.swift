@@ -898,6 +898,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("fixPlayChainGenKeyPair", settings.fixPlayChainGenKeyPair) {
+                    HStack {
+                        Toggle("settings.toggle.fixPlayChainGenKeyPair",
+                               isOn: $settings.fixPlayChainGenKeyPair)
+                        Spacer()
+                    }
+                }
                 if shouldShow("playChainConvertDataToString", settings.playChainConvertDataToString) {
                     HStack {
                         Toggle("settings.toggle.playChainConvertDataToString",
