@@ -1,0 +1,7 @@
+{
+    "keymapping": false,
+    "supportMultipleMice": true,
+    "preventKeyboardBeepSound": true,
+    "fixPlayChainGenKeyPair": true,
+    "minecraftFixKeyboardMouse": true
+}
