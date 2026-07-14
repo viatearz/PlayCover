@@ -95,6 +95,7 @@
 "settings.toggle.bypassDetectionA" = "Bypass Detection A";
 "settings.toggle.bypassDetectionB" = "Bypass Detection B";
 "settings.toggle.bypassDetectionC" = "Bypass Detection C";
+"settings.toggle.minecraftFixKeyboardMouse" = "Fix Minecraft Keyboard and Mouse";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

@@ -1326,6 +1326,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if overriddenKeys.contains("minecraftFixKeyboardMouse") {
+                    HStack {
+                        Toggle("settings.toggle.minecraftFixKeyboardMouse",
+                               isOn: $settings.minecraftFixKeyboardMouse)
+                        Spacer()
+                    }
+                }
 
                 Spacer().frame(height: 16)
                 HStack {
@@ -1361,7 +1368,8 @@ struct ExtrasView: View {
                 "nikkeTTSMiniGameShowKeySettings",
                 "nikkeTTSMiniGameRemapRightShift",
                 "wowslegendsFixFilePath",
-                "duelLinksFixLoginIssue"
+                "duelLinksFixLoginIssue",
+                "minecraftFixKeyboardMouse"
             ]
             self.hasAppSpecificOptions = appSpecificKeys.contains { self.overriddenKeys.contains($0) }
         }

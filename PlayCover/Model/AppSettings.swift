@@ -180,6 +180,7 @@ struct ExtraAppSettingsData: Codable {
     var playChainConvertDataToString = false
     var bypassDetectionB = false
     var bypassDetectionC = false
+    var minecraftFixKeyboardMouse = false
 
     init() {}
 
@@ -245,6 +246,7 @@ struct ExtraAppSettingsData: Codable {
         playChainConvertDataToString = try container.decodeIfPresent(Bool.self, forKey: .playChainConvertDataToString) ?? false
         bypassDetectionB = try container.decodeIfPresent(Bool.self, forKey: .bypassDetectionB) ?? false
         bypassDetectionC = try container.decodeIfPresent(Bool.self, forKey: .bypassDetectionC) ?? false
+        minecraftFixKeyboardMouse = try container.decodeIfPresent(Bool.self, forKey: .minecraftFixKeyboardMouse) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -308,6 +310,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["playChainConvertDataToString"] as? Bool { playChainConvertDataToString = val }
         if let val = overrides["bypassDetectionB"] as? Bool { bypassDetectionB = val }
         if let val = overrides["bypassDetectionC"] as? Bool { bypassDetectionC = val }
+        if let val = overrides["minecraftFixKeyboardMouse"] as? Bool { minecraftFixKeyboardMouse = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity
