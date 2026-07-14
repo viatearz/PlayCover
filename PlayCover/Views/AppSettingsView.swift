@@ -922,6 +922,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("preventKeyboardBeepSound", settings.preventKeyboardBeepSound) {
+                    HStack {
+                        Toggle("settings.toggle.preventKeyboardBeepSound",
+                               isOn: $settings.preventKeyboardBeepSound)
+                        Spacer()
+                    }
+                }
                 if shouldShow("clearLastTouchesWhenEnterTextInput",
                               settings.clearLastTouchesWhenEnterTextInput) {
                     HStack {
@@ -1111,13 +1118,6 @@ struct ExtrasView: View {
                             Toggle("settings.toggle.unrealEngineBypassEntitlementsCheck",
                                    isOn: $bypassEntitlementsCheck)
                                 .help("settings.toggle.unrealEngineBypassEntitlementsCheck.help")
-                            Spacer()
-                        }
-                    }
-                    if shouldShow("preventKeyboardBeepSound", settings.preventKeyboardBeepSound) {
-                        HStack {
-                            Toggle("settings.toggle.preventKeyboardBeepSound",
-                                   isOn: $settings.preventKeyboardBeepSound)
                             Spacer()
                         }
                     }
