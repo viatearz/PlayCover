@@ -23,7 +23,7 @@
 "settings.toggle.fixPlayChainMatchLimit" = "Fix PlayChain MatchLimit issue";
 "settings.toggle.fixPlayChainMatchLimit.help" = "Fix an issue where some apps fail to retain the Google account login state";
 "settings.toggle.unityEngineFixKeyboardInput" = "Fix Unity Built-in Keyboard Support";
-"settings.toggle.unityEngineFixKeyboardInput.help" = "Some Unity games use the legacy Input.GetKeyDown() API to capture keyboard input. This method is known to cause key sticking and input delay issues on iOS. When this option is enabled, it will resolve these keyboard input problems";
+"settings.toggle.unityEngineFixKeyboardInput.help" = "Unity games use the UIKeyCommand API to capture keyboard input. This method is known to cause key sticking and input delay issues on iOS. When this option is enabled, it will resolve these keyboard input problems";
 "settings.toggle.disableINTLUtilsSwizzling" = "Disable INTLUtils Swizzling";
 "settings.toggle.disableINTLUtilsSwizzling.help" = "Fix an issue where the app becomes unresponsive after launch";
 "settings.toggle.unityEngineForceLandscape" = "Force Unity to Display in Landscape Mode";

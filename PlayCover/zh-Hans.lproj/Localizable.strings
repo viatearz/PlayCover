@@ -23,7 +23,7 @@
 "settings.toggle.fixPlayChainMatchLimit" = "修复PlayChain未正确处理MatchLimit的问题";
 "settings.toggle.fixPlayChainMatchLimit.help" = "可解决某些应用的谷歌帐号登录状态无法保留的问题";
 "settings.toggle.unityEngineFixKeyboardInput" = "修复Unity内置的键盘支持";
-"settings.toggle.unityEngineFixKeyboardInput.help" = "一些Unity游戏通过旧版的Input.GetKeyDown()接口来捕获键盘输入，已知此方法在iOS平台上存在键位卡顿、延迟等问题。启用该选项后，将会修复这些键盘操作问题";
+"settings.toggle.unityEngineFixKeyboardInput.help" = "Unity游戏通过UIKeyCommand捕获键盘输入，已知此方法在iOS平台上存在键位卡顿、延迟等问题。启用该选项后，将会修复这些键盘操作问题";
 "settings.toggle.disableINTLUtilsSwizzling" = "禁用INTLUtils Swizzling";
 "settings.toggle.disableINTLUtilsSwizzling.help" = "可解决启动后无响应的问题";
 "settings.toggle.unityEngineForceLandscape" = "强制Unity以横屏模式显示";
