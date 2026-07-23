@@ -945,6 +945,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("delayKeymapInitialization", settings.delayKeymapInitialization) {
+                    HStack {
+                        Toggle("settings.toggle.delayKeymapInitialization",
+                               isOn: $settings.delayKeymapInitialization)
+                        Spacer()
+                    }
+                }
                 if shouldShow("useNewHitTestMethodAlways", settings.useNewHitTestMethodAlways) {
                     HStack {
                         Toggle("settings.toggle.useNewHitTestMethodAlways",

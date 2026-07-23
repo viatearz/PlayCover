@@ -185,6 +185,7 @@ struct ExtraAppSettingsData: Codable {
     var hideiOSAppOnMac = false
     var weLinkCloudGameForceTouchMode = false
     var wuwaCloudGameFixMouseIssue = false
+    var delayKeymapInitialization = false
 
     init() {}
 
@@ -255,6 +256,7 @@ struct ExtraAppSettingsData: Codable {
         hideiOSAppOnMac = try container.decodeIfPresent(Bool.self, forKey: .hideiOSAppOnMac) ?? false
         weLinkCloudGameForceTouchMode = try container.decodeIfPresent(Bool.self, forKey: .weLinkCloudGameForceTouchMode) ?? false
         wuwaCloudGameFixMouseIssue = try container.decodeIfPresent(Bool.self, forKey: .wuwaCloudGameFixMouseIssue) ?? false
+        delayKeymapInitialization = try container.decodeIfPresent(Bool.self, forKey: .delayKeymapInitialization) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -323,6 +325,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["hideiOSAppOnMac"] as? Bool { hideiOSAppOnMac = val }
         if let val = overrides["weLinkCloudGameForceTouchMode"] as? Bool { weLinkCloudGameForceTouchMode = val }
         if let val = overrides["wuwaCloudGameFixMouseIssue"] as? Bool { wuwaCloudGameFixMouseIssue = val }
+        if let val = overrides["delayKeymapInitialization"] as? Bool { delayKeymapInitialization = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity
