@@ -1219,6 +1219,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("hideiOSAppOnMac", settings.hideiOSAppOnMac) {
+                    HStack {
+                        Toggle("settings.toggle.hideiOSAppOnMac",
+                               isOn: $settings.hideiOSAppOnMac)
+                        Spacer()
+                    }
+                }
                 if shouldShow("bypassUnknownDetectionA", settings.bypassUnknownDetectionA) {
                     HStack {
                         Toggle("settings.toggle.bypassDetectionA",

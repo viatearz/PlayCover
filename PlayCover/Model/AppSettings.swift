@@ -182,6 +182,7 @@ struct ExtraAppSettingsData: Codable {
     var bypassDetectionC = false
     var minecraftFixKeyboardMouse = false
     var fixPlayChainGenKeyPair = false
+    var hideiOSAppOnMac = false
 
     init() {}
 
@@ -249,6 +250,7 @@ struct ExtraAppSettingsData: Codable {
         bypassDetectionC = try container.decodeIfPresent(Bool.self, forKey: .bypassDetectionC) ?? false
         minecraftFixKeyboardMouse = try container.decodeIfPresent(Bool.self, forKey: .minecraftFixKeyboardMouse) ?? false
         fixPlayChainGenKeyPair = try container.decodeIfPresent(Bool.self, forKey: .fixPlayChainGenKeyPair) ?? false
+        hideiOSAppOnMac = try container.decodeIfPresent(Bool.self, forKey: .hideiOSAppOnMac) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -314,6 +316,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["bypassDetectionC"] as? Bool { bypassDetectionC = val }
         if let val = overrides["minecraftFixKeyboardMouse"] as? Bool { minecraftFixKeyboardMouse = val }
         if let val = overrides["fixPlayChainGenKeyPair"] as? Bool { fixPlayChainGenKeyPair = val }
+        if let val = overrides["hideiOSAppOnMac"] as? Bool { hideiOSAppOnMac = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity

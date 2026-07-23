@@ -97,6 +97,7 @@
 "settings.toggle.bypassDetectionC" = "Bypass Detection C";
 "settings.toggle.minecraftFixKeyboardMouse" = "Fix Minecraft Keyboard and Mouse";
 "settings.toggle.fixPlayChainGenKeyPair" = "Fix PlayChain SecKeyGeneratePair issue";
+"settings.toggle.hideiOSAppOnMac" = "Hide iOSAppOnMac";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
