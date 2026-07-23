@@ -1169,6 +1169,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("weLinkCloudGameForceTouchMode", settings.weLinkCloudGameForceTouchMode) {
+                    HStack {
+                        Toggle("settings.toggle.weLinkCloudGameForceTouchMode",
+                               isOn: $settings.weLinkCloudGameForceTouchMode)
+                        Spacer()
+                    }
+                }
                 if shouldShow("forceWebViewUseMobileContentMode", settings.forceWebViewUseMobileContentMode) {
                     HStack {
                         Toggle("settings.toggle.forceWebViewUseMobileContentMode",

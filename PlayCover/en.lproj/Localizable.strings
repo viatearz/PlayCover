@@ -98,6 +98,7 @@
 "settings.toggle.minecraftFixKeyboardMouse" = "Fix Minecraft Keyboard and Mouse";
 "settings.toggle.fixPlayChainGenKeyPair" = "Fix PlayChain SecKeyGeneratePair issue";
 "settings.toggle.hideiOSAppOnMac" = "Hide iOSAppOnMac";
+"settings.toggle.weLinkCloudGameForceTouchMode" = "Force Touch Mode for WeLink Cloud Games";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
