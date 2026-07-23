@@ -1354,6 +1354,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if overriddenKeys.contains("wuwaCloudGameFixMouseIssue") {
+                    HStack {
+                        Toggle("settings.toggle.wuwaCloudGameFixMouseIssue",
+                               isOn: $settings.wuwaCloudGameFixMouseIssue)
+                        Spacer()
+                    }
+                }
 
                 Spacer().frame(height: 16)
                 HStack {
@@ -1390,7 +1397,8 @@ struct ExtrasView: View {
                 "nikkeTTSMiniGameRemapRightShift",
                 "wowslegendsFixFilePath",
                 "duelLinksFixLoginIssue",
-                "minecraftFixKeyboardMouse"
+                "minecraftFixKeyboardMouse",
+                "wuwaCloudGameFixMouseIssue"
             ]
             self.hasAppSpecificOptions = appSpecificKeys.contains { self.overriddenKeys.contains($0) }
         }

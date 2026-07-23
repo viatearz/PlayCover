@@ -99,6 +99,7 @@
 "settings.toggle.fixPlayChainGenKeyPair" = "Fix PlayChain SecKeyGeneratePair issue";
 "settings.toggle.hideiOSAppOnMac" = "Hide iOSAppOnMac";
 "settings.toggle.weLinkCloudGameForceTouchMode" = "Force Touch Mode for WeLink Cloud Games";
+"settings.toggle.wuwaCloudGameFixMouseIssue" = "Fix Wuwa Cloud Game Mouse issue";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
