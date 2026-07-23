@@ -1,0 +1,5 @@
+{
+    "forceQuitAppOnClose": true,
+    "useNewHitTestMethodAlways": true,
+    "delayKeymapInitialization": true
+}
