@@ -101,6 +101,7 @@
 "settings.toggle.weLinkCloudGameForceTouchMode" = "Force Touch Mode for WeLink Cloud Games";
 "settings.toggle.wuwaCloudGameFixMouseIssue" = "Fix Wuwa Cloud Game Mouse issue";
 "settings.toggle.delayKeymapInitialization" = "Delay Keymap Initialization";
+"settings.toggle.fixPlayChainSecKey" = "Fix PlayChain SecKey issue";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

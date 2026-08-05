@@ -186,6 +186,7 @@ struct ExtraAppSettingsData: Codable {
     var weLinkCloudGameForceTouchMode = false
     var wuwaCloudGameFixMouseIssue = false
     var delayKeymapInitialization = false
+    var fixPlayChainSecKey = false
 
     init() {}
 
@@ -257,6 +258,7 @@ struct ExtraAppSettingsData: Codable {
         weLinkCloudGameForceTouchMode = try container.decodeIfPresent(Bool.self, forKey: .weLinkCloudGameForceTouchMode) ?? false
         wuwaCloudGameFixMouseIssue = try container.decodeIfPresent(Bool.self, forKey: .wuwaCloudGameFixMouseIssue) ?? false
         delayKeymapInitialization = try container.decodeIfPresent(Bool.self, forKey: .delayKeymapInitialization) ?? false
+        fixPlayChainSecKey = try container.decodeIfPresent(Bool.self, forKey: .fixPlayChainSecKey) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -326,6 +328,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["weLinkCloudGameForceTouchMode"] as? Bool { weLinkCloudGameForceTouchMode = val }
         if let val = overrides["wuwaCloudGameFixMouseIssue"] as? Bool { wuwaCloudGameFixMouseIssue = val }
         if let val = overrides["delayKeymapInitialization"] as? Bool { delayKeymapInitialization = val }
+        if let val = overrides["fixPlayChainSecKey"] as? Bool { fixPlayChainSecKey = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity
