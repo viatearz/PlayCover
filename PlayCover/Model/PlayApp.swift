@@ -444,7 +444,10 @@ extension PlayApp {
         "vn.vng.codmvn",
         "com.ngame.allstar.eu",
         "com.axlebolt.standoff2",
-        "com.tencent.lolm"
+        "com.tencent.lolm",
+        "com.proxima.dfm",
+        "com.tencent.tmgp.dfm",
+        "com.tencent.mf.uam"
     ]
 
     static let MALICIOUS_APPS = [
