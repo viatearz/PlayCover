@@ -1,4 +1,5 @@
 {
     "resolution": 6,
-    "enableAutoRotate": true
+    "enableAutoRotate": true,
+    "forceQuitAppOnClose": true
 }
