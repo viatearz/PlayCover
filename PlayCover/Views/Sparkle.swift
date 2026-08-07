@@ -11,6 +11,7 @@ import SwiftUI
 
 // This view model class manages Sparkle's updater and publishes when new updates are allowed to be checked
 final class UpdaterViewModel: ObservableObject {
+    /*
     private let updaterController: SPUStandardUpdaterController
 
     @Published var canCheckForUpdates = false
@@ -43,6 +44,13 @@ final class UpdaterViewModel: ObservableObject {
     func checkForUpdates() {
         updaterController.checkForUpdates(nil)
     }
+    */
+
+    let canCheckForUpdates = false
+
+    var automaticallyCheckForUpdates = false
+
+    func checkForUpdates() { }
 }
 
 // This additional view is needed for the disabled state on the menu item to work properly before Monterey.
