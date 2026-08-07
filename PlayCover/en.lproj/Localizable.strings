@@ -102,6 +102,7 @@
 "settings.toggle.wuwaCloudGameFixMouseIssue" = "Fix Wuwa Cloud Game Mouse issue";
 "settings.toggle.delayKeymapInitialization" = "Delay Keymap Initialization";
 "settings.toggle.fixPlayChainSecKey" = "Fix PlayChain SecKey issue";
+"settings.toggle.minecraftEnhanceScrollWheel" = "Enhance Minecraft Scroll Wheel (Experimental)";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

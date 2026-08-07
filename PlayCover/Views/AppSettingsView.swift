@@ -1368,6 +1368,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if overriddenKeys.contains("minecraftEnhanceScrollWheel") {
+                    HStack {
+                        Toggle("settings.toggle.minecraftEnhanceScrollWheel",
+                               isOn: $settings.minecraftEnhanceScrollWheel)
+                        Spacer()
+                    }
+                }
                 if overriddenKeys.contains("wuwaCloudGameFixMouseIssue") {
                     HStack {
                         Toggle("settings.toggle.wuwaCloudGameFixMouseIssue",
@@ -1412,6 +1419,7 @@ struct ExtrasView: View {
                 "wowslegendsFixFilePath",
                 "duelLinksFixLoginIssue",
                 "minecraftFixKeyboardMouse",
+                "minecraftEnhanceScrollWheel",
                 "wuwaCloudGameFixMouseIssue"
             ]
             self.hasAppSpecificOptions = appSpecificKeys.contains { self.overriddenKeys.contains($0) }
