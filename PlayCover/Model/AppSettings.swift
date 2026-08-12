@@ -189,6 +189,7 @@ struct ExtraAppSettingsData: Codable {
     var fixPlayChainSecKey = false
     var minecraftEnhanceScrollWheel = false
     var skipAppleSignInStateCheck = false
+    var fixPlayChainCreateKey = false
 
     init() {}
 
@@ -263,6 +264,7 @@ struct ExtraAppSettingsData: Codable {
         fixPlayChainSecKey = try container.decodeIfPresent(Bool.self, forKey: .fixPlayChainSecKey) ?? false
         minecraftEnhanceScrollWheel = try container.decodeIfPresent(Bool.self, forKey: .minecraftEnhanceScrollWheel) ?? false
         skipAppleSignInStateCheck = try container.decodeIfPresent(Bool.self, forKey: .skipAppleSignInStateCheck) ?? false
+        fixPlayChainCreateKey = try container.decodeIfPresent(Bool.self, forKey: .fixPlayChainCreateKey) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -335,6 +337,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["fixPlayChainSecKey"] as? Bool { fixPlayChainSecKey = val }
         if let val = overrides["minecraftEnhanceScrollWheel"] as? Bool { minecraftEnhanceScrollWheel = val }
         if let val = overrides["skipAppleSignInStateCheck"] as? Bool { skipAppleSignInStateCheck = val }
+        if let val = overrides["fixPlayChainCreateKey"] as? Bool { fixPlayChainCreateKey = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity
