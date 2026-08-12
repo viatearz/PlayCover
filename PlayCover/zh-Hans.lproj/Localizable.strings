@@ -103,6 +103,7 @@
 "settings.toggle.delayKeymapInitialization" = "延迟初始化按键映射";
 "settings.toggle.fixPlayChainSecKey" = "修复PlayChain未正确处理SecKey的问题";
 "settings.toggle.minecraftEnhanceScrollWheel" = "优化Minecraft鼠标滚轮（试验阶段）";
+"settings.toggle.skipAppleSignInStateCheck" = "跳过苹果账号登录认证状态校验";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";

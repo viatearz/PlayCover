@@ -103,6 +103,7 @@
 "settings.toggle.delayKeymapInitialization" = "Delay Keymap Initialization";
 "settings.toggle.fixPlayChainSecKey" = "Fix PlayChain SecKey issue";
 "settings.toggle.minecraftEnhanceScrollWheel" = "Enhance Minecraft Scroll Wheel (Experimental)";
+"settings.toggle.skipAppleSignInStateCheck" = "Skip \"Sign in with Apple\" Crendentail State Check";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

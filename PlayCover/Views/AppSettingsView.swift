@@ -1183,6 +1183,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("skipAppleSignInStateCheck", settings.skipGameCenterLogin) {
+                    HStack {
+                        Toggle("settings.toggle.skipAppleSignInStateCheck",
+                               isOn: $settings.skipAppleSignInStateCheck)
+                        Spacer()
+                    }
+                }
                 if shouldShow("weLinkCloudGameForceTouchMode", settings.weLinkCloudGameForceTouchMode) {
                     HStack {
                         Toggle("settings.toggle.weLinkCloudGameForceTouchMode",
