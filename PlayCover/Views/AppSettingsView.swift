@@ -1190,7 +1190,7 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
-                if shouldShow("skipAppleSignInStateCheck", settings.skipGameCenterLogin) {
+                if shouldShow("skipAppleSignInStateCheck", settings.skipAppleSignInStateCheck) {
                     HStack {
                         Toggle("settings.toggle.skipAppleSignInStateCheck",
                                isOn: $settings.skipAppleSignInStateCheck)
