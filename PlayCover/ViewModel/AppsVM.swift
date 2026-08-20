@@ -14,6 +14,7 @@ class AppsVM: ObservableObject {
     private init() {
         try? AppsVM.ensureBaseDirectoriesExist()
         PlayTools.installOnSystem()
+        MarketplaceKit.installOnSystem()
         fetchApps()
     }
 

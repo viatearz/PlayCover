@@ -37,6 +37,7 @@ jobs:
         run: |
           codesign -fs- ./output/PlayCover.app/Contents/Frameworks/PlayTools.framework/PlugIns/AKInterface.bundle
           codesign -fs- ./output/PlayCover.app/Contents/Frameworks/PlayTools.framework
+          codesign -fs- ./output/PlayCover.app/Contents/Frameworks/MarketplaceKit.framework
           codesign -fs- ./output/PlayCover.app
 
       - name: Create DMG
