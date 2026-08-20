@@ -1041,6 +1041,14 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("createMetalCacheSymlink", settings.createMetalCacheSymlink) {
+                    HStack {
+                        Toggle("settings.toggle.createMetalCacheSymlink",
+                               isOn: $settings.createMetalCacheSymlink)
+                            .help("settings.toggle.createMetalCacheSymlink.help")
+                        Spacer()
+                    }
+                }
                 if shouldShow("disableAllAlertDialogs", settings.disableAllAlertDialogs) {
                     HStack {
                         Toggle("settings.toggle.disableAllAlertDialogs",

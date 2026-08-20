@@ -16,6 +16,19 @@ extension FileManager {
             }
         }
     }
+
+    func isSymbolicLink(at url: URL) -> Bool {
+        do {
+            let attributes = try self.attributesOfItem(atPath: url.path)
+            if let type = attributes[.type] as? FileAttributeType,
+               type == .typeSymbolicLink {
+                return true
+            }
+            return false
+        } catch {
+            return false
+        }
+    }
 }
 
 extension NSOpenPanel {

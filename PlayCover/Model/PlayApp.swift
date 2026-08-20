@@ -106,6 +106,8 @@ class PlayApp: BaseApp {
 
                 self.setPreferredLanguageIfNeeded()
 
+                self.createMetalCacheSymlink()
+
                 if settings.openWithLLDB {
                     try Shell.lldb(executable, withTerminalWindow: settings.openLLDBWithTerminal)
                 } else {
@@ -417,6 +419,62 @@ extension PlayApp {
             try Shell.setPreferredLanguage(info.bundleIdentifier, lang: lang)
         } catch {
             Log.shared.error(error)
+        }
+    }
+
+    func createMetalCacheSymlink() {
+        guard settings.extraSettings.createMetalCacheSymlink else {
+            return
+        }
+
+        do {
+            let fileManager = FileManager.default
+            let appMetalCacheURL = fileManager.homeDirectoryForCurrentUser
+                .appendingPathComponent("Library")
+                .appendingPathComponent("Containers")
+                .appendingPathComponent(info.bundleIdentifier)
+                .appendingPathComponent("Data")
+                .appendingPathComponent("Library")
+                .appendingPathComponent("Caches")
+                .appendingPathComponent(info.bundleIdentifier)
+                .appendingPathComponent("com.apple.metal")
+
+            if fileManager.fileExists(atPath: appMetalCacheURL.path) {
+                if fileManager.isSymbolicLink(at: appMetalCacheURL) {
+                    return
+                } else {
+                    try fileManager.removeItem(atPath: appMetalCacheURL.path)
+                }
+            }
+
+            var systemMetalCacheURL: URL?
+            let systemMetalCacheRoot = URL(fileURLWithPath: NSTemporaryDirectory())
+                .deletingLastPathComponent()
+                .appendingPathComponent("C")
+                .appendingPathComponent(info.bundleIdentifier)
+
+            if let enumerator = fileManager.enumerator(
+                at: systemMetalCacheRoot,
+                includingPropertiesForKeys: nil
+            ) {
+                while let url = enumerator.nextObject() as? URL {
+                    if url.lastPathComponent == "functions.data" {
+                        systemMetalCacheURL = url.deletingLastPathComponent()
+                        break
+                    }
+                }
+            }
+
+            if let systemMetalCacheURL {
+                Log.shared.log("Creating symbolic link: \(appMetalCacheURL.path) -> \(systemMetalCacheURL.path)")
+                try fileManager.createDirectory(at: appMetalCacheURL.deletingLastPathComponent(),
+                                                withIntermediateDirectories: true)
+                try fileManager.createSymbolicLink(at: appMetalCacheURL,
+                                                   withDestinationURL: systemMetalCacheURL)
+            }
+        } catch {
+            Log.shared.log(error.localizedDescription)
+            print(error)
         }
     }
 }

@@ -105,6 +105,8 @@
 "settings.toggle.minecraftEnhanceScrollWheel" = "Enhance Minecraft Scroll Wheel (Experimental)";
 "settings.toggle.skipAppleSignInStateCheck" = "Skip \"Sign in with Apple\" Crendentail State Check";
 "settings.toggle.fixPlayChainCreateKey" = "Fix PlayChain SecKeyCreateRandomKey issue";
+"settings.toggle.createMetalCacheSymlink" = "Create Symbolic Link for Shader Cache";
+"settings.toggle.createMetalCacheSymlink.help" = "Fix an issue where some apps repeatedly compile shaders because they cannot find the shader cache";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";
