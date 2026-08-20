@@ -57,23 +57,17 @@ extension PlayApp {
                                                     withIntermediateDirectories: true,
                                                     attributes: nil)
             url.enumerateContents(options: [.skipsSubdirectoryDescendants]) { ctxUrl, _ in
-                if #available(macOS 27.0, *) {
-                    let aliasItem = self.aliasURL.appendingPathComponent(ctxUrl.lastPathComponent)
+                let aliasItem = self.aliasURL.appendingPathComponent(ctxUrl.lastPathComponent)
 
-                    // LaunchServices on macOS 27 will not open the alias while Info.plist is a
-                    // symlink: it fails with -54 (permErr) and the user sees "does not have
-                    // permission to open (null)". A real copy is enough, and it stays current
-                    // because the alias is rebuilt on every PlayApp init.
-                    if ctxUrl.lastPathComponent == "Info.plist" {
-                        try FileManager.default.copyItem(at: ctxUrl, to: aliasItem)
-                    } else {
-                        try FileManager.default.createSymbolicLink(at: aliasItem,
-                                                                   withDestinationURL: ctxUrl)
-                    }
+                // LaunchServices on macOS 27 will not open the alias while Info.plist is a
+                // symlink: it fails with -54 (permErr) and the user sees "does not have
+                // permission to open (null)". A real copy is enough, and it stays current
+                // because the alias is rebuilt on every PlayApp init.
+                if ctxUrl.lastPathComponent == "Info.plist" {
+                    try FileManager.default.copyItem(at: ctxUrl, to: aliasItem)
                 } else {
-                    try FileManager.default.createSymbolicLink(
-                        at: self.aliasURL.appendingPathComponent(ctxUrl.lastPathComponent),
-                        withDestinationURL: ctxUrl)
+                    try FileManager.default.createSymbolicLink(at: aliasItem,
+                                                               withDestinationURL: ctxUrl)
                 }
             }
         } catch {
