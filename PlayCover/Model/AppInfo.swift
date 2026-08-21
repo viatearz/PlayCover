@@ -279,9 +279,14 @@ public class AppInfo {
     }()
 
     lazy var isUnrealEngine: Bool = {
-        let cookeddata = self.url.deletingLastPathComponent()
-            .appendingPathComponent("cookeddata")
-        if FileManager.default.fileExists(atPath: cookeddata.path) {
+        let appFolder = self.url.deletingLastPathComponent()
+        let ueFiles: [URL] = [
+            appFolder.appendingPathComponent("ue4commandline.txt"),
+            appFolder.appendingPathComponent("uecommandline.txt"),
+            appFolder.appendingPathComponent("cookeddata")
+        ]
+
+        for ueFile in ueFiles where FileManager.default.fileExists(atPath: ueFile.path) {
             return true
         }
         return false
