@@ -107,6 +107,7 @@
 "settings.toggle.fixPlayChainCreateKey" = "Fix PlayChain SecKeyCreateRandomKey issue";
 "settings.toggle.createMetalCacheSymlink" = "Create Symbolic Link for Shader Cache";
 "settings.toggle.createMetalCacheSymlink.help" = "Fix an issue where some apps repeatedly compile shaders because they cannot find the shader cache";
+"settings.toggle.lordOfMysteriesLandscapeWebview" = "Fix Display Issues in the Wiki UI";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

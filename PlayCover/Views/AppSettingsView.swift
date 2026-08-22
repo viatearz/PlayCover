@@ -1404,6 +1404,13 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if overriddenKeys.contains("lordOfMysteriesLandscapeWebview") {
+                    HStack {
+                        Toggle("settings.toggle.lordOfMysteriesLandscapeWebview",
+                               isOn: $settings.lordOfMysteriesLandscapeWebview)
+                        Spacer()
+                    }
+                }
 
                 Spacer().frame(height: 16)
                 HStack {
@@ -1442,7 +1449,8 @@ struct ExtrasView: View {
                 "duelLinksFixLoginIssue",
                 "minecraftFixKeyboardMouse",
                 "minecraftEnhanceScrollWheel",
-                "wuwaCloudGameFixMouseIssue"
+                "wuwaCloudGameFixMouseIssue",
+                "lordOfMysteriesLandscapeWebview"
             ]
             self.hasAppSpecificOptions = appSpecificKeys.contains { self.overriddenKeys.contains($0) }
         }
