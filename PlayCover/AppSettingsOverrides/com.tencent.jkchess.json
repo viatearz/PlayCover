@@ -3,5 +3,5 @@
     "checkMicPermissionSync": true,
     "webViewSmartTextInput": true,
     "forceUIViewLandscape": true,
-    "forceUIViewLandscapeArgs": ["MSDKBaseWebViewController"]
+    "forceUIViewLandscapeArgs": ["MSDKPIXWKWebViewController"]
 }

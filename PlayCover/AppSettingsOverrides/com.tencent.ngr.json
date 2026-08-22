@@ -1,4 +1,5 @@
 {
     "disableBuiltinMouse": true,
-    "checkMicPermissionSync": true
+    "checkMicPermissionSync": true,
+    "createMetalCacheSymlink": true
 }

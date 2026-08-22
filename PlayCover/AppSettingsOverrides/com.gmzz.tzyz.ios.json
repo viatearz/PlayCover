@@ -1,0 +1,8 @@
+{
+    "disableBuiltinMouse": true,
+    "blockSleepSpamming": true,
+    "createMetalCacheSymlink": true,
+    "preventKeyboardBeepSound": true,
+    "webViewSmartTextInput": true,
+    "lordOfMysteriesLandscapeWebview": true
+}

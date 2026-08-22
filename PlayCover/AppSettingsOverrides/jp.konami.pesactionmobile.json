@@ -1,3 +1,5 @@
 {
+    "disableBuiltinMouse": true,
+    "useNewHitTestMethodAlways": true,
     "disableCriWareSonicSync": true
 }
