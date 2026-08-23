@@ -61,6 +61,7 @@
 		92A8AAC9275EFEA800D89B50 /* SystemConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A8AAC8275EFEA800D89B50 /* SystemConfig.swift */; };
 		92B4D38F2737CF3D0001D7BB /* PlayTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4D38E2737CF3D0001D7BB /* PlayTools.swift */; };
 		92E19FDB3035F8E700360EC5 /* MarketplaceKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E19FDA3035F8E500360EC5 /* MarketplaceKit.swift */; };
+		92E19FDF303AC10300360EC5 /* com.gaijin.wtmobile.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 92E19FDE303AC10300360EC5 /* com.gaijin.wtmobile.yaml */; };
 		92ECD8A3274E75CD00DB7AC6 /* Installer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ECD8A2274E75CD00DB7AC6 /* Installer.swift */; };
 		92ECD8A5274E763700DB7AC6 /* IPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ECD8A4274E763700DB7AC6 /* IPA.swift */; };
 		92ECD8AE274E787200DB7AC6 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ECD8AD274E787200DB7AC6 /* AppInfo.swift */; };
@@ -174,6 +175,7 @@
 		92B4D38E2737CF3D0001D7BB /* PlayTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTools.swift; sourceTree = "<group>"; };
 		92D79316273C065A001CC964 /* libsandbox.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsandbox.1.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libsandbox.1.tbd; sourceTree = DEVELOPER_DIR; };
 		92E19FDA3035F8E500360EC5 /* MarketplaceKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketplaceKit.swift; sourceTree = "<group>"; };
+		92E19FDE303AC10300360EC5 /* com.gaijin.wtmobile.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = com.gaijin.wtmobile.yaml; sourceTree = "<group>"; };
 		92ECD8A2274E75CD00DB7AC6 /* Installer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Installer.swift; sourceTree = "<group>"; };
 		92ECD8A4274E763700DB7AC6 /* IPA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPA.swift; sourceTree = "<group>"; };
 		92ECD8AD274E787200DB7AC6 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				AA719647287A0E2500623C15 /* default.yaml */,
+				92E19FDE303AC10300360EC5 /* com.gaijin.wtmobile.yaml */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9249ED492F5046E300F9F0E5 /* AppSettingsOverrides in Resources */,
+				92E19FDF303AC10300360EC5 /* com.gaijin.wtmobile.yaml in Resources */,
 				349915352F8866A8005565D1 /* AppIcon.dev.icon in Resources */,
 				AA719649287A0E2500623C15 /* default.yaml in Resources */,
 				8783D00226B8C52E00171041 /* Preview Assets.xcassets in Resources */,
