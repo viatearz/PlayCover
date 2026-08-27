@@ -74,6 +74,10 @@ class Macho {
         let oldMarketplaceKit = "/System/Library/Frameworks/MarketplaceKit.framework/MarketplaceKit"
         let newMarketplaceKit = MarketplaceKit.marketplaceKitExecutable.path
         try replaceLibrary(&binary, oldMarketplaceKit, newMarketplaceKit)
+
+        let oldDeclaredAgeRangeKit = "/System/Library/Frameworks/DeclaredAgeRange.framework/DeclaredAgeRange"
+        let newDeclaredAgeRangeKit = DeclaredAgeRangeKit.declaredAgeRangeExecutable.path
+        try replaceLibrary(&binary, oldDeclaredAgeRangeKit, newDeclaredAgeRangeKit)
     }
 
     static func replaceLibrary(_ binary: inout Data, _ rpath: String, _ lib: String) throws {

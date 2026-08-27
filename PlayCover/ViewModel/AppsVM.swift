@@ -15,6 +15,7 @@ class AppsVM: ObservableObject {
         try? AppsVM.ensureBaseDirectoriesExist()
         PlayTools.installOnSystem()
         MarketplaceKit.installOnSystem()
+        DeclaredAgeRangeKit.installOnSystem()
         fetchApps()
     }
 
