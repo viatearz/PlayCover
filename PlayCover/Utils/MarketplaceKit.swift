@@ -7,7 +7,7 @@ class MarketplaceKit {
     private static let frameworksURL = FileManager.default.homeDirectoryForCurrentUser
         .appendingPathComponent("Library")
         .appendingPathComponent("Frameworks")
-    private static let marketplaceKitFramework = frameworksURL
+    static let marketplaceKitFramework = frameworksURL
         .appendingPathComponent("MarketplaceKit")
         .appendingPathExtension("framework")
     static let marketplaceKitExecutable = marketplaceKitFramework

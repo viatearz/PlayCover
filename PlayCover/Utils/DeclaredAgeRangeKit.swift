@@ -7,7 +7,7 @@ class DeclaredAgeRangeKit {
     private static let frameworksURL = FileManager.default.homeDirectoryForCurrentUser
         .appendingPathComponent("Library")
         .appendingPathComponent("Frameworks")
-    private static let declaredAgeRangeFramework = frameworksURL
+    static let declaredAgeRangeFramework = frameworksURL
         .appendingPathComponent("DeclaredAgeRange")
         .appendingPathExtension("framework")
     static let declaredAgeRangeExecutable = declaredAgeRangeFramework

@@ -44,7 +44,7 @@ class Installer {
         }
     }
 
-    // swiftlint:disable:next function_body_length
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     static func install(ipaUrl: URL, export: Bool, returnCompletion: @escaping (URL?) -> Void) {
         // If (the option key is held or the install playtools popup settings is true) and its not an export,
         //    then show the installer dialog
@@ -81,6 +81,8 @@ class Installer {
 
                 InstallVM.shared.next(.playtools, 0.55, 0.85)
 
+                var requiresMarketplaceKit = false
+                var requiresDeclaredAgeRange = false
                 for macho in machos {
                     if try Macho.isMachoEncrypted(atURL: macho) {
                         throw PlayCoverError.appEncrypted
@@ -89,8 +91,19 @@ class Installer {
                     if !export {
                         try Macho.convertMacho(macho)
                         try Shell.signMacho(macho)
+
+                        for dylib in try Macho.getDylibPaths(macho) {
+                            if dylib.contains("MarketplaceKit.framework") {
+                                requiresMarketplaceKit = true
+                            }
+                            if dylib.contains("DeclaredAgeRange.framework") {
+                                requiresDeclaredAgeRange = true
+                            }
+                        }
                     }
                 }
+                app.info.requiresMarketplaceKit = requiresMarketplaceKit
+                app.info.requiresDeclaredAgeRange = requiresDeclaredAgeRange
 
                 if export {
                     try PlayTools.injectInIPA(app.executable, payload: app.url)

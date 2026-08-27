@@ -34,6 +34,7 @@ enum LSApplicationCategoryType: String, CaseIterable {
     }
 }
 
+// swiftlint:disable:next type_body_length
 public class AppInfo {
     public let url: URL
     fileprivate var rawStorage: NSMutableDictionary
@@ -256,6 +257,40 @@ public class AppInfo {
                 } catch {
                     Log.shared.error(error)
                 }
+            }
+        }
+    }
+
+    private lazy var requiresMarketplaceKitKey: String = {
+        "RequiresMarketplaceKit_\(bundleIdentifier)"
+    }()
+
+    var requiresMarketplaceKit: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: requiresMarketplaceKitKey)
+        }
+        set {
+            if newValue {
+                UserDefaults.standard.set(true, forKey: requiresMarketplaceKitKey)
+            } else {
+                UserDefaults.standard.removeObject(forKey: requiresMarketplaceKitKey)
+            }
+        }
+    }
+
+    private lazy var requiresDeclaredAgeRangeKey: String = {
+        "RequiresDeclaredAgeRange_\(bundleIdentifier)"
+    }()
+
+    var requiresDeclaredAgeRange: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: requiresDeclaredAgeRangeKey)
+        }
+        set {
+            if newValue {
+                UserDefaults.standard.set(true, forKey: requiresDeclaredAgeRangeKey)
+            } else {
+                UserDefaults.standard.removeObject(forKey: requiresDeclaredAgeRangeKey)
             }
         }
     }

@@ -65,7 +65,7 @@ class Entitlements {
         base["com.apple.security.app-sandbox"] = true
     }
 
-    // swiftlint:disable:next cyclomatic_complexity
+    // swiftlint:disable:next cyclomatic_complexity function_body_length
     static func composeEntitlements(_ app: PlayApp) throws -> [String: Any] {
         var base = [String: Any]()
         let bundleID = app.info.bundleIdentifier
@@ -121,6 +121,24 @@ class Entitlements {
             }
 
             sandboxProfile.append(contentsOf: PlayRules.buildRules(rules: rules.bypass ?? [], bundleID: bundleID))
+        }
+
+        // Ideally, these stub frameworks should always be added to the sandbox profile.
+        // We make it optional here to avoid unnecessary resigning when switching between
+        // the official build and our custom build of PlayCover.
+        if app.info.requiresMarketplaceKit {
+            let file = MarketplaceKit.marketplaceKitFramework.path
+            sandboxProfile.append(
+                    """
+                    (allow file* file-read* file-read-metadata file-ioctl (subpath "\(file)"))
+                    """)
+        }
+        if app.info.requiresDeclaredAgeRange {
+            let file = DeclaredAgeRangeKit.declaredAgeRangeFramework.path
+            sandboxProfile.append(
+                    """
+                    (allow file* file-read* file-read-metadata file-ioctl (subpath "\(file)"))
+                    """)
         }
 
         base["com.apple.security.temporary-exception.sbpl"] = sandboxProfile

@@ -295,6 +295,31 @@ class Macho {
         return result
     }
 
+    static func getDylibPaths(_ url: URL) throws -> [String] {
+        var binary = try Data(contentsOf: url)
+        try stripBinary(&binary)
+        var result: [String] = []
+        _ = try iterateLoadCommands(binary: binary) { offset, shouldSwap in
+            let loadCommand = binary.extract(load_command.self,
+                                             offset: offset,
+                                             swap: shouldSwap ? swap_load_command:nil)
+            if ![LC_LOAD_WEAK_DYLIB, UInt32(LC_LOAD_DYLIB)].contains(loadCommand.cmd) {
+                return false
+            }
+            let commandData = binary[offset ..< offset+Int(loadCommand.cmdsize)]
+            let dylibCommand = commandData.extract(dylib_command.self,
+                                                   offset: commandData.startIndex,
+                                                   swap: shouldSwap ? swap_dylib_command:nil)
+            let path = String(data: commandData,
+                              offset: commandData.startIndex,
+                              commandSize: Int(dylibCommand.cmdsize),
+                              loadCommandString: dylibCommand.dylib.name)
+            result.append(path)
+            return false
+        }
+        return result
+    }
+
     enum PatchError: Error {
         case fileNotFound
         case patternNotFound
