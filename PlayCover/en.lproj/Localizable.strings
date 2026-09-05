@@ -1,9 +1,11 @@
 "settings.tab.extras" = "Extras";
 "settings.text.extras.general" = "General";
+"settings.text.extras.inputs" = "Inputs";
 "settings.text.extras.unityEngine" = "Unity Engine";
 "settings.text.extras.unrealEngine" = "Unreal Engine";
 "settings.text.extras.neoxEngine" = "NeoX Engine";
 "settings.text.extras.services" = "Services";
+"settings.text.extras.bypass" = "Bypass";
 "settings.text.extras.appSpecific" = "App-specific";
 "settings.toggle.enableCustomCursor" = "Mouse Cursor";
 "settings.text.cursorSize" = "Size";

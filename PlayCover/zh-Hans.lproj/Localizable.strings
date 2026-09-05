@@ -1,9 +1,11 @@
 "settings.tab.extras" = "额外设置";
 "settings.text.extras.general" = "通用";
+"settings.text.extras.inputs" = "输入";
 "settings.text.extras.unityEngine" = "Unity引擎";
 "settings.text.extras.unrealEngine" = "虚幻引擎";
 "settings.text.extras.neoxEngine" = "NeoX引擎";
 "settings.text.extras.services" = "服务支持";
+"settings.text.extras.bypass" = "绕过";
 "settings.text.extras.appSpecific" = "特定应用";
 "settings.toggle.enableCustomCursor" = "鼠标光标";
 "settings.text.cursorSize" = "光标尺寸";

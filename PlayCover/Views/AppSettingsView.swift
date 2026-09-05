@@ -935,6 +935,75 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if showAllOptions || preferredLanguageEN {
+                    HStack {
+                        Toggle("settings.toggle.preferredLanguageEN", isOn: Binding(
+                            get: { preferredLanguageEN },
+                            set: {
+                                if $0 {
+                                    preferredLanguageEN = true
+                                    preferredLanguageJP = false
+                                    settings.preferredLanguage = "en"
+                                } else {
+                                    preferredLanguageEN = false
+                                    settings.preferredLanguage = ""
+                                    resetPreferredLanguage()
+                                }
+                            }
+                        ))
+                        Spacer()
+                    }
+                }
+                if showAllOptions || preferredLanguageJP {
+                    HStack {
+                        Toggle("settings.toggle.preferredLanguageJP", isOn: Binding(
+                            get: { preferredLanguageJP },
+                            set: {
+                                if $0 {
+                                    preferredLanguageJP = true
+                                    preferredLanguageEN = false
+                                    settings.preferredLanguage = "ja"
+                                } else {
+                                    preferredLanguageJP = false
+                                    settings.preferredLanguage = ""
+                                    resetPreferredLanguage()
+                                }
+                            }
+                        ))
+                        Spacer()
+                    }
+                }
+                if shouldShow("createMetalCacheSymlink", settings.createMetalCacheSymlink) {
+                    HStack {
+                        Toggle("settings.toggle.createMetalCacheSymlink",
+                               isOn: $settings.createMetalCacheSymlink)
+                            .help("settings.toggle.createMetalCacheSymlink.help")
+                        Spacer()
+                    }
+                }
+                if shouldShow("disableAllAlertDialogs", settings.disableAllAlertDialogs) {
+                    HStack {
+                        Toggle("settings.toggle.disableAllAlertDialogs",
+                               isOn: $settings.disableAllAlertDialogs)
+                        Spacer()
+                    }
+                }
+                if shouldShow("forceQuitAppOnClose", settings.forceQuitAppOnClose) {
+                    HStack {
+                        Toggle("settings.toggle.forceQuitAppOnClose",
+                               isOn: $settings.forceQuitAppOnClose)
+                        .help("settings.toggle.forceQuitAppOnClose.help")
+                        Spacer()
+                    }
+                }
+
+                if showAllOptions {
+                    Spacer().frame(height: 16)
+                    HStack {
+                        Text("settings.text.extras.inputs").bold()
+                        Spacer()
+                    }
+                }
                 if shouldShow("webViewSmartTextInput", settings.webViewSmartTextInput) {
                     HStack {
                         Toggle("settings.toggle.webViewSmartTextInput",
@@ -1000,67 +1069,6 @@ struct ExtrasView: View {
                     HStack {
                         Toggle("settings.toggle.disableBuiltinGamepad",
                                isOn: $settings.disableBuiltinGamepad)
-                        Spacer()
-                    }
-                }
-                if showAllOptions || preferredLanguageEN {
-                    HStack {
-                        Toggle("settings.toggle.preferredLanguageEN", isOn: Binding(
-                            get: { preferredLanguageEN },
-                            set: {
-                                if $0 {
-                                    preferredLanguageEN = true
-                                    preferredLanguageJP = false
-                                    settings.preferredLanguage = "en"
-                                } else {
-                                    preferredLanguageEN = false
-                                    settings.preferredLanguage = ""
-                                    resetPreferredLanguage()
-                                }
-                            }
-                        ))
-                        Spacer()
-                    }
-                }
-                if showAllOptions || preferredLanguageJP {
-                    HStack {
-                        Toggle("settings.toggle.preferredLanguageJP", isOn: Binding(
-                            get: { preferredLanguageJP },
-                            set: {
-                                if $0 {
-                                    preferredLanguageJP = true
-                                    preferredLanguageEN = false
-                                    settings.preferredLanguage = "ja"
-                                } else {
-                                    preferredLanguageJP = false
-                                    settings.preferredLanguage = ""
-                                    resetPreferredLanguage()
-                                }
-                            }
-                        ))
-                        Spacer()
-                    }
-                }
-                if shouldShow("createMetalCacheSymlink", settings.createMetalCacheSymlink) {
-                    HStack {
-                        Toggle("settings.toggle.createMetalCacheSymlink",
-                               isOn: $settings.createMetalCacheSymlink)
-                            .help("settings.toggle.createMetalCacheSymlink.help")
-                        Spacer()
-                    }
-                }
-                if shouldShow("disableAllAlertDialogs", settings.disableAllAlertDialogs) {
-                    HStack {
-                        Toggle("settings.toggle.disableAllAlertDialogs",
-                               isOn: $settings.disableAllAlertDialogs)
-                        Spacer()
-                    }
-                }
-                if shouldShow("forceQuitAppOnClose", settings.forceQuitAppOnClose) {
-                    HStack {
-                        Toggle("settings.toggle.forceQuitAppOnClose",
-                               isOn: $settings.forceQuitAppOnClose)
-                        .help("settings.toggle.forceQuitAppOnClose.help")
                         Spacer()
                     }
                 }
@@ -1252,6 +1260,14 @@ struct ExtrasView: View {
                                 .help("settings.toggle.skipUsercentricsConsentBanner.help")
                             Spacer()
                         }
+                    }
+                }
+
+                if showAllOptions {
+                    Spacer().frame(height: 16)
+                    HStack {
+                        Text("settings.text.extras.bypass").bold()
+                        Spacer()
                     }
                 }
                 if shouldShow("bypassMCMetaPlistCheck", settings.bypassMCMetaPlistCheck) {
