@@ -369,9 +369,10 @@ class AppSettings {
     let extraSettingsUrl: URL
     var openWithLLDB: Bool = false
     var openLLDBWithTerminal: Bool = true
+    private var suppressPersistence = false
     var settings: AppSettingsData {
         didSet {
-            encode()
+            if !suppressPersistence { encode() }
         }
     }
     var extraSettings: ExtraAppSettingsData {
@@ -386,7 +387,9 @@ class AppSettings {
                                                 .appendingPathExtension("plist")
         extraSettingsUrl = AppSettings.appSettingsDir.appendingPathComponent(info.bundleIdentifier + ".extra")
                                                      .appendingPathExtension("plist")
-        settings = AppSettingsData()
+        var defaults = AppSettingsData()
+        defaults.bundleIdentifier = info.bundleIdentifier
+        settings = defaults
         extraSettings = ExtraAppSettingsData()
         var overrides: [String: Any]?
         if !decode() {
@@ -396,6 +399,7 @@ class AppSettings {
             if let overrides = overrides {
                 applyOverridesToBaseSettings(overrides)
             }
+            preserveUnreadableSettingsIfPresent()
             encode()
         }
         if !decodeExtra() {
@@ -408,7 +412,9 @@ class AppSettings {
             encodeExtra()
         }
 
-        settings.bundleIdentifier = info.bundleIdentifier
+        if settings.bundleIdentifier != info.bundleIdentifier {
+            settings.bundleIdentifier = info.bundleIdentifier
+        }
 
         migrateExtraSettingsToBaseSettings()
     }
@@ -425,7 +431,9 @@ class AppSettings {
     }
 
     public func reset() {
-        settings = AppSettingsData()
+        var defaults = AppSettingsData()
+        defaults.bundleIdentifier = info.bundleIdentifier
+        settings = defaults
         extraSettings = ExtraAppSettingsData()
         let overrides = loadOverrides()
         applyOverridesToBaseSettings(overrides)
@@ -436,10 +444,19 @@ class AppSettings {
     public func decode() -> Bool {
         do {
             let data = try Data(contentsOf: settingsUrl)
-            settings = try PropertyListDecoder().decode(AppSettingsData.self, from: data)
+            let decoded = try PropertyListDecoder().decode(AppSettingsData.self, from: data)
+            suppressPersistence = true
+            settings = decoded
+            suppressPersistence = false
             return true
         } catch {
-            print(error)
+            suppressPersistence = false
+            if FileManager.default.fileExists(atPath: settingsUrl.path) {
+                Log.shared.log(
+                    "App settings decode failed for \(info.bundleIdentifier): \(error.localizedDescription)",
+                    isError: true
+                )
+            }
             return false
         }
     }
@@ -451,10 +468,13 @@ class AppSettings {
 
         do {
             let data = try encoder.encode(settings)
-            try data.write(to: settingsUrl)
+            try data.write(to: settingsUrl, options: .atomic)
             return true
         } catch {
-            print(error)
+            Log.shared.log(
+                "App settings write failed for \(info.bundleIdentifier): \(error.localizedDescription)",
+                isError: true
+            )
             return false
         }
     }
@@ -531,6 +551,23 @@ class AppSettings {
             extraSettings.neoxEngineFixFilePath = true
         }
         extraSettings.applyOverrides(overrides)
+    }
+
+    private func preserveUnreadableSettingsIfPresent() {
+        let fileManager = FileManager.default
+        guard fileManager.fileExists(atPath: settingsUrl.path) else { return }
+        let backupURL = settingsUrl.deletingPathExtension().appendingPathExtension("invalid.plist")
+        do {
+            try? fileManager.removeItem(at: backupURL)
+            try fileManager.copyItem(at: settingsUrl, to: backupURL)
+            Log.shared.log("Preserved unreadable app settings at \(backupURL.path)", isError: true)
+        } catch {
+            Log.shared.log(
+                "Failed to preserve unreadable app settings for \(info.bundleIdentifier): " +
+                    error.localizedDescription,
+                isError: true
+            )
+        }
     }
 }
 
