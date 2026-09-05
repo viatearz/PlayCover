@@ -550,3 +550,10 @@
 "settings.settings.displayRotation.flipFix" = "翻转修复";
 "settings.toggle.ignoreUnityKeyboardInitializationError" = "忽略Unity键盘初始化错误";
 "settings.toggle.ignoreUnityKeyboardInitializationError.help" = "防止因\"[KeyboardDelegate Initialize] called after creating keyboard\"断言失败导致的闪退";
+"settings.customPlugins.title" = "自定义插件";
+"settings.customPlugins.add" = "添加…";
+"settings.customPlugins.empty" = "未安装自定义插件。";
+"settings.customPlugins.warningTitle" = "添加自定义插件？";
+"settings.customPlugins.warningMessage" = "自定义插件是可任意执行的代码，它拥有当前应用进程的完全访问权限。请仅添加来自您信任的人的插件。";
+"settings.customPlugins.warningConfirm" = "仍要添加";
+"error.invalidUserDylib" = "此文件不是有效的 dylib，PlayCover 无法将其转换为适用于当前应用架构的格式，因此 PlayTools 无法加载它。";
