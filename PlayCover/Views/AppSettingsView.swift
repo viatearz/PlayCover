@@ -26,6 +26,7 @@ struct AppSettingsView: View {
     @State var appIcon: NSImage?
     @State var hasPlayTools: Bool?
     @State var hasAlias: Bool?
+    @State var selectedTab = 0
 
     @State private var currentTask = BlockingTask.none
     @State private var cache = DataCache.instance
@@ -76,16 +77,18 @@ struct AppSettingsView: View {
                 appIcon = cache.readImage(forKey: viewModel.app.info.bundleIdentifier)
             }
 
-            TabView {
+            TabView(selection: $selectedTab) {
                 KeymappingView(settings: $viewModel.settings)
                     .tabItem {
                         Text("settings.tab.km")
                     }
+                    .tag(0)
                     .disabled(!(hasPlayTools ?? true))
                 GraphicsView(settings: $viewModel.settings)
                     .tabItem {
                         Text("settings.tab.graphics")
                     }
+                    .tag(1)
                     .disabled(!(hasPlayTools ?? true))
                 BypassesView(settings: $viewModel.settings,
                              hasPlayTools: $hasPlayTools,
@@ -94,6 +97,7 @@ struct AppSettingsView: View {
                     .tabItem {
                         Text("settings.tab.bypasses")
                     }
+                    .tag(2)
                     .disabled(!(hasPlayTools ?? true))
                 MiscView(settings: $viewModel.settings,
                          closeView: $closeView,
@@ -105,19 +109,36 @@ struct AppSettingsView: View {
                     .tabItem {
                         Text("settings.tab.misc")
                     }
+                    .tag(3)
                 ExtrasView(settings: $viewModel.settings.extraSettings,
                            app: viewModel.app)
                    .tabItem {
                        Text("settings.tab.extras")
                    }
+                   .tag(4)
                    .disabled(!(hasPlayTools ?? true))
                 InfoView(info: viewModel.app.info, hasPlayTools: (hasPlayTools ?? true))
                     .tabItem {
                         Text("settings.tab.info")
                     }
+                    .tag(5)
             }
             .frame(minWidth: 500, minHeight: 250)
             HStack {
+                if #available(macOS 27.0, *) {
+                    Button {
+                        selectedTab = max(selectedTab - 1, 0)
+                    } label: {
+                        Image(systemName: "chevron.left")
+                    }
+                    .disabled(selectedTab == 0)
+                    Button {
+                        selectedTab = min(selectedTab + 1, 5)
+                    } label: {
+                        Image(systemName: "chevron.right")
+                    }
+                    .disabled(selectedTab == 5)
+                }
                 Spacer()
                 Button("settings.resetSettings") {
                     resetSettingsCompletedAlert.toggle()
