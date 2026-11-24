@@ -1356,16 +1356,6 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
-                if app.info.isUnityEngine {
-                    if shouldShow("skipUsercentricsConsentBanner", settings.skipUsercentricsConsentBanner) {
-                        HStack {
-                            Toggle("settings.toggle.skipUsercentricsConsentBanner",
-                                   isOn: $settings.skipUsercentricsConsentBanner)
-                                .help("settings.toggle.skipUsercentricsConsentBanner.help")
-                            Spacer()
-                        }
-                    }
-                }
 
                 if showAllOptions {
                     Spacer().frame(height: 16)
