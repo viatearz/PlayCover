@@ -192,6 +192,7 @@ struct ExtraAppSettingsData: Codable {
     var fixPlayChainCreateKey = false
     var createMetalCacheSymlink = false
     var lordOfMysteriesLandscapeWebview = false
+    var forceSetRequiresFullScreen = false
 
     init() {}
 
@@ -269,6 +270,7 @@ struct ExtraAppSettingsData: Codable {
         fixPlayChainCreateKey = try container.decodeIfPresent(Bool.self, forKey: .fixPlayChainCreateKey) ?? false
         createMetalCacheSymlink = try container.decodeIfPresent(Bool.self, forKey: .createMetalCacheSymlink) ?? false
         lordOfMysteriesLandscapeWebview = try container.decodeIfPresent(Bool.self, forKey: .lordOfMysteriesLandscapeWebview) ?? false
+        forceSetRequiresFullScreen = try container.decodeIfPresent(Bool.self, forKey: .forceSetRequiresFullScreen) ?? false
     }
 
     mutating func applyOverrides(_ overrides: [String: Any]) {
@@ -344,6 +346,7 @@ struct ExtraAppSettingsData: Codable {
         if let val = overrides["fixPlayChainCreateKey"] as? Bool { fixPlayChainCreateKey = val }
         if let val = overrides["createMetalCacheSymlink"] as? Bool { createMetalCacheSymlink = val }
         if let val = overrides["lordOfMysteriesLandscapeWebview"] as? Bool { lordOfMysteriesLandscapeWebview = val }
+        if let val = overrides["forceSetRequiresFullScreen"] as? Bool { forceSetRequiresFullScreen = val }
     }
 }
 // swiftlint:enable function_body_length line_length cyclomatic_complexity

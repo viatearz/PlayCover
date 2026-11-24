@@ -110,6 +110,8 @@
 "settings.toggle.createMetalCacheSymlink" = "Create Symbolic Link for Shader Cache";
 "settings.toggle.createMetalCacheSymlink.help" = "Fix an issue where some apps repeatedly compile shaders because they cannot find the shader cache";
 "settings.toggle.lordOfMysteriesLandscapeWebview" = "Fix Display Issues in the Wiki UI";
+"settings.toggle.forceSetRequiresFullScreen" = "Force RequiresFullScreen to true (Reinstall Required)";
+"settings.toggle.forceSetRequiresFullScreen.help" = "Fix an issue where the game content is not filling the window completely";
 
 "playapp.add" = "Add app";
 "playapp.addSource" = "Add source";

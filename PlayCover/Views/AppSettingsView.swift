@@ -1085,6 +1085,14 @@ struct ExtrasView: View {
                         Spacer()
                     }
                 }
+                if shouldShow("forceSetRequiresFullScreen", settings.forceSetRequiresFullScreen) {
+                    HStack {
+                        Toggle("settings.toggle.forceSetRequiresFullScreen",
+                               isOn: $settings.forceSetRequiresFullScreen)
+                            .help("settings.toggle.forceSetRequiresFullScreen.help")
+                        Spacer()
+                    }
+                }
                 if shouldShow("disableAllAlertDialogs", settings.disableAllAlertDialogs) {
                     HStack {
                         Toggle("settings.toggle.disableAllAlertDialogs",

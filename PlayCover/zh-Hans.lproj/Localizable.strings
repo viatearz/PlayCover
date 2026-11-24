@@ -110,6 +110,8 @@
 "settings.toggle.createMetalCacheSymlink" = "为着色器缓存创建符号链接";
 "settings.toggle.createMetalCacheSymlink.help" = "可解决应用因为找不到着色器缓存文件而反复编译着色器的问题";
 "settings.toggle.lordOfMysteriesLandscapeWebview" = "修复攻略界面显示问题";
+"settings.toggle.forceSetRequiresFullScreen" = "修改 RequiresFullScreen 为 true（需重装App）";
+"settings.toggle.forceSetRequiresFullScreen.help" = "可解决游戏画面未完全铺满窗口的问题";
 
 /* (No Comment) */
 "alert.app.delete" = "所有应用数据将被清除；有些软件可能需要重新下载数据。确定继续？";

@@ -181,6 +181,15 @@ public class AppInfo {
         }
     }
 
+    var requiresFullScreen: Bool {
+        get {
+            self[bool: "UIRequiresFullScreen"] ?? false
+        }
+        set {
+            self[bool: "UIRequiresFullScreen"] = newValue
+        }
+    }
+
     var bundleName: String {
         if self[string: "CFBundleName"] == nil || self[string: "CFBundleName"] == "" {
             return self[string: "CFBundleDisplayName"] ?? ""

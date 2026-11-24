@@ -340,6 +340,7 @@ extension PlayApp {
         AppsVM.shared.fetchApps()
     }
 
+    // swiftlint:disable cyclomatic_complexity
     func setup() {
         if settings.extraSettings.unrealEngineFixFilePath {
             applyUnrealEngineFilePathPatch()
@@ -371,7 +372,16 @@ extension PlayApp {
         if settings.extraSettings.wowslegendsFixFilePath {
             applyWowsLegendsFilePathPatch()
         }
+        if settings.extraSettings.forceSetRequiresFullScreen {
+            info.requiresFullScreen = true
+            do {
+                try info.write()
+            } catch {
+                Log.shared.error(error)
+            }
+        }
     }
+    // swiftlint:enable cyclomatic_complexity
 
     func sign() {
         do {
